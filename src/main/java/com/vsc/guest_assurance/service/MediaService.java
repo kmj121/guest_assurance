@@ -2,7 +2,7 @@ package com.vsc.guest_assurance.service;
 
 import com.vsc.guest_assurance.common.PageBean;
 import com.vsc.guest_assurance.util.PageUtil;
-import com.vsc.guest_assurance.vo.BackendQuestionVo;
+import com.vsc.guest_assurance.vo.BackendMediaVo;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -22,14 +22,14 @@ import java.util.List;
  * @Date 2021/1/13
  */
 @Service
-public class QuestionService {
+public class MediaService {
 
-    public PageBean<BackendQuestionVo> list(Integer page, Integer size) throws IOException, DocumentException {
+    public PageBean<BackendMediaVo> list(Integer page, Integer size) throws IOException, DocumentException {
 
         //解析xml
-        List<BackendQuestionVo> listVos = read();
+        List<BackendMediaVo> listVos = read();
         long total;
-        List<BackendQuestionVo> items = new ArrayList<>();
+        List<BackendMediaVo> items = new ArrayList<>();
         if (listVos == null || listVos.size() == 0) {
             total = 0;
         } else {
@@ -40,31 +40,34 @@ public class QuestionService {
         return new PageBean<>(page, size, total, items);
     }
 
-    public List<BackendQuestionVo> read() throws DocumentException, IOException {
-        List<BackendQuestionVo> listVos = new ArrayList<>();
+    public List<BackendMediaVo> read() throws DocumentException, IOException {
+        List<BackendMediaVo> listVos = new ArrayList<>();
         //1.创建Reader对象
         SAXReader reader = new SAXReader();
         //2.加载xml
-        ClassPathResource classPathResource = new ClassPathResource("static/file/faqs.xml");
+        ClassPathResource classPathResource = new ClassPathResource("static/file/media.xml");
         InputStream inputStream = classPathResource.getInputStream();
         Document document = reader.read(inputStream);
         //3.获取根节点
         Element rootElement = document.getRootElement();
         Iterator iterator = rootElement.elementIterator();
         while (iterator.hasNext()){
-            BackendQuestionVo backendQuestionVo = new BackendQuestionVo();
+            BackendMediaVo backendMediaVo = new BackendMediaVo();
             Element stu = (Element) iterator.next();
             Iterator iterator1 = stu.elementIterator();
             while (iterator1.hasNext()){
                 Element stuChild = (Element) iterator1.next();
-                if("question".equals(stuChild.getName())) {
-                    backendQuestionVo.setQuestion(stuChild.getStringValue());
+                if("title".equals(stuChild.getName())) {
+                    backendMediaVo.setTitle(stuChild.getStringValue());
                 }
-                if("answer".equals(stuChild.getName())) {
-                    backendQuestionVo.setAnswer(stuChild.getStringValue());
+                if("summary".equals(stuChild.getName())) {
+                    backendMediaVo.setSummary(stuChild.getStringValue());
+                }
+                if("imageUrl".equals(stuChild.getName())) {
+                    backendMediaVo.setImageUrl(stuChild.getStringValue());
                 }
             }
-            listVos.add(backendQuestionVo);
+            listVos.add(backendMediaVo);
         }
         return listVos;
     }

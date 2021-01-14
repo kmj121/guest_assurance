@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE medias [
+        <!ELEMENT medias (media+)>
+        <!ELEMENT media (title, summary, imageUrl)>
+        <!ELEMENT title (#PCDATA)>
+        <!ELEMENT summary (#PCDATA)>
+        <!ELEMENT imageUrl (#PCDATA)>
+        ]>
+
+<medias>
+    <media>
+        <title>title1</title>
+        <summary>summary1</summary>
+        <imageUrl>classpath:static/image/resume.png</imageUrl>
+    </media>
+    <media>
+        <title>title2</title>
+        <summary>summary2</summary>
+        <imageUrl>classpath:static/image/resume.png</imageUrl>
+    </media>
+    <media>
+        <title>title3</title>
+        <summary>summary3</summary>
+        <imageUrl>classpath:static/image/resume.png</imageUrl>
+    </media>
+    <media>
+        <title>title4</title>
+        <summary>summary4</summary>
+        <imageUrl>classpath:static/image/resume.png</imageUrl>
+    </media>
+    <media>
+        <title>title5</title>
+        <summary>summary5</summary>
+        <imageUrl>classpath:static/image/resume.png</imageUrl>
+    </media>
+    <media>
+        <title>title6</title>
+        <summary>summary6</summary>
+        <imageUrl>classpath:static/image/resume.png</imageUrl>
+    </media>
+</medias>

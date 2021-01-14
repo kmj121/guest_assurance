@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<faqs> 
-    <list question="question1" answer="answer1"/>  
-    <list question="question2" answer="answer2"/>  
-    <list question="question3" answer="answer3"/>  
-    <list question="question4" answer="answer4"/>  
-</faqs>

@@ -71,4 +71,16 @@ public class StringUtil {
 
         return list;
     }
+
+    /**
+     * 从指定字符串后开始截取
+     * @param string
+     * @param separator
+     * @return
+     */
+    public static String substring(String string, String separator) {
+        int begin=string.indexOf(separator) + separator.length();
+        int last=string.length();
+        return string.substring(begin,last);
+    }
 }

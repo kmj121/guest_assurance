@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @Author Roger
  * @Date 2021/1/13
  */
-public class BackendQuestionListVo {
+public class BackendQuestionVo {
     private String question;
     private String answer;
 
