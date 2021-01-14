@@ -64,5 +64,9 @@
 <!--               enableCountByExample="false" enableSelectByExample="false"-->
 <!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
 <!--        </table>-->
+        <table schema="" tableName="contact_information" domainObjectName="ContactInformation"
+               enableCountByExample="false" enableSelectByExample="false"
+               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">
+        </table>
     </context>
 </generatorConfiguration>
