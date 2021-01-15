@@ -1,6 +1,9 @@
 package com.vsc.guest_assurance.dao;
 
 import com.vsc.guest_assurance.entity.ContactInformation;
+import com.vsc.guest_assurance.qo.BackendContactInformationListVo;
+
+import java.util.List;
 
 public interface ContactInformationMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,6 @@ public interface ContactInformationMapper {
     int updateByPrimaryKeySelective(ContactInformation record);
 
     int updateByPrimaryKey(ContactInformation record);
+
+    List<BackendContactInformationListVo> selectList(String keyWord);
 }

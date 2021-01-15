@@ -115,6 +115,13 @@
             <artifactId>hibernate-validator</artifactId>
             <version>6.1.0.Final</version>
         </dependency>
+
+        <!-- 用于 Java 的 Microsoft Graph 获取用户相关 -->
+        <dependency>
+            <groupId>com.microsoft.graph</groupId>
+            <artifactId>microsoft-graph</artifactId>
+            <version>1.5.0</version>
+        </dependency>
     </dependencies>
 
     <build>

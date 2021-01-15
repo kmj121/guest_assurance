@@ -85,14 +85,14 @@
         select id as userId, email, user_name as userName, is_manager as privilege
         from user
         where 1 = 1
-        <if test="email != null and email != ''">
-            and email like '%'+#{email}+'%'
+        <if test="email != null">
+            and email like #{email,jdbcType=VARCHAR}
         </if>
-        <if test="userName != null and userName != ''">
-            and user_name like '%'+#{userName}+'%'
+        <if test="userName != null">
+            and user_name like #{userName,jdbcType=VARCHAR}
         </if>
         <if test="privilege != null">
-            and is_manager = #{privilege}
+            and is_manager = #{privilege,jdbcType=INTEGER}
         </if>
     </select>
 </mapper>

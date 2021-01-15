@@ -3,9 +3,14 @@ package com.vsc.guest_assurance.controller;
 import com.vsc.guest_assurance.common.MessageCode;
 import com.vsc.guest_assurance.common.ResultObject;
 import com.vsc.guest_assurance.qo.BackendContactInformationAddQo;
+import com.vsc.guest_assurance.qo.BackendContactInformationDetailQo;
+import com.vsc.guest_assurance.qo.BackendContactInformationListVo;
 import com.vsc.guest_assurance.service.ContactInformationService;
+import com.vsc.guest_assurance.util.StringUtil;
+import com.vsc.guest_assurance.vo.BackendUserListVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -38,5 +43,21 @@ public class BackendContactInformationController {
                     errors.getAllErrors());
         }
         return new ResultObject(MessageCode.CODE_SUCCESS, contactInformationService.add(qo));
+    }
+
+    @ApiOperation(value = "列表")
+    @GetMapping(value = "/list")
+    public ResultObject<BackendContactInformationListVo> list(
+            HttpServletRequest request,
+            @ApiParam(value = "关键字") @RequestParam(required = false) String keyWord,
+            @ApiParam(value = "页数", required = true) @RequestParam Integer page,
+            @ApiParam(value = "数量", required = true) @RequestParam Integer size) {
+        return new ResultObject(MessageCode.CODE_SUCCESS, contactInformationService.list(keyWord, page, size));
+    }
+
+    @ApiOperation("详情")
+    @GetMapping(value = "/{id}/detail")
+    public ResultObject<BackendContactInformationDetailQo> detail(HttpServletRequest request, @ApiParam(value = "id",required = true) @PathVariable Integer id) {
+        return new ResultObject<BackendContactInformationDetailQo>(MessageCode.CODE_SUCCESS, contactInformationService.detail(id));
     }
 }

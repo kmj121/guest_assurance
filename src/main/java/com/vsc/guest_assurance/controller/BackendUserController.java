@@ -1,21 +1,25 @@
 package com.vsc.guest_assurance.controller;
 
+import com.vsc.guest_assurance.common.ApiException;
 import com.vsc.guest_assurance.common.MessageCode;
 import com.vsc.guest_assurance.common.ResultObject;
-import com.vsc.guest_assurance.service.UserService;
+import com.vsc.guest_assurance.qo.BackendContactInformationDetailQo;
+import com.vsc.guest_assurance.service.UsersService;
 import com.vsc.guest_assurance.util.StringUtil;
-import com.vsc.guest_assurance.util.Util;
+import com.vsc.guest_assurance.vo.BackendUserDetailVo;
 import com.vsc.guest_assurance.vo.BackendUserListVo;
+import com.vsc.guest_assurance.vo.BackendUserUpdateVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * @Description
@@ -28,7 +32,7 @@ import javax.servlet.http.HttpServletRequest;
 public class BackendUserController {
 
     @Autowired
-    private UserService userService;
+    private UsersService usersService;
 
     @ApiOperation(value = "用户列表")
     @GetMapping(value = "/list")
@@ -41,14 +45,23 @@ public class BackendUserController {
             @ApiParam(value = "数量", required = true) @RequestParam Integer size) {
         email = StringUtil.replaceStrParam(email);
         userName = StringUtil.replaceStrParam(userName);
-        return new ResultObject(MessageCode.CODE_SUCCESS, userService.list(email, userName, privilege, page, size));
+        return new ResultObject(MessageCode.CODE_SUCCESS, usersService.list(email, userName, privilege, page, size));
     }
 
-    //@ApiOperation(value = "获取我的用户信息")
-    //@GetMapping(value = "/userInfo")
-    //public ResultObject<BackendUserListVo> detail(
-    //        HttpServletRequest request) {
-    //    return new ResultObject(MessageCode.CODE_SUCCESS, Util.getLoginToken(request).getLanguage(),
-    //            usersService.userInfo(Util.getLoginToken(request)));
-    //}
+    @ApiOperation("更新")
+    @PostMapping(value = "/update")
+    public ResultObject edit(HttpServletRequest request, @RequestBody @Valid BackendUserUpdateVo backendUserUpdateVo
+            , BindingResult errors) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException, IOException {
+        if(errors.hasErrors()) {
+            return new ResultObject(MessageCode.CODE_PARAMETER_ERROR, null, errors.getAllErrors());
+        }
+        usersService.edit(backendUserUpdateVo);
+        return new ResultObject(MessageCode.CODE_SUCCESS, null);
+    }
+
+    @ApiOperation("详情")
+    @GetMapping(value = "/{id}/detail")
+    public ResultObject<BackendUserDetailVo> detail(HttpServletRequest request, @ApiParam(value = "id",required = true) @PathVariable Integer id) {
+        return new ResultObject<BackendUserDetailVo>(MessageCode.CODE_SUCCESS, usersService.detail(id));
+    }
 }
