@@ -8,7 +8,6 @@ import com.vsc.guest_assurance.entity.ContactInformation;
 import com.vsc.guest_assurance.qo.BackendContactInformationAddQo;
 import com.vsc.guest_assurance.qo.BackendContactInformationDetailQo;
 import com.vsc.guest_assurance.qo.BackendContactInformationListVo;
-import com.vsc.guest_assurance.vo.BackendUserListVo;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

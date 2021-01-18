@@ -9,8 +9,6 @@ public class ContactInformation {
 
     private String email;
 
-    private String phone;
-
     private String industryType;
 
     private String message;
@@ -18,6 +16,8 @@ public class ContactInformation {
     private Date createTime;
 
     private Date updateTime;
+
+    private String phone;
 
     public Integer getId() {
         return id;
@@ -41,14 +41,6 @@ public class ContactInformation {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public String getIndustryType() {
@@ -81,5 +73,13 @@ public class ContactInformation {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

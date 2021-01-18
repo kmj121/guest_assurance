@@ -1,6 +1,6 @@
 package com.vsc.guest_assurance.entity;
 
-public class User {
+public class Users {
     private Integer id;
 
     private String userName;

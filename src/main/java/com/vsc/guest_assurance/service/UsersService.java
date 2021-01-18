@@ -5,8 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.microsoft.graph.models.extensions.DirectoryObject;
 import com.microsoft.graph.models.extensions.User;
 import com.vsc.guest_assurance.common.*;
-import com.vsc.guest_assurance.dao.UserMapper;
-import com.vsc.guest_assurance.qo.BackendContactInformationDetailQo;
+import com.vsc.guest_assurance.dao.UsersMapper;
 import com.vsc.guest_assurance.vo.BackendUserDetailVo;
 import com.vsc.guest_assurance.vo.BackendUserListVo;
 import com.vsc.guest_assurance.vo.BackendUserUpdateVo;
@@ -15,8 +14,6 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,13 +24,13 @@ import java.util.List;
 @Service
 public class UsersService {
     @Autowired
-    private UserMapper userMapper;
+    private UsersMapper usersMapper;
 
     public PageBean<BackendUserListVo> list(String email, String userName, Integer privilege, Integer page, Integer size) {
         email = StringUtils.isEmpty(email) ? null : "%" + email + "%";
         userName = StringUtils.isEmpty(userName) ? null : "%" + userName + "%";
         PageHelper.startPage(page, size);
-        List<BackendUserListVo> vos = userMapper.selectList(email, userName, privilege);
+        List<BackendUserListVo> vos = usersMapper.selectList(email, userName, privilege);
         PageInfo<BackendUserListVo> pageInfo = new PageInfo(vos);
         return new PageBean<>(page, size, pageInfo.getTotal(), vos);
     }

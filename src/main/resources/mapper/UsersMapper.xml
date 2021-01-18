@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.vsc.guest_assurance.dao.UserMapper">
-    <resultMap id="BaseResultMap" type="com.vsc.guest_assurance.entity.User">
+<mapper namespace="com.vsc.guest_assurance.dao.UsersMapper">
+    <resultMap id="BaseResultMap" type="com.vsc.guest_assurance.entity.Users">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="email" property="email" jdbcType="VARCHAR"/>
@@ -13,22 +13,22 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
-        from user
+        from users
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
-        from user
+        from users
         where id = #{id,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.vsc.guest_assurance.entity.User">
-        insert into user (id, user_name, email,
-                          is_manager)
+    <insert id="insert" parameterType="com.vsc.guest_assurance.entity.Users">
+        insert into users (id, user_name, email,
+                           is_manager)
         values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
                 #{isManager,jdbcType=INTEGER})
     </insert>
-    <insert id="insertSelective" parameterType="com.vsc.guest_assurance.entity.User">
-        insert into user
+    <insert id="insertSelective" parameterType="com.vsc.guest_assurance.entity.Users">
+        insert into users
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
@@ -58,8 +58,8 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.vsc.guest_assurance.entity.User">
-        update user
+    <update id="updateByPrimaryKeySelective" parameterType="com.vsc.guest_assurance.entity.Users">
+        update users
         <set>
             <if test="userName != null">
                 user_name = #{userName,jdbcType=VARCHAR},
@@ -73,8 +73,8 @@
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.vsc.guest_assurance.entity.User">
-        update user
+    <update id="updateByPrimaryKey" parameterType="com.vsc.guest_assurance.entity.Users">
+        update users
         set user_name  = #{userName,jdbcType=VARCHAR},
             email      = #{email,jdbcType=VARCHAR},
             is_manager = #{isManager,jdbcType=INTEGER}
@@ -83,7 +83,7 @@
 
     <select id="selectList" resultType="com.vsc.guest_assurance.vo.BackendUserListVo">
         select id as userId, email, user_name as userName, is_manager as privilege
-        from user
+        from users
         where 1 = 1
         <if test="email != null">
             and email like #{email,jdbcType=VARCHAR}

@@ -6,8 +6,6 @@ import com.vsc.guest_assurance.qo.BackendContactInformationAddQo;
 import com.vsc.guest_assurance.qo.BackendContactInformationDetailQo;
 import com.vsc.guest_assurance.qo.BackendContactInformationListVo;
 import com.vsc.guest_assurance.service.ContactInformationService;
-import com.vsc.guest_assurance.util.StringUtil;
-import com.vsc.guest_assurance.vo.BackendUserListVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

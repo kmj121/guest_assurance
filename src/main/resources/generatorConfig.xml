@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
     <properties resource="application.properties"></properties>
-    <classPathEntry location="E:\mvn_repository\mysql\mysql-connector-java\8.0.22\mysql-connector-java-8.0.22.jar"/>
+    <classPathEntry location="E:\mvn_repository\com\microsoft\sqlserver\mssql-jdbc\8.4.1.jre8\mssql-jdbc-8.4.1.jre8.jar"/>
     <context id="testTables" targetRuntime="MyBatis3" defaultModelType="flat">
 
         <!-- 是否生成注释，去除自动生成的注释 -->
@@ -15,13 +15,13 @@
         </commentGenerator>
 
         <!-- 数据库连接配置 -->
-        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
-                        connectionURL="${spring.datasource.url}"
-                        userId="${spring.datasource.username}"
-                        password="${spring.datasource.password}">
+        <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                        connectionURL="jdbc:sqlserver://cn-ins-science-sqlserver-001-s.database.chinacloudapi.cn;DatabaseName=CN-INS-SCIENCE-SQLDB-001-S"
+                        userId="SCESQLAdmin"
+                        password="SCEP@ssword%$">
             <!--MySQL不支持schema或者catalog，即不同数据库中的相同表名，区分不了，需添加这个-->
             <!--参考 : http://www.mybatis.org/generator/usage/mysql.html-->
-            <property name="nullCatalogMeansCurrent" value="true"/>
+<!--            <property name="nullCatalogMeansCurrent" value="true"/>-->
         </jdbcConnection>
 
         <!-- 非必须，类型处理器，在数据库类型和java类型之间的转换控制 -->
@@ -60,7 +60,7 @@
 <!--               enableCountByExample="false" enableSelectByExample="false"-->
 <!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
 <!--        </table>-->
-<!--        <table schema="" tableName="user" domainObjectName="User"-->
+<!--        <table schema="" tableName="users" domainObjectName="Users"-->
 <!--               enableCountByExample="false" enableSelectByExample="false"-->
 <!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
 <!--        </table>-->

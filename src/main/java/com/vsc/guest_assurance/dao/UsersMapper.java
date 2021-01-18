@@ -1,23 +1,23 @@
 package com.vsc.guest_assurance.dao;
 
-import com.vsc.guest_assurance.entity.User;
+import com.vsc.guest_assurance.entity.Users;
 import com.vsc.guest_assurance.vo.BackendUserListVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-public interface UserMapper {
+public interface UsersMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(User record);
+    int insert(Users record);
 
-    int insertSelective(User record);
+    int insertSelective(Users record);
 
-    User selectByPrimaryKey(Integer id);
+    Users selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(User record);
+    int updateByPrimaryKeySelective(Users record);
 
-    int updateByPrimaryKey(User record);
+    int updateByPrimaryKey(Users record);
 
     /**
      * 搜索
