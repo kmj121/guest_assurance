@@ -543,7 +543,7 @@
     </select>
 
     <select id="getThumbsUpStores" resultType="com.vsc.guest_assurance.vo.BackendStoresThumbsUpVo">
-        select id,
+        select top 5 id,
                name,
                address1_Line1                                                                as address,
                dbo.getDistance(#{latitude}, address1_latitude, #{longitude}, address1_longitude) as distance
