@@ -1,16 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.vsc.guest_assurance.dao.UsersMapper">
     <resultMap id="BaseResultMap" type="com.vsc.guest_assurance.entity.Users">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-        <result column="email" property="email" jdbcType="VARCHAR"/>
-        <result column="is_manager" property="isManager" jdbcType="INTEGER"/>
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_name" jdbcType="NVARCHAR" property="userName"/>
+        <result column="role_id" jdbcType="INTEGER" property="roleId"/>
+        <result column="create_at" jdbcType="TIMESTAMP" property="createAt"/>
+        <result column="create_user" jdbcType="INTEGER" property="createUser"/>
+        <result column="update_at" jdbcType="TIMESTAMP" property="updateAt"/>
+        <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, user_name, email, is_manager
+        id, user_name, role_id, create_at, create_user, update_at, update_user, type
     </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from users
@@ -22,10 +26,12 @@
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.vsc.guest_assurance.entity.Users">
-        insert into users (id, user_name, email,
-                           is_manager)
-        values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
-                #{isManager,jdbcType=INTEGER})
+        insert into users (id, user_name, role_id,
+                           create_at, create_user, update_at,
+                           update_user, type)
+        values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=NVARCHAR}, #{roleId,jdbcType=INTEGER},
+                #{createAt,jdbcType=TIMESTAMP}, #{createUser,jdbcType=INTEGER}, #{updateAt,jdbcType=TIMESTAMP},
+                #{updateUser,jdbcType=INTEGER}, #{type,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="com.vsc.guest_assurance.entity.Users">
         insert into users
@@ -36,11 +42,23 @@
             <if test="userName != null">
                 user_name,
             </if>
-            <if test="email != null">
-                email,
+            <if test="roleId != null">
+                role_id,
             </if>
-            <if test="isManager != null">
-                is_manager,
+            <if test="createAt != null">
+                create_at,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="updateAt != null">
+                update_at,
+            </if>
+            <if test="updateUser != null">
+                update_user,
+            </if>
+            <if test="type != null">
+                type,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -48,13 +66,25 @@
                 #{id,jdbcType=INTEGER},
             </if>
             <if test="userName != null">
-                #{userName,jdbcType=VARCHAR},
+                #{userName,jdbcType=NVARCHAR},
             </if>
-            <if test="email != null">
-                #{email,jdbcType=VARCHAR},
+            <if test="roleId != null">
+                #{roleId,jdbcType=INTEGER},
             </if>
-            <if test="isManager != null">
-                #{isManager,jdbcType=INTEGER},
+            <if test="createAt != null">
+                #{createAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null">
+                #{createUser,jdbcType=INTEGER},
+            </if>
+            <if test="updateAt != null">
+                #{updateAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUser != null">
+                #{updateUser,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -62,37 +92,38 @@
         update users
         <set>
             <if test="userName != null">
-                user_name = #{userName,jdbcType=VARCHAR},
+                user_name = #{userName,jdbcType=NVARCHAR},
             </if>
-            <if test="email != null">
-                email = #{email,jdbcType=VARCHAR},
+            <if test="roleId != null">
+                role_id = #{roleId,jdbcType=INTEGER},
             </if>
-            <if test="isManager != null">
-                is_manager = #{isManager,jdbcType=INTEGER},
+            <if test="createAt != null">
+                create_at = #{createAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser,jdbcType=INTEGER},
+            </if>
+            <if test="updateAt != null">
+                update_at = #{updateAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.vsc.guest_assurance.entity.Users">
         update users
-        set user_name  = #{userName,jdbcType=VARCHAR},
-            email      = #{email,jdbcType=VARCHAR},
-            is_manager = #{isManager,jdbcType=INTEGER}
+        set user_name   = #{userName,jdbcType=NVARCHAR},
+            role_id     = #{roleId,jdbcType=INTEGER},
+            create_at   = #{createAt,jdbcType=TIMESTAMP},
+            create_user = #{createUser,jdbcType=INTEGER},
+            update_at   = #{updateAt,jdbcType=TIMESTAMP},
+            update_user = #{updateUser,jdbcType=INTEGER},
+            type        = #{type,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
-
-    <select id="selectList" resultType="com.vsc.guest_assurance.vo.BackendUserListVo">
-        select id as userId, email, user_name as userName, is_manager as privilege
-        from users
-        where 1 = 1
-        <if test="email != null">
-            and email like #{email,jdbcType=VARCHAR}
-        </if>
-        <if test="userName != null">
-            and user_name like #{userName,jdbcType=VARCHAR}
-        </if>
-        <if test="privilege != null">
-            and is_manager = #{privilege,jdbcType=INTEGER}
-        </if>
-    </select>
 </mapper>

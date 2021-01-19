@@ -2,12 +2,16 @@ package com.vsc.guest_assurance.entity;
 
 import java.util.Date;
 
-public class Users {
+public class LoginTokens {
     private Integer id;
 
-    private String userName;
+    private String ip;
 
-    private Integer roleId;
+    private Long timeLimit;
+
+    private String token;
+
+    private String type;
 
     private Date createAt;
 
@@ -17,7 +21,9 @@ public class Users {
 
     private Integer updateUser;
 
-    private Integer type;
+    private Integer userId;
+
+    private Integer language;
 
     public Integer getId() {
         return id;
@@ -27,20 +33,36 @@ public class Users {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getIp() {
+        return ip;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public Long getTimeLimit() {
+        return timeLimit;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setTimeLimit(Long timeLimit) {
+        this.timeLimit = timeLimit;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Date getCreateAt() {
@@ -75,11 +97,19 @@ public class Users {
         this.updateUser = updateUser;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Integer language) {
+        this.language = language;
     }
 }

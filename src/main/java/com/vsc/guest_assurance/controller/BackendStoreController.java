@@ -1,29 +1,18 @@
 package com.vsc.guest_assurance.controller;
 
-import com.google.common.io.ByteStreams;
 import com.vsc.guest_assurance.common.MessageCode;
 import com.vsc.guest_assurance.common.ResultObject;
-import com.vsc.guest_assurance.qo.BackendContactInformationAddQo;
-import com.vsc.guest_assurance.qo.BackendContactInformationDetailQo;
-import com.vsc.guest_assurance.qo.BackendContactInformationListVo;
+import com.vsc.guest_assurance.vo.BackendContactInformationListVo;
 import com.vsc.guest_assurance.service.ContactInformationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Description

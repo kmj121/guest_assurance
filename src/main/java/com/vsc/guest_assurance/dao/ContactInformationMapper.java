@@ -1,7 +1,7 @@
 package com.vsc.guest_assurance.dao;
 
 import com.vsc.guest_assurance.entity.ContactInformation;
-import com.vsc.guest_assurance.qo.BackendContactInformationListVo;
+import com.vsc.guest_assurance.vo.BackendContactInformationListVo;
 
 import java.util.List;
 

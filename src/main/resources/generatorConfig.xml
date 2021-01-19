@@ -64,7 +64,28 @@
 <!--               enableCountByExample="false" enableSelectByExample="false"-->
 <!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
 <!--        </table>-->
-        <table schema="" tableName="contact_information" domainObjectName="ContactInformation"
+<!--        <table schema="" tableName="user_admins" domainObjectName="UserAdmins"-->
+<!--               enableCountByExample="false" enableSelectByExample="false"-->
+<!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--        </table>-->
+<!--        <table schema="" tableName="user_customers" domainObjectName="UserCustomer"-->
+<!--               enableCountByExample="false" enableSelectByExample="false"-->
+<!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--        </table>-->
+<!--        <table schema="" tableName="contact_information" domainObjectName="ContactInformation"-->
+<!--               enableCountByExample="false" enableSelectByExample="false"-->
+<!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--        </table>-->
+
+<!--        <table schema="" tableName="roles" domainObjectName="Roles"-->
+<!--               enableCountByExample="false" enableSelectByExample="false"-->
+<!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--        </table>-->
+<!--        <table schema="" tableName="login_tokens" domainObjectName="LoginTokens"-->
+<!--               enableCountByExample="false" enableSelectByExample="false"-->
+<!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--        </table>-->
+        <table schema="" tableName="privileges" domainObjectName="Privileges"
                enableCountByExample="false" enableSelectByExample="false"
                enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>

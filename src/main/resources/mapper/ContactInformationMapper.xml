@@ -127,7 +127,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <select id="selectList" resultType="com.vsc.guest_assurance.qo.BackendContactInformationListVo">
+    <select id="selectList" resultType="com.vsc.guest_assurance.vo.BackendContactInformationListVo">
         select id, name, email, industry_type, message, create_time, phone
         from contact_information
         where 1 = 1

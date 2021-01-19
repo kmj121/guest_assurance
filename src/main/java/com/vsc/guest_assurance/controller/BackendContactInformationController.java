@@ -4,7 +4,7 @@ import com.vsc.guest_assurance.common.MessageCode;
 import com.vsc.guest_assurance.common.ResultObject;
 import com.vsc.guest_assurance.qo.BackendContactInformationAddQo;
 import com.vsc.guest_assurance.qo.BackendContactInformationDetailQo;
-import com.vsc.guest_assurance.qo.BackendContactInformationListVo;
+import com.vsc.guest_assurance.vo.BackendContactInformationListVo;
 import com.vsc.guest_assurance.service.ContactInformationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

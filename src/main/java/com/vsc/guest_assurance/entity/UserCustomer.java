@@ -2,12 +2,16 @@ package com.vsc.guest_assurance.entity;
 
 import java.util.Date;
 
-public class Users {
-    private Integer id;
+public class UserCustomer {
+    private Integer userId;
+
+    private String email;
 
     private String userName;
 
-    private Integer roleId;
+    private String mobile;
+
+    private String password;
 
     private Date createAt;
 
@@ -17,14 +21,26 @@ public class Users {
 
     private Integer updateUser;
 
+    private String customerCode;
+
+    private Integer customerVersion;
+
     private Integer type;
 
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUserName() {
@@ -35,12 +51,20 @@ public class Users {
         this.userName = userName;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Date getCreateAt() {
@@ -73,6 +97,22 @@ public class Users {
 
     public void setUpdateUser(Integer updateUser) {
         this.updateUser = updateUser;
+    }
+
+    public String getCustomerCode() {
+        return customerCode;
+    }
+
+    public void setCustomerCode(String customerCode) {
+        this.customerCode = customerCode;
+    }
+
+    public Integer getCustomerVersion() {
+        return customerVersion;
+    }
+
+    public void setCustomerVersion(Integer customerVersion) {
+        this.customerVersion = customerVersion;
     }
 
     public Integer getType() {

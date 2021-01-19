@@ -1,4 +1,4 @@
-package com.vsc.guest_assurance.qo;
+package com.vsc.guest_assurance.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;

@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 
-public class CommonLoginTokenVo {
+public class CLoginTokenVo {
     @ApiModelProperty(value="用户id", required = true)
     private int userId;
     @ApiModelProperty(value="token", required = true)
@@ -21,8 +21,8 @@ public class CommonLoginTokenVo {
     private Integer roleId;
     @ApiModelProperty(value = "客户角色标识:0aad账号;1客户账号")
     private Integer customerFlag;
-    //@ApiModelProperty(value = "权限集合")
-    //private List<CPrivilegeGenreListVo> privilegeVoList;
+    @ApiModelProperty(value = "权限集合")
+    private List<CPrivilegeGenreListVo> privilegeVoList;
 
     public int getUserId() {
         return userId;
@@ -88,11 +88,11 @@ public class CommonLoginTokenVo {
         this.customerFlag = customerFlag;
     }
 
-    //public List<CPrivilegeGenreListVo> getPrivilegeVoList() {
-    //    return privilegeVoList;
-    //}
-    //
-    //public void setPrivilegeVoList(List<CPrivilegeGenreListVo> privilegeVoList) {
-    //    this.privilegeVoList = privilegeVoList;
-    //}
+    public List<CPrivilegeGenreListVo> getPrivilegeVoList() {
+        return privilegeVoList;
+    }
+
+    public void setPrivilegeVoList(List<CPrivilegeGenreListVo> privilegeVoList) {
+        this.privilegeVoList = privilegeVoList;
+    }
 }
