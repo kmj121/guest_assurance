@@ -2,8 +2,11 @@ package com.vsc.guest_assurance.controller;
 
 import com.vsc.guest_assurance.common.MessageCode;
 import com.vsc.guest_assurance.common.ResultObject;
+import com.vsc.guest_assurance.entity.Stores;
+import com.vsc.guest_assurance.service.StoresService;
 import com.vsc.guest_assurance.vo.BackendContactInformationListVo;
 import com.vsc.guest_assurance.service.ContactInformationService;
+import com.vsc.guest_assurance.vo.BackendStoreListVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @Description
@@ -25,30 +29,16 @@ import java.io.IOException;
 public class BackendStoreController {
 
     @Autowired
-    private ContactInformationService contactInformationService;
-    //
-    //@PostMapping(value = "/add")
-    //@ApiOperation(value = "新增")
-    //public ResultObject<Integer> add(
-    //        HttpServletRequest request,
-    //        @Valid @RequestBody BackendContactInformationAddQo qo,
-    //        BindingResult errors
-    //) throws Exception {
-    //    if (errors.hasErrors()) {
-    //        return new ResultObject(MessageCode.CODE_PARAMETER_ERROR,
-    //                errors.getAllErrors());
-    //    }
-    //    return new ResultObject(MessageCode.CODE_SUCCESS, contactInformationService.add(qo));
-    //}
+    private StoresService storesService;
 
     @ApiOperation(value = "列表")
     @GetMapping(value = "/list")
-    public ResultObject<BackendContactInformationListVo> list(
+    public ResultObject<BackendStoreListVo> list(
             HttpServletRequest request,
             @ApiParam(value = "关键字") @RequestParam(required = false) String keyWord,
             @ApiParam(value = "页数", required = true) @RequestParam Integer page,
             @ApiParam(value = "数量", required = true) @RequestParam Integer size) {
-        return new ResultObject(MessageCode.CODE_SUCCESS, contactInformationService.list(keyWord, page, size));
+        return new ResultObject(MessageCode.CODE_SUCCESS, storesService.list(keyWord, page, size));
     }
 
     @ApiOperation(value = "数据导出")
@@ -56,7 +46,7 @@ public class BackendStoreController {
     @ResponseBody
     public void export(HttpServletRequest request, HttpServletResponse response,
             @ApiParam(value = "关键字") @RequestParam(required = false) String keyWord) throws IOException {
-
+        List<Stores> storesList = storesService.list(keyWord);
         //List<UserRegionDetailDtoOut> userRegionDetailDtoOuts = userService.getMyRegion(Util.getLoginToken(request));
         //boolean adminFlag;
         //if(userRegionDetailDtoOuts==null){

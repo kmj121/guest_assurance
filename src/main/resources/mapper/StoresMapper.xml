@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vsc.guest_assurance.dao.StoresMapper">
+    <resultMap id="BaseResultMap" type="com.vsc.guest_assurance.entity.Stores">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="accountid" property="accountid" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_account_type" property="ecolabcn_account_type" jdbcType="INTEGER"/>
+        <result column="ecolabcn_group_name" property="ecolabcn_group_name" jdbcType="NVARCHAR"/>
+        <result column="name" property="name" jdbcType="NVARCHAR"/>
+        <result column="address1_name" property="address1_name" jdbcType="NVARCHAR"/>
+        <result column="address1_Line1" property="address1_Line1" jdbcType="NVARCHAR"/>
+        <result column="address1_City" property="address1_City" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_shop_no" property="ecolabcn_shop_no" jdbcType="INTEGER"/>
+        <result column="ecolabcn_short_id" property="ecolabcn_short_id" jdbcType="INTEGER"/>
+        <result column="_parentaccountid_value" property="_parentaccountid_value" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_chinese_name" property="ecolabcn_chinese_name" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_short_name" property="ecolabcn_short_name" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_soldto_number" property="ecolabcn_soldto_number" jdbcType="NVARCHAR"/>
+        <result column="accountnumber" property="accountnumber" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_department" property="ecolabcn_department" jdbcType="INTEGER"/>
+        <result column="ecolabcn_service_ind" property="ecolabcn_service_ind" jdbcType="INTEGER"/>
+        <result column="ecolabcn_room_ind" property="ecolabcn_room_ind" jdbcType="INTEGER"/>
+        <result column="ecolabcn_wash_ind" property="ecolabcn_wash_ind" jdbcType="INTEGER"/>
+        <result column="ecolabcn_frequency" property="ecolabcn_frequency" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_frequency_room" property="ecolabcn_frequency_room" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_frequency_wash" property="ecolabcn_frequency_wash" jdbcType="NVARCHAR"/>
+        <result column="address1_longitude" property="address1_longitude" jdbcType="DOUBLE"/>
+        <result column="address1_latitude" property="address1_latitude" jdbcType="DOUBLE"/>
+        <result column="ecolabcn_soldto_name" property="ecolabcn_soldto_name" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_country" property="ecolabcn_country" jdbcType="NVARCHAR"/>
+        <result column="address1_composite" property="address1_composite" jdbcType="NVARCHAR"/>
+        <result column="address1_country" property="address1_country" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_main_contact" property="ecolabcn_main_contact" jdbcType="NVARCHAR"/>
+        <result column="address1_telephone1" property="address1_telephone1" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_h4_name" property="ecolabcn_h4_name" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_h5_name" property="ecolabcn_h5_name" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_h4_number" property="ecolabcn_h4_number" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_h5number" property="ecolabcn_h5number" jdbcType="NVARCHAR"/>
+        <result column="statecode" property="statecode" jdbcType="INTEGER"/>
+        <result column="create_time" property="create_time" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, accountid, ecolabcn_account_type, ecolabcn_group_name, name, address1_name, address1_Line1,
+    address1_City, ecolabcn_shop_no, ecolabcn_short_id, _parentaccountid_value, ecolabcn_chinese_name, 
+    ecolabcn_short_name, ecolabcn_soldto_number, accountnumber, ecolabcn_department, 
+    ecolabcn_service_ind, ecolabcn_room_ind, ecolabcn_wash_ind, ecolabcn_frequency, ecolabcn_frequency_room, 
+    ecolabcn_frequency_wash, address1_longitude, address1_latitude, ecolabcn_soldto_name, 
+    ecolabcn_country, address1_composite, address1_country, ecolabcn_main_contact, address1_telephone1, 
+    ecolabcn_h4_name, ecolabcn_h5_name, ecolabcn_h4_number, ecolabcn_h5number, statecode, 
+    create_time, update_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from stores
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from stores
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.vsc.guest_assurance.entity.Stores">
+        insert into stores (accountid, ecolabcn_account_type,
+                            ecolabcn_group_name, name, address1_name,
+                            address1_Line1, address1_City, ecolabcn_shop_no,
+                            ecolabcn_short_id, _parentaccountid_value,
+                            ecolabcn_chinese_name, ecolabcn_short_name,
+                            ecolabcn_soldto_number, accountnumber,
+                            ecolabcn_department, ecolabcn_service_ind,
+                            ecolabcn_room_ind, ecolabcn_wash_ind, ecolabcn_frequency,
+                            ecolabcn_frequency_room, ecolabcn_frequency_wash,
+                            address1_longitude, address1_latitude, ecolabcn_soldto_name,
+                            ecolabcn_country, address1_composite, address1_country,
+                            ecolabcn_main_contact, address1_telephone1,
+                            ecolabcn_h4_name, ecolabcn_h5_name, ecolabcn_h4_number,
+                            ecolabcn_h5number, statecode, create_time,
+                            update_time)
+        values (#{accountid,jdbcType=NVARCHAR}, #{ecolabcn_account_type,jdbcType=INTEGER},
+                #{ecolabcn_group_name,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, #{address1_name,jdbcType=NVARCHAR},
+                #{address1_Line1,jdbcType=NVARCHAR}, #{address1_City,jdbcType=NVARCHAR},
+                #{ecolabcn_shop_no,jdbcType=INTEGER},
+                #{ecolabcn_short_id,jdbcType=INTEGER}, #{_parentaccountid_value,jdbcType=NVARCHAR},
+                #{ecolabcn_chinese_name,jdbcType=NVARCHAR}, #{ecolabcn_short_name,jdbcType=NVARCHAR},
+                #{ecolabcn_soldto_number,jdbcType=NVARCHAR}, #{accountnumber,jdbcType=NVARCHAR},
+                #{ecolabcn_department,jdbcType=INTEGER}, #{ecolabcn_service_ind,jdbcType=INTEGER},
+                #{ecolabcn_room_ind,jdbcType=INTEGER}, #{ecolabcn_wash_ind,jdbcType=INTEGER},
+                #{ecolabcn_frequency,jdbcType=NVARCHAR},
+                #{ecolabcn_frequency_room,jdbcType=NVARCHAR}, #{ecolabcn_frequency_wash,jdbcType=NVARCHAR},
+                #{address1_longitude,jdbcType=DOUBLE}, #{address1_latitude,jdbcType=DOUBLE},
+                #{ecolabcn_soldto_name,jdbcType=NVARCHAR},
+                #{ecolabcn_country,jdbcType=NVARCHAR}, #{address1_composite,jdbcType=NVARCHAR},
+                #{address1_country,jdbcType=NVARCHAR},
+                #{ecolabcn_main_contact,jdbcType=NVARCHAR}, #{address1_telephone1,jdbcType=NVARCHAR},
+                #{ecolabcn_h4_name,jdbcType=NVARCHAR}, #{ecolabcn_h5_name,jdbcType=NVARCHAR},
+                #{ecolabcn_h4_number,jdbcType=NVARCHAR},
+                #{ecolabcn_h5number,jdbcType=NVARCHAR}, #{statecode,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP},
+                #{update_time,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.vsc.guest_assurance.entity.Stores">
+        insert into stores
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="accountid != null">
+                accountid,
+            </if>
+            <if test="ecolabcn_account_type != null">
+                ecolabcn_account_type,
+            </if>
+            <if test="ecolabcn_group_name != null">
+                ecolabcn_group_name,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="address1_name != null">
+                address1_name,
+            </if>
+            <if test="address1_Line1 != null">
+                address1_Line1,
+            </if>
+            <if test="address1_City != null">
+                address1_City,
+            </if>
+            <if test="ecolabcn_shop_no != null">
+                ecolabcn_shop_no,
+            </if>
+            <if test="ecolabcn_short_id != null">
+                ecolabcn_short_id,
+            </if>
+            <if test="_parentaccountid_value != null">
+                _parentaccountid_value,
+            </if>
+            <if test="ecolabcn_chinese_name != null">
+                ecolabcn_chinese_name,
+            </if>
+            <if test="ecolabcn_short_name != null">
+                ecolabcn_short_name,
+            </if>
+            <if test="ecolabcn_soldto_number != null">
+                ecolabcn_soldto_number,
+            </if>
+            <if test="accountnumber != null">
+                accountnumber,
+            </if>
+            <if test="ecolabcn_department != null">
+                ecolabcn_department,
+            </if>
+            <if test="ecolabcn_service_ind != null">
+                ecolabcn_service_ind,
+            </if>
+            <if test="ecolabcn_room_ind != null">
+                ecolabcn_room_ind,
+            </if>
+            <if test="ecolabcn_wash_ind != null">
+                ecolabcn_wash_ind,
+            </if>
+            <if test="ecolabcn_frequency != null">
+                ecolabcn_frequency,
+            </if>
+            <if test="ecolabcn_frequency_room != null">
+                ecolabcn_frequency_room,
+            </if>
+            <if test="ecolabcn_frequency_wash != null">
+                ecolabcn_frequency_wash,
+            </if>
+            <if test="address1_longitude != null">
+                address1_longitude,
+            </if>
+            <if test="address1_latitude != null">
+                address1_latitude,
+            </if>
+            <if test="ecolabcn_soldto_name != null">
+                ecolabcn_soldto_name,
+            </if>
+            <if test="ecolabcn_country != null">
+                ecolabcn_country,
+            </if>
+            <if test="address1_composite != null">
+                address1_composite,
+            </if>
+            <if test="address1_country != null">
+                address1_country,
+            </if>
+            <if test="ecolabcn_main_contact != null">
+                ecolabcn_main_contact,
+            </if>
+            <if test="address1_telephone1 != null">
+                address1_telephone1,
+            </if>
+            <if test="ecolabcn_h4_name != null">
+                ecolabcn_h4_name,
+            </if>
+            <if test="ecolabcn_h5_name != null">
+                ecolabcn_h5_name,
+            </if>
+            <if test="ecolabcn_h4_number != null">
+                ecolabcn_h4_number,
+            </if>
+            <if test="ecolabcn_h5number != null">
+                ecolabcn_h5number,
+            </if>
+            <if test="statecode != null">
+                statecode,
+            </if>
+            <if test="create_time != null">
+                create_time,
+            </if>
+            <if test="update_time != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="accountid != null">
+                #{accountid,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_account_type != null">
+                #{ecolabcn_account_type,jdbcType=INTEGER},
+            </if>
+            <if test="ecolabcn_group_name != null">
+                #{ecolabcn_group_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_name != null">
+                #{address1_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_Line1 != null">
+                #{address1_Line1,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_City != null">
+                #{address1_City,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_shop_no != null">
+                #{ecolabcn_shop_no,jdbcType=INTEGER},
+            </if>
+            <if test="ecolabcn_short_id != null">
+                #{ecolabcn_short_id,jdbcType=INTEGER},
+            </if>
+            <if test="_parentaccountid_value != null">
+                #{_parentaccountid_value,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_chinese_name != null">
+                #{ecolabcn_chinese_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_short_name != null">
+                #{ecolabcn_short_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_soldto_number != null">
+                #{ecolabcn_soldto_number,jdbcType=NVARCHAR},
+            </if>
+            <if test="accountnumber != null">
+                #{accountnumber,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_department != null">
+                #{ecolabcn_department,jdbcType=INTEGER},
+            </if>
+            <if test="ecolabcn_service_ind != null">
+                #{ecolabcn_service_ind,jdbcType=INTEGER},
+            </if>
+            <if test="ecolabcn_room_ind != null">
+                #{ecolabcn_room_ind,jdbcType=INTEGER},
+            </if>
+            <if test="ecolabcn_wash_ind != null">
+                #{ecolabcn_wash_ind,jdbcType=INTEGER},
+            </if>
+            <if test="ecolabcn_frequency != null">
+                #{ecolabcn_frequency,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_frequency_room != null">
+                #{ecolabcn_frequency_room,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_frequency_wash != null">
+                #{ecolabcn_frequency_wash,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_longitude != null">
+                #{address1_longitude,jdbcType=DOUBLE},
+            </if>
+            <if test="address1_latitude != null">
+                #{address1_latitude,jdbcType=DOUBLE},
+            </if>
+            <if test="ecolabcn_soldto_name != null">
+                #{ecolabcn_soldto_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_country != null">
+                #{ecolabcn_country,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_composite != null">
+                #{address1_composite,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_country != null">
+                #{address1_country,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_main_contact != null">
+                #{ecolabcn_main_contact,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_telephone1 != null">
+                #{address1_telephone1,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_h4_name != null">
+                #{ecolabcn_h4_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_h5_name != null">
+                #{ecolabcn_h5_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_h4_number != null">
+                #{ecolabcn_h4_number,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_h5number != null">
+                #{ecolabcn_h5number,jdbcType=NVARCHAR},
+            </if>
+            <if test="statecode != null">
+                #{statecode,jdbcType=INTEGER},
+            </if>
+            <if test="create_time != null">
+                #{create_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="update_time != null">
+                #{update_time,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.vsc.guest_assurance.entity.Stores">
+        update stores
+        <set>
+            <if test="accountid != null">
+                accountid = #{accountid,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_account_type != null">
+                ecolabcn_account_type = #{ecolabcn_account_type,jdbcType=INTEGER},
+            </if>
+            <if test="ecolabcn_group_name != null">
+                ecolabcn_group_name = #{ecolabcn_group_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_name != null">
+                address1_name = #{address1_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_Line1 != null">
+                address1_Line1 = #{address1_Line1,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_City != null">
+                address1_City = #{address1_City,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_shop_no != null">
+                ecolabcn_shop_no = #{ecolabcn_shop_no,jdbcType=INTEGER},
+            </if>
+            <if test="ecolabcn_short_id != null">
+                ecolabcn_short_id = #{ecolabcn_short_id,jdbcType=INTEGER},
+            </if>
+            <if test="_parentaccountid_value != null">
+                _parentaccountid_value = #{_parentaccountid_value,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_chinese_name != null">
+                ecolabcn_chinese_name = #{ecolabcn_chinese_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_short_name != null">
+                ecolabcn_short_name = #{ecolabcn_short_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_soldto_number != null">
+                ecolabcn_soldto_number = #{ecolabcn_soldto_number,jdbcType=NVARCHAR},
+            </if>
+            <if test="accountnumber != null">
+                accountnumber = #{accountnumber,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_department != null">
+                ecolabcn_department = #{ecolabcn_department,jdbcType=INTEGER},
+            </if>
+            <if test="ecolabcn_service_ind != null">
+                ecolabcn_service_ind = #{ecolabcn_service_ind,jdbcType=INTEGER},
+            </if>
+            <if test="ecolabcn_room_ind != null">
+                ecolabcn_room_ind = #{ecolabcn_room_ind,jdbcType=INTEGER},
+            </if>
+            <if test="ecolabcn_wash_ind != null">
+                ecolabcn_wash_ind = #{ecolabcn_wash_ind,jdbcType=INTEGER},
+            </if>
+            <if test="ecolabcn_frequency != null">
+                ecolabcn_frequency = #{ecolabcn_frequency,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_frequency_room != null">
+                ecolabcn_frequency_room = #{ecolabcn_frequency_room,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_frequency_wash != null">
+                ecolabcn_frequency_wash = #{ecolabcn_frequency_wash,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_longitude != null">
+                address1_longitude = #{address1_longitude,jdbcType=DOUBLE},
+            </if>
+            <if test="address1_latitude != null">
+                address1_latitude = #{address1_latitude,jdbcType=DOUBLE},
+            </if>
+            <if test="ecolabcn_soldto_name != null">
+                ecolabcn_soldto_name = #{ecolabcn_soldto_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_country != null">
+                ecolabcn_country = #{ecolabcn_country,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_composite != null">
+                address1_composite = #{address1_composite,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_country != null">
+                address1_country = #{address1_country,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_main_contact != null">
+                ecolabcn_main_contact = #{ecolabcn_main_contact,jdbcType=NVARCHAR},
+            </if>
+            <if test="address1_telephone1 != null">
+                address1_telephone1 = #{address1_telephone1,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_h4_name != null">
+                ecolabcn_h4_name = #{ecolabcn_h4_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_h5_name != null">
+                ecolabcn_h5_name = #{ecolabcn_h5_name,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_h4_number != null">
+                ecolabcn_h4_number = #{ecolabcn_h4_number,jdbcType=NVARCHAR},
+            </if>
+            <if test="ecolabcn_h5number != null">
+                ecolabcn_h5number = #{ecolabcn_h5number,jdbcType=NVARCHAR},
+            </if>
+            <if test="statecode != null">
+                statecode = #{statecode,jdbcType=INTEGER},
+            </if>
+            <if test="create_time != null">
+                create_time = #{create_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="update_time != null">
+                update_time = #{update_time,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.vsc.guest_assurance.entity.Stores">
+        update stores
+        set accountid               = #{accountid,jdbcType=NVARCHAR},
+            ecolabcn_account_type   = #{ecolabcn_account_type,jdbcType=INTEGER},
+            ecolabcn_group_name     = #{ecolabcn_group_name,jdbcType=NVARCHAR},
+            name                    = #{name,jdbcType=NVARCHAR},
+            address1_name           = #{address1_name,jdbcType=NVARCHAR},
+            address1_Line1          = #{address1_Line1,jdbcType=NVARCHAR},
+            address1_City           = #{address1_City,jdbcType=NVARCHAR},
+            ecolabcn_shop_no        = #{ecolabcn_shop_no,jdbcType=INTEGER},
+            ecolabcn_short_id       = #{ecolabcn_short_id,jdbcType=INTEGER},
+            _parentaccountid_value  = #{_parentaccountid_value,jdbcType=NVARCHAR},
+            ecolabcn_chinese_name   = #{ecolabcn_chinese_name,jdbcType=NVARCHAR},
+            ecolabcn_short_name     = #{ecolabcn_short_name,jdbcType=NVARCHAR},
+            ecolabcn_soldto_number  = #{ecolabcn_soldto_number,jdbcType=NVARCHAR},
+            accountnumber           = #{accountnumber,jdbcType=NVARCHAR},
+            ecolabcn_department     = #{ecolabcn_department,jdbcType=INTEGER},
+            ecolabcn_service_ind    = #{ecolabcn_service_ind,jdbcType=INTEGER},
+            ecolabcn_room_ind       = #{ecolabcn_room_ind,jdbcType=INTEGER},
+            ecolabcn_wash_ind       = #{ecolabcn_wash_ind,jdbcType=INTEGER},
+            ecolabcn_frequency      = #{ecolabcn_frequency,jdbcType=NVARCHAR},
+            ecolabcn_frequency_room = #{ecolabcn_frequency_room,jdbcType=NVARCHAR},
+            ecolabcn_frequency_wash = #{ecolabcn_frequency_wash,jdbcType=NVARCHAR},
+            address1_longitude      = #{address1_longitude,jdbcType=DOUBLE},
+            address1_latitude       = #{address1_latitude,jdbcType=DOUBLE},
+            ecolabcn_soldto_name    = #{ecolabcn_soldto_name,jdbcType=NVARCHAR},
+            ecolabcn_country        = #{ecolabcn_country,jdbcType=NVARCHAR},
+            address1_composite      = #{address1_composite,jdbcType=NVARCHAR},
+            address1_country        = #{address1_country,jdbcType=NVARCHAR},
+            ecolabcn_main_contact   = #{ecolabcn_main_contact,jdbcType=NVARCHAR},
+            address1_telephone1     = #{address1_telephone1,jdbcType=NVARCHAR},
+            ecolabcn_h4_name        = #{ecolabcn_h4_name,jdbcType=NVARCHAR},
+            ecolabcn_h5_name        = #{ecolabcn_h5_name,jdbcType=NVARCHAR},
+            ecolabcn_h4_number      = #{ecolabcn_h4_number,jdbcType=NVARCHAR},
+            ecolabcn_h5number       = #{ecolabcn_h5number,jdbcType=NVARCHAR},
+            statecode               = #{statecode,jdbcType=INTEGER},
+            create_time             = #{create_time,jdbcType=TIMESTAMP},
+            update_time             = #{update_time,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectByAccoutNumber" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from stores
+        where accountnumber = #{accountnumber,jdbcType=NVARCHAR}
+    </select>
+
+    <select id="selectList" resultType="com.vsc.guest_assurance.vo.BackendStoreListVo">
+<!--        select id, name, email, industry_type, message, create_time, phone-->
+<!--        from stores-->
+<!--        where 1 = 1-->
+<!--        <if test="keyWord != null">-->
+<!--            and (name like #{keyWord,jdbcType=VARCHAR}-->
+<!--            or email like #{keyWord,jdbcType=VARCHAR}-->
+<!--            or phone like #{keyWord,jdbcType=VARCHAR}-->
+<!--            or industry_type like #{keyWord,jdbcType=VARCHAR}-->
+<!--            or create_time like #{keyWord,jdbcType=VARCHAR}-->
+<!--            or message like #{keyWord,jdbcType=VARCHAR})-->
+<!--        </if>-->
+    </select>
+
+    <select id="selectListAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from stores
+        <!--        where 1 = 1-->
+        <!--        <if test="keyWord != null">-->
+        <!--            and (name like #{keyWord,jdbcType=VARCHAR}-->
+        <!--            or email like #{keyWord,jdbcType=VARCHAR}-->
+        <!--            or phone like #{keyWord,jdbcType=VARCHAR}-->
+        <!--            or industry_type like #{keyWord,jdbcType=VARCHAR}-->
+        <!--            or create_time like #{keyWord,jdbcType=VARCHAR}-->
+        <!--            or message like #{keyWord,jdbcType=VARCHAR})-->
+        <!--        </if>-->
+    </select>
+</mapper>

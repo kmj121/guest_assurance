@@ -7,8 +7,8 @@
         <result column="email" property="email" jdbcType="VARCHAR"/>
         <result column="industry_type" property="industryType" jdbcType="VARCHAR"/>
         <result column="message" property="message" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="create_time" property="create_time" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="update_time" jdbcType="TIMESTAMP"/>
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
@@ -26,12 +26,15 @@
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.vsc.guest_assurance.entity.ContactInformation">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+            SELECT IDENT_CURRENT('contact_information')
+        </selectKey>
         insert into contact_information (id, name, email,
                                          industry_type, message, create_time,
                                          update_time, phone)
         values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
-                #{industryType,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
-                #{updateTime,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR})
+                #{industryType,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP},
+                #{update_time,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.vsc.guest_assurance.entity.ContactInformation">
         insert into contact_information
@@ -51,10 +54,10 @@
             <if test="message != null">
                 message,
             </if>
-            <if test="createTime != null">
+            <if test="create_time != null">
                 create_time,
             </if>
-            <if test="updateTime != null">
+            <if test="update_time != null">
                 update_time,
             </if>
             <if test="phone != null">
@@ -77,11 +80,11 @@
             <if test="message != null">
                 #{message,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                #{createTime,jdbcType=TIMESTAMP},
+            <if test="create_time != null">
+                #{create_time,jdbcType=TIMESTAMP},
             </if>
-            <if test="updateTime != null">
-                #{updateTime,jdbcType=TIMESTAMP},
+            <if test="update_time != null">
+                #{update_time,jdbcType=TIMESTAMP},
             </if>
             <if test="phone != null">
                 #{phone,jdbcType=VARCHAR},
@@ -103,11 +106,11 @@
             <if test="message != null">
                 message = #{message,jdbcType=VARCHAR},
             </if>
-            <if test="createTime != null">
-                create_time = #{createTime,jdbcType=TIMESTAMP},
+            <if test="create_time != null">
+                create_time = #{create_time,jdbcType=TIMESTAMP},
             </if>
-            <if test="updateTime != null">
-                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            <if test="update_time != null">
+                update_time = #{update_time,jdbcType=TIMESTAMP},
             </if>
             <if test="phone != null">
                 phone = #{phone,jdbcType=VARCHAR},
@@ -121,8 +124,8 @@
             email         = #{email,jdbcType=VARCHAR},
             industry_type = #{industryType,jdbcType=VARCHAR},
             message       = #{message,jdbcType=VARCHAR},
-            create_time   = #{createTime,jdbcType=TIMESTAMP},
-            update_time   = #{updateTime,jdbcType=TIMESTAMP},
+            create_time   = #{create_time,jdbcType=TIMESTAMP},
+            update_time   = #{update_time,jdbcType=TIMESTAMP},
             phone         = #{phone,jdbcType=VARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>

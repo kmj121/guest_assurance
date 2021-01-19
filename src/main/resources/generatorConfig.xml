@@ -85,7 +85,11 @@
 <!--               enableCountByExample="false" enableSelectByExample="false"-->
 <!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
 <!--        </table>-->
-        <table schema="" tableName="privileges" domainObjectName="Privileges"
+<!--        <table schema="" tableName="privileges" domainObjectName="Privileges"-->
+<!--               enableCountByExample="false" enableSelectByExample="false"-->
+<!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--        </table>-->
+        <table schema="" tableName="stores" domainObjectName="Stores"
                enableCountByExample="false" enableSelectByExample="false"
                enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">
         </table>

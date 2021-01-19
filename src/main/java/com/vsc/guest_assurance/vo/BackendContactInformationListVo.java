@@ -24,7 +24,7 @@ public class BackendContactInformationListVo {
     private String message;
     @ApiModelProperty(value = "提交时间", example = "2019-02-20 10:10:10")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date createTime;
+    private Date create_time;
 
     public Integer getId() {
         return id;
@@ -74,11 +74,11 @@ public class BackendContactInformationListVo {
         this.message = message;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getcreate_time() {
+        return create_time;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setcreate_time(Date create_time) {
+        this.create_time = create_time;
     }
 }

@@ -14,6 +14,8 @@ import com.vsc.guest_assurance.vo.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +27,7 @@ import java.util.List;
  * @Date 2021/1/13
  */
 @Service
+@Transactional(isolation = Isolation.READ_COMMITTED)
 public class UsersService {
     @Autowired
     private UsersMapper usersMapper;

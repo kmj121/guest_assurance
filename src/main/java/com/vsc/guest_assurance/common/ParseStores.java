@@ -1,17 +1,18 @@
 package com.vsc.guest_assurance.common;
 
-import org.apache.commons.codec.binary.Base64;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.vsc.guest_assurance.entity.Stores;
 import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONObject;
 
-import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Description
@@ -21,10 +22,8 @@ import java.io.File;
 public class ParseStores {
     private static String url = "https://ins-fsm-functionapp-001-d.azurewebsites.net/api/account/getScienceProgrameList";
 
-    public static String testResumeParser() throws Exception {
-
+    public static List<Stores> storeParser() throws Exception {
         HttpGet httpGet = new HttpGet(url);
-
         // 设置头字段
         httpGet.addHeader("content-type", "application/json");
 
@@ -35,11 +34,21 @@ public class ParseStores {
         // 处理返回结果
         String resCont = EntityUtils.toString(response.getEntity(), Consts.UTF_8);
 
-        JSONObject res = new JSONObject(resCont);
-        System.out.println("========" + res.toString(4) + "==========");
-        return res.toString(4);
+        JSONObject res = JSON.parseObject(resCont);
+        System.out.println("========" + res.toString() + "==========");
+        JSONArray jsonArray = res.getJSONArray("account");
+        List<Stores> list = new ArrayList<>();
+        if (jsonArray != null && jsonArray.size() > 0) {
+            for (int i = 0; i < jsonArray.size(); i++) {
+                //Json串反序列化成对象
+                Stores stores = JSON.parseObject(jsonArray.get(i).toString(), Stores.class);
+                list.add(stores);
+            }
+        }
+        return list;
     }
+
     public static void main(String[] args) throws Exception {
-        ParseStores.testResumeParser();
+        ParseStores.storeParser();
     }
 }

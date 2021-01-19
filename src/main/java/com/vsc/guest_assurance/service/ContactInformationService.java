@@ -12,6 +12,8 @@ import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
@@ -23,6 +25,7 @@ import java.util.List;
  * @Date 2021/1/13
  */
 @Service
+@Transactional(isolation = Isolation.READ_COMMITTED)
 public class ContactInformationService {
 
     @Autowired
@@ -31,7 +34,7 @@ public class ContactInformationService {
     public Integer add(BackendContactInformationAddQo qo) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         ContactInformation contactInformation = new ContactInformation();
         PropertyUtils.copyProperties(contactInformation, qo);
-        contactInformation.setCreateTime(new Date());
+        contactInformation.setcreate_time(new Date());
         contactInformationMapper.insert(contactInformation);
         return contactInformation.getId();
     }

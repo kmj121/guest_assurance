@@ -13,9 +13,9 @@ public class ContactInformation {
 
     private String message;
 
-    private Date createTime;
+    private Date create_time;
 
-    private Date updateTime;
+    private Date update_time;
 
     private String phone;
 
@@ -59,20 +59,20 @@ public class ContactInformation {
         this.message = message;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getcreate_time() {
+        return create_time;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setcreate_time(Date create_time) {
+        this.create_time = create_time;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Date getupdate_time() {
+        return update_time;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setupdate_time(Date update_time) {
+        this.update_time = update_time;
     }
 
     public String getPhone() {

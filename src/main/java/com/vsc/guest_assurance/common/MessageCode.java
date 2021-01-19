@@ -54,6 +54,8 @@ public enum MessageCode {
     CODE_COUNTRY_NOT_EXIST(9019),
     /** 短信发送失败*/
     CODE_CUSTOMER_CAPTCHA_ERROR(9065),
+    /** 有多条{1}数据*/
+    CODE_ONE_MORE_DATA(9066),
 
 
     /** 无权限操作当前数据*/

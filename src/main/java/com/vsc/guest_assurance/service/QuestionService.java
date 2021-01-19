@@ -9,6 +9,8 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +24,7 @@ import java.util.List;
  * @Date 2021/1/13
  */
 @Service
+@Transactional(isolation = Isolation.READ_COMMITTED)
 public class QuestionService {
 
     public PageBean<BackendQuestionVo> list(Integer page, Integer size) throws IOException, DocumentException {
