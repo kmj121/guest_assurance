@@ -26,13 +26,10 @@
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.vsc.guest_assurance.entity.ContactInformation">
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
-            SELECT IDENT_CURRENT('contact_information')
-        </selectKey>
-        insert into contact_information (id, name, email,
+        insert into contact_information (name, email,
                                          industry_type, message, create_time,
                                          update_time, phone)
-        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+        values (#{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
                 #{industryType,jdbcType=VARCHAR}, #{message,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP},
                 #{update_time,jdbcType=TIMESTAMP}, #{phone,jdbcType=VARCHAR})
     </insert>

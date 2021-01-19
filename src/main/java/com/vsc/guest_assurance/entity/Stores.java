@@ -77,6 +77,10 @@ public class Stores {
 
     private Date update_time;
 
+    private Integer thumbs_up_num;
+
+    private Integer thumbs_up_points;
+
     public Integer getId() {
         return id;
     }
@@ -371,5 +375,21 @@ public class Stores {
 
     public void setUpdate_time(Date update_time) {
         this.update_time = update_time;
+    }
+
+    public Integer getThumbs_up_num() {
+        return thumbs_up_num;
+    }
+
+    public void setThumbs_up_num(Integer thumbs_up_num) {
+        this.thumbs_up_num = thumbs_up_num;
+    }
+
+    public Integer getThumbs_up_points() {
+        return thumbs_up_points;
+    }
+
+    public void setThumbs_up_points(Integer thumbs_up_points) {
+        this.thumbs_up_points = thumbs_up_points;
     }
 }

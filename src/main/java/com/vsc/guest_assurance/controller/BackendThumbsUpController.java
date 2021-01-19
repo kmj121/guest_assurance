@@ -4,10 +4,7 @@ import com.vsc.guest_assurance.common.MessageCode;
 import com.vsc.guest_assurance.common.ResultObject;
 import com.vsc.guest_assurance.entity.Stores;
 import com.vsc.guest_assurance.service.StoresService;
-import com.vsc.guest_assurance.vo.BackendContactInformationListVo;
-import com.vsc.guest_assurance.service.ContactInformationService;
 import com.vsc.guest_assurance.vo.BackendStoreListVo;
-import com.vsc.guest_assurance.vo.BackendStoresThumbsUpVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -25,9 +22,9 @@ import java.util.List;
  * @Date 2020/9/27
  */
 @RestController
-@Api(tags = {"后台-门店-接口"})
-@RequestMapping(value = "/backend/store")
-public class BackendStoreController {
+@Api(tags = {"后台-点赞-接口"})
+@RequestMapping(value = "/backend/thumbsUp")
+public class BackendThumbsUpController {
 
     @Autowired
     private StoresService storesService;
@@ -115,21 +112,9 @@ public class BackendStoreController {
         //ByteStreams.copy(new FileInputStream(Config.attachFolder + filename), response.getOutputStream());
     }
 
-    @ApiOperation("点赞门店列表")
-    @RequestMapping(value = "/thumbsUpStores",  method = RequestMethod.GET)
-    public ResultObject<List<BackendStoresThumbsUpVo>> storeList(HttpServletRequest request
-            , @ApiParam(value = "经度", required = true) @RequestParam Float longitude
-            , @ApiParam(value = "纬度", required = true) @RequestParam Float latitude) {
-        return new ResultObject(MessageCode.CODE_SUCCESS, storesService.thumbsUpStores(longitude, latitude));
-    }
-
-    @ApiOperation("点赞门店")
-    @RequestMapping(value = "/thumbsUp",  method = RequestMethod.GET)
-    public ResultObject thumbsUp(HttpServletRequest request
-            , @ApiParam(value = "门店id", required = true) @RequestParam Integer id
-            , @ApiParam(value = "分数", required = true) @RequestParam Integer points) {
-        storesService.thumbsUp(id, points);
-        return new ResultObject(MessageCode.CODE_SUCCESS, null);
-    }
-
+    //@ApiOperation("详情")
+    //@GetMapping(value = "/{id}/detail")
+    //public ResultObject<BackendContactInformationDetailQo> detail(HttpServletRequest request, @ApiParam(value = "id",required = true) @PathVariable Integer id) {
+    //    return new ResultObject<BackendContactInformationDetailQo>(MessageCode.CODE_SUCCESS, contactInformationService.detail(id));
+    //}
 }

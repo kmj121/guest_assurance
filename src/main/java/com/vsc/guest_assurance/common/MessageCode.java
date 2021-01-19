@@ -56,6 +56,8 @@ public enum MessageCode {
     CODE_CUSTOMER_CAPTCHA_ERROR(9065),
     /** 有多条{1}数据*/
     CODE_ONE_MORE_DATA(9066),
+    /** {1}数据不存在*/
+    CODE_NOT_EXIST(9067),
 
 
     /** 无权限操作当前数据*/

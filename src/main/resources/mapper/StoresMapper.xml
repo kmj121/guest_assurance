@@ -39,6 +39,8 @@
         <result column="statecode" property="statecode" jdbcType="INTEGER"/>
         <result column="create_time" property="create_time" jdbcType="TIMESTAMP"/>
         <result column="update_time" property="update_time" jdbcType="TIMESTAMP"/>
+        <result column="thumbs_up_num" property="thumbs_up_num" jdbcType="INTEGER"/>
+        <result column="thumbs_up_points" property="thumbs_up_points" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Base_Column_List">
         id, accountid, ecolabcn_account_type, ecolabcn_group_name, name, address1_name, address1_Line1,
@@ -48,7 +50,7 @@
     ecolabcn_frequency_wash, address1_longitude, address1_latitude, ecolabcn_soldto_name, 
     ecolabcn_country, address1_composite, address1_country, ecolabcn_main_contact, address1_telephone1, 
     ecolabcn_h4_name, ecolabcn_h5_name, ecolabcn_h4_number, ecolabcn_h5number, statecode, 
-    create_time, update_time
+    create_time, update_time, thumbs_up_num, thumbs_up_points
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -76,7 +78,7 @@
                             ecolabcn_main_contact, address1_telephone1,
                             ecolabcn_h4_name, ecolabcn_h5_name, ecolabcn_h4_number,
                             ecolabcn_h5number, statecode, create_time,
-                            update_time)
+                            update_time, thumbs_up_num, thumbs_up_points)
         values (#{accountid,jdbcType=NVARCHAR}, #{ecolabcn_account_type,jdbcType=INTEGER},
                 #{ecolabcn_group_name,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, #{address1_name,jdbcType=NVARCHAR},
                 #{address1_Line1,jdbcType=NVARCHAR}, #{address1_City,jdbcType=NVARCHAR},
@@ -95,8 +97,10 @@
                 #{ecolabcn_main_contact,jdbcType=NVARCHAR}, #{address1_telephone1,jdbcType=NVARCHAR},
                 #{ecolabcn_h4_name,jdbcType=NVARCHAR}, #{ecolabcn_h5_name,jdbcType=NVARCHAR},
                 #{ecolabcn_h4_number,jdbcType=NVARCHAR},
-                #{ecolabcn_h5number,jdbcType=NVARCHAR}, #{statecode,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP},
-                #{update_time,jdbcType=TIMESTAMP})
+                #{ecolabcn_h5number,jdbcType=NVARCHAR}, #{statecode,jdbcType=INTEGER},
+                #{create_time,jdbcType=TIMESTAMP},
+                #{update_time,jdbcType=TIMESTAMP}, #{thumbs_up_num,jdbcType=INTEGER},
+                #{thumbs_up_points,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="com.vsc.guest_assurance.entity.Stores">
         insert into stores
@@ -212,6 +216,12 @@
             <if test="update_time != null">
                 update_time,
             </if>
+            <if test="thumbs_up_num != null">
+                thumbs_up_num,
+            </if>
+            <if test="thumbs_up_points != null">
+                thumbs_up_points,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -324,6 +334,12 @@
             </if>
             <if test="update_time != null">
                 #{update_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="thumbs_up_num != null">
+                #{thumbs_up_num,jdbcType=INTEGER},
+            </if>
+            <if test="thumbs_up_points != null">
+                #{thumbs_up_points,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -438,6 +454,12 @@
             <if test="update_time != null">
                 update_time = #{update_time,jdbcType=TIMESTAMP},
             </if>
+            <if test="thumbs_up_num != null">
+                thumbs_up_num = #{statecode,jdbcType=INTEGER},
+            </if>
+            <if test="thumbs_up_points != null">
+                thumbs_up_points = #{statecode,jdbcType=INTEGER},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -478,7 +500,9 @@
             ecolabcn_h5number       = #{ecolabcn_h5number,jdbcType=NVARCHAR},
             statecode               = #{statecode,jdbcType=INTEGER},
             create_time             = #{create_time,jdbcType=TIMESTAMP},
-            update_time             = #{update_time,jdbcType=TIMESTAMP}
+            update_time             = #{update_time,jdbcType=TIMESTAMP},
+            thumbs_up_num           = #{thumbs_up_num,jdbcType=INTEGER},
+            thumbs_up_points        = #{thumbs_up_points,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -490,17 +514,17 @@
     </select>
 
     <select id="selectList" resultType="com.vsc.guest_assurance.vo.BackendStoreListVo">
-<!--        select id, name, email, industry_type, message, create_time, phone-->
-<!--        from stores-->
-<!--        where 1 = 1-->
-<!--        <if test="keyWord != null">-->
-<!--            and (name like #{keyWord,jdbcType=VARCHAR}-->
-<!--            or email like #{keyWord,jdbcType=VARCHAR}-->
-<!--            or phone like #{keyWord,jdbcType=VARCHAR}-->
-<!--            or industry_type like #{keyWord,jdbcType=VARCHAR}-->
-<!--            or create_time like #{keyWord,jdbcType=VARCHAR}-->
-<!--            or message like #{keyWord,jdbcType=VARCHAR})-->
-<!--        </if>-->
+        <!--        select id, name, email, industry_type, message, create_time, phone-->
+        <!--        from stores-->
+        <!--        where 1 = 1-->
+        <!--        <if test="keyWord != null">-->
+        <!--            and (name like #{keyWord,jdbcType=VARCHAR}-->
+        <!--            or email like #{keyWord,jdbcType=VARCHAR}-->
+        <!--            or phone like #{keyWord,jdbcType=VARCHAR}-->
+        <!--            or industry_type like #{keyWord,jdbcType=VARCHAR}-->
+        <!--            or create_time like #{keyWord,jdbcType=VARCHAR}-->
+        <!--            or message like #{keyWord,jdbcType=VARCHAR})-->
+        <!--        </if>-->
     </select>
 
     <select id="selectListAll" resultMap="BaseResultMap">
@@ -516,5 +540,16 @@
         <!--            or create_time like #{keyWord,jdbcType=VARCHAR}-->
         <!--            or message like #{keyWord,jdbcType=VARCHAR})-->
         <!--        </if>-->
+    </select>
+
+    <select id="getThumbsUpStores" resultType="com.vsc.guest_assurance.vo.BackendStoresThumbsUpVo">
+        select id,
+               name,
+               address1_Line1                                                                as address,
+               dbo.getDistance(#{latitude}, address1_latitude, #{longitude}, address1_longitude) as distance
+        from stores
+        ORDER BY case
+                     when address1_longitude is not null and address1_latitude is not null then 1
+                     else 0 END desc, distance asc
     </select>
 </mapper>
