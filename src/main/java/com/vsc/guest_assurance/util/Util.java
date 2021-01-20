@@ -3,6 +3,7 @@ package com.vsc.guest_assurance.util;
 import com.vsc.guest_assurance.common.Constant;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.math.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -369,6 +370,15 @@ public class Util {
             return stringList.stream().collect(Collectors.joining(delimited));
         }
         return "";
+    }
+
+    public static boolean mapValueIsEmpty(Map<Integer, String> map) {
+        for(String value :map.values()){
+            if(StringUtils.isNotBlank(value)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static void main(String[] argv) {

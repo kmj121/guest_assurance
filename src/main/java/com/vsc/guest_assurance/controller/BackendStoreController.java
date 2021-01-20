@@ -1,8 +1,12 @@
 package com.vsc.guest_assurance.controller;
 
+import com.google.common.io.ByteStreams;
+import com.vsc.guest_assurance.common.ExcelUtil;
 import com.vsc.guest_assurance.common.MessageCode;
 import com.vsc.guest_assurance.common.ResultObject;
+import com.vsc.guest_assurance.config.Config;
 import com.vsc.guest_assurance.entity.Stores;
+import com.vsc.guest_assurance.service.AttachmentService;
 import com.vsc.guest_assurance.service.StoresService;
 import com.vsc.guest_assurance.vo.BackendContactInformationListVo;
 import com.vsc.guest_assurance.service.ContactInformationService;
@@ -16,7 +20,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +40,8 @@ public class BackendStoreController {
 
     @Autowired
     private StoresService storesService;
+    @Autowired
+    private AttachmentService attachmentService;
 
     @ApiOperation(value = "列表")
     @GetMapping(value = "/list")
@@ -48,71 +59,70 @@ public class BackendStoreController {
     public void export(HttpServletRequest request, HttpServletResponse response,
             @ApiParam(value = "关键字") @RequestParam(required = false) String keyWord) throws IOException {
         List<Stores> storesList = storesService.list(keyWord);
-        //List<UserRegionDetailDtoOut> userRegionDetailDtoOuts = userService.getMyRegion(Util.getLoginToken(request));
-        //boolean adminFlag;
-        //if(userRegionDetailDtoOuts==null){
-        //    adminFlag = true;
-        //}else {
-        //    adminFlag = false;
-        //}
-        //
-        //List<SchoolListDtoOut> listDtoOuts = schoolMapper.search(provinceCode, cityCode, areaCode, schoolId, managerId, status,
-        //        adminFlag, userRegionDetailDtoOuts);
-        //
-        //String[] titles = new String[] {"编号","省","市","区县","学校名称","地址","联系人","联系方式","小学年级数","中学年级数","基准点","状态"};
-        //
-        //List<String[]> contents = new ArrayList<>();
-        //List<String> data;
-        //for(SchoolListDtoOut item : listDtoOuts) {
-        //    data = new ArrayList<>();
-        //    //编号
-        //    data.add(String.valueOf(item.getId()));
-        //    //省
-        //    data.add(item.getProvinceDesc() == null ? "" : item.getProvinceDesc());
-        //    //市
-        //    data.add(item.getCityDesc() == null ? "" : item.getCityDesc());
-        //    //区县
-        //    data.add(item.getAreaDesc() == null ? "" : item.getAreaDesc());
-        //    //学校名称
-        //    data.add(item.getSchoolName() == null ? "" : item.getSchoolName());
-        //    //地址
-        //    data.add(item.getAddress() == null ? "" : item.getAddress());
-        //    //联系人
-        //    data.add(item.getLinkman() == null ? "" : item.getLinkman());
-        //    //联系方式
-        //    data.add(item.getPhone() == null ? "" : item.getPhone());
-        //    //学校管理
-        //    //List<String> list = schoolMapper.selectSchoolManageBySchoolId(item.getId());
-        //    //StringBuilder sb = new StringBuilder();
-        //    //if (list != null && list.size() >= Constant.COUNT1) {
-        //    //    for (int i = 0; i < list.size(); i++) {
-        //    //        sb.append(list.get(i)).append(Constant.separator);
-        //    //    }
-        //    //    data.add(sb.toString().substring(0, sb.toString().length() - 1));
-        //    //} else {
-        //    //    data.add("");
-        //    //}
-        //    //小学年级数
-        //    data.add(item.getPrimaryGrades() == null ? "" : String.valueOf(item.getPrimaryGrades()));
-        //    //初中年级数
-        //    data.add(item.getJuniorGrades() == null ? "" : String.valueOf(item.getJuniorGrades()));
-        //    //基准点
-        //    data.add(item.getEquipmentNumber() == null ? "" : item.getEquipmentNumber());
-        //    //状态
-        //    if (Constant.VALID.equals(item.getStatus())) {
-        //        data.add(Constant.VALID_DESC);
-        //    } else {
-        //        data.add(Constant.INVALID_DESC);
-        //    }
-        //
-        //    contents.add(data.toArray(new String[] {}));
-        //}
-        //String filename = attachmentService.genFileNameByExt(".xlsx");
-        //File file = attachmentService.getFile(filename);
-        //ExcelUtil.buildExcel(new FileOutputStream(file), null, titles, contents, "学校数据列表");
-        //response.setContentType("application/vnd.ms-excel");
-        //response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(filename, "UTF-8"));
-        //ByteStreams.copy(new FileInputStream(Config.attachFolder + filename), response.getOutputStream());
+
+        String[] titles = new String[] {"客户号","客户全称","客户负责人","客户类型","上级单位","SoldTo全称","SoldTo号","国家",
+                "地址 1","城市","客户中文名","客户地区","客户简称","所属部门","经度","纬度","送货联系人","送货联系人电话","门店地址",
+                "集团H4全称","集团H4号","集团H5号","集团H5名称"};
+
+        List<String[]> contents = new ArrayList<>();
+        List<String> data;
+        for(Stores item : storesList) {
+            data = new ArrayList<>();
+            //客户号
+            data.add(item.getAccountnumber());
+            //客户全称
+            data.add(item.getName());
+            //客户全称：没有该字段
+            data.add("");
+            //客户类型
+            data.add(item.getEcolabcn_account_type() == null ? "" : String.valueOf(item.getEcolabcn_account_type()));
+            //上级单位
+            data.add(item.get_parentaccountid_value());
+            //SoldTo全称
+            data.add(item.getEcolabcn_soldto_name());
+            //SoldTo号
+            data.add(item.getEcolabcn_soldto_number());
+            //国家
+            data.add(item.getEcolabcn_country());
+            //地址 1
+            data.add(item.getAddress1_composite());
+            //城市
+            data.add(item.getAddress1_City());
+            //客户中文名
+            data.add(item.getEcolabcn_chinese_name());
+            //客户地区
+            data.add(item.getAddress1_country());
+            //客户简称
+            data.add(item.getEcolabcn_short_name());
+            //所属部门
+            data.add(item.getEcolabcn_department() == null ? "" : String.valueOf(item.getEcolabcn_department()));
+            //经度
+            data.add(item.getAddress1_longitude() == null ? "" : String.valueOf(item.getAddress1_longitude()));
+            //纬度
+            data.add(item.getAddress1_latitude() == null ? "" : String.valueOf(item.getAddress1_latitude()));
+            //送货联系人
+            data.add(item.getEcolabcn_main_contact());
+            //送货联系人电话：给的是telephone1字段，返回json中没有
+            data.add(item.getAddress1_telephone1());
+            //门店地址
+            data.add(item.getAddress1_Line1());
+            //集团H4全称
+            data.add(item.getEcolabcn_h4_name());
+            //集团H4号
+            data.add(item.getEcolabcn_h4_number());
+            //集团H5号
+            data.add(item.getEcolabcn_h5number());
+            //集团H5名称
+            data.add(item.getEcolabcn_h5_name());
+
+            contents.add(data.toArray(new String[] {}));
+        }
+        String filename = attachmentService.genFileNameByExt(".xlsx");
+        File file = attachmentService.getFile(filename);
+        ExcelUtil.buildExcel(new FileOutputStream(file), null, titles, contents, "门店数据列表");
+        response.setContentType("application/vnd.ms-excel");
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(filename, "UTF-8"));
+        ByteStreams.copy(new FileInputStream(Config.attachFolder + filename), response.getOutputStream());
     }
 
     @ApiOperation("点赞门店列表")

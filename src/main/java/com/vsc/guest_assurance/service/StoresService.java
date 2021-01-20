@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,9 +56,16 @@ public class StoresService {
     }
 
     public PageBean<BackendStoreListVo> list(String keyWord, Integer page, Integer size) {
-        keyWord = StringUtils.isEmpty(keyWord) ? "" : "%" + keyWord + "%";
+        keyWord = StringUtils.isEmpty(keyWord) ? null : "%" + keyWord + "%";
         PageHelper.startPage(page, size);
         List<BackendStoreListVo> vos = storesMapper.selectList(keyWord);
+        for (BackendStoreListVo item : vos) {
+            if(item.getThumbs_up_num() == 0) {
+                item.setComprehensiveEvaluation("0");
+            } else {
+                item.setComprehensiveEvaluation(new DecimalFormat("0.00").format((float)item.getThumbs_up_points()/item.getThumbs_up_num()));
+            }
+        }
         PageInfo<BackendStoreListVo> pageInfo = new PageInfo(vos);
         return new PageBean<>(page, size, pageInfo.getTotal(), vos);
     }

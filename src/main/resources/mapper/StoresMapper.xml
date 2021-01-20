@@ -513,18 +513,31 @@
         where accountnumber = #{accountnumber,jdbcType=NVARCHAR}
     </select>
 
-    <select id="selectList" resultType="com.vsc.guest_assurance.vo.BackendStoreListVo">
-        <!--        select id, name, email, industry_type, message, create_time, phone-->
-        <!--        from stores-->
-        <!--        where 1 = 1-->
-        <!--        <if test="keyWord != null">-->
-        <!--            and (name like #{keyWord,jdbcType=VARCHAR}-->
-        <!--            or email like #{keyWord,jdbcType=VARCHAR}-->
-        <!--            or phone like #{keyWord,jdbcType=VARCHAR}-->
-        <!--            or industry_type like #{keyWord,jdbcType=VARCHAR}-->
-        <!--            or create_time like #{keyWord,jdbcType=VARCHAR}-->
-        <!--            or message like #{keyWord,jdbcType=VARCHAR})-->
-        <!--        </if>-->
+    <resultMap id="selectListResultMap" type="com.vsc.guest_assurance.vo.BackendStoreListVo">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="accountnumber" property="accountnumber" jdbcType="NVARCHAR"/>
+        <result column="name" property="name" jdbcType="NVARCHAR"/>
+        <result column="address1_composite" property="address1_composite" jdbcType="NVARCHAR"/>
+        <result column="address1_City" property="address1_City" jdbcType="NVARCHAR"/>
+        <result column="ecolabcn_department" property="ecolabcn_department" jdbcType="INTEGER"/>
+        <result column="thumbs_up_num" property="thumbs_up_num" jdbcType="INTEGER"/>
+        <result column="thumbs_up_points" property="thumbs_up_points" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectList" resultMap="selectListResultMap">
+        select id as id, accountnumber as accountnumber, name as name, address1_composite as address1_composite,
+        address1_City as address1_City, ecolabcn_department as ecolabcn_department, thumbs_up_num as thumbs_up_num,
+        thumbs_up_points as thumbs_up_points
+        from stores
+        where 1 = 1
+        <if test="keyWord != null">
+            and (name like #{keyWord,jdbcType=VARCHAR}
+            or accountnumber like #{keyWord,jdbcType=VARCHAR}
+            or address1_composite like #{keyWord,jdbcType=VARCHAR}
+            or address1_City like #{keyWord,jdbcType=VARCHAR}
+            or ecolabcn_department like #{keyWord,jdbcType=VARCHAR})
+        </if>
+        order by thumbs_up_num
     </select>
 
     <select id="selectListAll" resultMap="BaseResultMap">
@@ -545,7 +558,7 @@
     <select id="getThumbsUpStores" resultType="com.vsc.guest_assurance.vo.BackendStoresThumbsUpVo">
         select top 5 id,
                name,
-               address1_Line1                                                                as address,
+               address1_Line1                                                                    as address,
                dbo.getDistance(#{latitude}, address1_latitude, #{longitude}, address1_longitude) as distance
         from stores
         ORDER BY case

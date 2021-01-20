@@ -2,6 +2,7 @@ package com.vsc.guest_assurance.vo;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 /**
@@ -10,77 +11,89 @@ import java.util.Date;
  * @Date 2021/1/14
  */
 public class BackendStoreListVo {
+    @ApiModelProperty("门店id")
+    private Integer id;
     @ApiModelProperty("客户号")
-    private String customerNum;
+    private String accountnumber;
     @ApiModelProperty("客户全称")
-    private String customerFullName;
-    @ApiModelProperty("客户负责人")
-    private String principal;
+    private String name;
+    //@ApiModelProperty("客户负责人")
+    //private String principal;
     @ApiModelProperty("地址")
-    private String address;
+    private String address1_composite;
     @ApiModelProperty("城市")
-    private String cityName;
+    private String address1_City;
     @ApiModelProperty("所属部门")
-    private String departmentName;
+    private String ecolabcn_department;
     @ApiModelProperty("累计点赞次数")
-    private String thumbUpNumber;
+    private Integer thumbs_up_num;
+    @ApiModelProperty("总分数")
+    private Integer thumbs_up_points;
     @ApiModelProperty("综合评分")
     private String comprehensiveEvaluation;
 
-    public String getCustomerNum() {
-        return customerNum;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCustomerNum(String customerNum) {
-        this.customerNum = customerNum;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getCustomerFullName() {
-        return customerFullName;
+    public String getAccountnumber() {
+        return accountnumber;
     }
 
-    public void setCustomerFullName(String customerFullName) {
-        this.customerFullName = customerFullName;
+    public void setAccountnumber(String accountnumber) {
+        this.accountnumber = accountnumber;
     }
 
-    public String getPrincipal() {
-        return principal;
+    public String getName() {
+        return name;
     }
 
-    public void setPrincipal(String principal) {
-        this.principal = principal;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddress1_composite() {
+        return address1_composite;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress1_composite(String address1_composite) {
+        this.address1_composite = address1_composite;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getAddress1_City() {
+        return address1_City;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    public void setAddress1_City(String address1_City) {
+        this.address1_City = address1_City;
     }
 
-    public String getDepartmentName() {
-        return departmentName;
+    public String getEcolabcn_department() {
+        return ecolabcn_department;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setEcolabcn_department(String ecolabcn_department) {
+        this.ecolabcn_department = ecolabcn_department;
     }
 
-    public String getThumbUpNumber() {
-        return thumbUpNumber;
+    public Integer getThumbs_up_num() {
+        return thumbs_up_num;
     }
 
-    public void setThumbUpNumber(String thumbUpNumber) {
-        this.thumbUpNumber = thumbUpNumber;
+    public void setThumbs_up_num(Integer thumbs_up_num) {
+        this.thumbs_up_num = thumbs_up_num;
+    }
+
+    public Integer getThumbs_up_points() {
+        return thumbs_up_points;
+    }
+
+    public void setThumbs_up_points(Integer thumbs_up_points) {
+        this.thumbs_up_points = thumbs_up_points;
     }
 
     public String getComprehensiveEvaluation() {
