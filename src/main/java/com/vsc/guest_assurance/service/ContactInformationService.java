@@ -5,9 +5,9 @@ import com.github.pagehelper.PageInfo;
 import com.vsc.guest_assurance.common.PageBean;
 import com.vsc.guest_assurance.dao.ContactInformationMapper;
 import com.vsc.guest_assurance.entity.ContactInformation;
-import com.vsc.guest_assurance.qo.BackendContactInformationAddQo;
-import com.vsc.guest_assurance.qo.BackendContactInformationDetailQo;
-import com.vsc.guest_assurance.vo.BackendContactInformationListVo;
+import com.vsc.guest_assurance.qo.backend.BContactInformationAddQo;
+import com.vsc.guest_assurance.qo.backend.BContactInformationDetailQo;
+import com.vsc.guest_assurance.vo.backend.BContactInformationListVo;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class ContactInformationService {
     @Autowired
     private ContactInformationMapper contactInformationMapper;
 
-    public Integer add(BackendContactInformationAddQo qo) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public Integer add(BContactInformationAddQo qo) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         ContactInformation contactInformation = new ContactInformation();
         PropertyUtils.copyProperties(contactInformation, qo);
         contactInformation.setcreate_time(new Date());
@@ -39,15 +39,15 @@ public class ContactInformationService {
         return contactInformation.getId();
     }
 
-    public PageBean<BackendContactInformationListVo> list(String keyWord, Integer page, Integer size) {
+    public PageBean<BContactInformationListVo> list(String keyWord, Integer page, Integer size) {
         keyWord = StringUtils.isEmpty(keyWord) ? "" : "%" + keyWord + "%";
         PageHelper.startPage(page, size);
-        List<BackendContactInformationListVo> vos = contactInformationMapper.selectList(keyWord);
-        PageInfo<BackendContactInformationListVo> pageInfo = new PageInfo(vos);
+        List<BContactInformationListVo> vos = contactInformationMapper.selectList(keyWord);
+        PageInfo<BContactInformationListVo> pageInfo = new PageInfo(vos);
         return new PageBean<>(page, size, pageInfo.getTotal(), vos);
     }
 
-    public BackendContactInformationDetailQo detail(Integer id) {
-        return new BackendContactInformationDetailQo();
+    public BContactInformationDetailQo detail(Integer id) {
+        return new BContactInformationDetailQo();
     }
 }

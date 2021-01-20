@@ -18,22 +18,21 @@ public class ClientCredentialProvider implements IAuthenticationProvider {
 
 
     // 租户 ID
-    //private static final String tenentId = "c1eb5112-7946-4c9d-bc57-40040cfe3a91";
-    private static final String tenentId = "2c3c280f-2394-453f-944d-6df0dd9c338e";
+    //private static String tenentId = "c1eb5112-7946-4c9d-bc57-40040cfe3a91";
+    private static String tenentId = "2c3c280f-2394-453f-944d-6df0dd9c338e";
 
     // ChinaEmployeeDataGetter 应用 ID、秘钥
-    //private static final String clientId = "75db9ef1-7571-4fb6-b2ca-78b6b11cb72c";
-    private static final String clientId = "8c7b9cbd-683f-4749-b998-d8b7c789f7b0";
-    private static final String clientSecret = "trezoFVONKI4992(()otG2$";
+    //private static String clientId = "75db9ef1-7571-4fb6-b2ca-78b6b11cb72c";
+    private static String clientId = "8c7b9cbd-683f-4749-b998-d8b7c789f7b0";
+    private static String clientSecret = "trezoFVONKI4992(()otG2$";
 
     // 申请 token 时的 scope
-    //private static final String MSGraphScope = "https://graph.microsoft.com/.default";
-    private static final String MSGraphScope = "https://microsoftgraph.chinacloudapi.cn/.default";
+    public static String MSGraphScope = "https://graph.microsoft.com/.default";
     // 调用 Graph API 时的 scope
-    private static final String[] scope = {"Directory.Read.All", "User.Read.All"};
+    public static String[] scope = {"Directory.Read.All", "User.Read.All"};
 
     // 授权方式
-    private static final String grantType = "client_credentials";
+    public static String grantType = "client_credentials";
 
     // Group ID
     //static public string ChinaAllStaffGroup = "b47811de-833b-45e1-9fcd-fd50e0bd283b";
@@ -54,7 +53,7 @@ public class ClientCredentialProvider implements IAuthenticationProvider {
     //};
 
     // 单独用 “902...” 这个组获取即可，包含了大中华区所有员工信息
-    private static final String[] regionGC = new String[]{
+    public static String[] regionGC = new String[]{
                     "902cf6ed-7469-4fda-bcfe-e565bcf6672c",
                     "5c0aa92c-8461-462f-b23e-5b1bf18486d1"
             };
@@ -70,7 +69,7 @@ public class ClientCredentialProvider implements IAuthenticationProvider {
     }
 
     // Redirect URI
-    private static final String redirectUri = "msal75db9ef1-7571-4fb6-b2ca-78b6b11cb72c://auth";
+    public String redirectUri = "msal75db9ef1-7571-4fb6-b2ca-78b6b11cb72c://auth";
 
     @Override
     public void authenticateRequest(IHttpRequest iHttpRequest) {
@@ -78,8 +77,7 @@ public class ClientCredentialProvider implements IAuthenticationProvider {
     }
 
     public static String getTokenForApplication() {
-        //String postURL = "https://login.microsoftonline.com/" + tenentId + "/oauth2/v2.0/token";
-        String postURL = "https://login.partner.microsoftonline.cn/" + tenentId + "/oauth2/v2.0/token";
+        String postURL = "https://login.microsoftonline.com/" + tenentId + "/oauth2/v2.0/token";
         Map<String, String> params = new HashMap<>();
         params.put("client_id", clientId);
         params.put("scope", MSGraphScope);

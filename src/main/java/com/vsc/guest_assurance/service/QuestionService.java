@@ -2,7 +2,7 @@ package com.vsc.guest_assurance.service;
 
 import com.vsc.guest_assurance.common.PageBean;
 import com.vsc.guest_assurance.util.PageUtil;
-import com.vsc.guest_assurance.vo.BackendQuestionVo;
+import com.vsc.guest_assurance.vo.backend.BQuestionVo;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -27,12 +27,12 @@ import java.util.List;
 @Transactional(isolation = Isolation.READ_COMMITTED)
 public class QuestionService {
 
-    public PageBean<BackendQuestionVo> list(Integer page, Integer size) throws IOException, DocumentException {
+    public PageBean<BQuestionVo> list(Integer page, Integer size) throws IOException, DocumentException {
 
         //解析xml
-        List<BackendQuestionVo> listVos = read();
+        List<BQuestionVo> listVos = read();
         long total;
-        List<BackendQuestionVo> items = new ArrayList<>();
+        List<BQuestionVo> items = new ArrayList<>();
         if (listVos == null || listVos.size() == 0) {
             total = 0;
         } else {
@@ -43,8 +43,8 @@ public class QuestionService {
         return new PageBean<>(page, size, total, items);
     }
 
-    public List<BackendQuestionVo> read() throws DocumentException, IOException {
-        List<BackendQuestionVo> listVos = new ArrayList<>();
+    public List<BQuestionVo> read() throws DocumentException, IOException {
+        List<BQuestionVo> listVos = new ArrayList<>();
         //1.创建Reader对象
         SAXReader reader = new SAXReader();
         //2.加载xml
@@ -55,19 +55,19 @@ public class QuestionService {
         Element rootElement = document.getRootElement();
         Iterator iterator = rootElement.elementIterator();
         while (iterator.hasNext()){
-            BackendQuestionVo backendQuestionVo = new BackendQuestionVo();
+            BQuestionVo bQuestionVo = new BQuestionVo();
             Element stu = (Element) iterator.next();
             Iterator iterator1 = stu.elementIterator();
             while (iterator1.hasNext()){
                 Element stuChild = (Element) iterator1.next();
                 if("question".equals(stuChild.getName())) {
-                    backendQuestionVo.setQuestion(stuChild.getStringValue());
+                    bQuestionVo.setQuestion(stuChild.getStringValue());
                 }
                 if("answer".equals(stuChild.getName())) {
-                    backendQuestionVo.setAnswer(stuChild.getStringValue());
+                    bQuestionVo.setAnswer(stuChild.getStringValue());
                 }
             }
-            listVos.add(backendQuestionVo);
+            listVos.add(bQuestionVo);
         }
         return listVos;
     }

@@ -29,20 +29,6 @@ public class Privileges {
 
     private String buttonName;
 
-    private Integer customerFlag;
-
-    private String buttonNameEn;
-
-    private String buttonNameTc;
-
-    private String genreEn;
-
-    private String genreTc;
-
-    private String nameEn;
-
-    private String nameTc;
-
     public Integer getId() {
         return id;
     }
@@ -145,61 +131,5 @@ public class Privileges {
 
     public void setButtonName(String buttonName) {
         this.buttonName = buttonName;
-    }
-
-    public Integer getCustomerFlag() {
-        return customerFlag;
-    }
-
-    public void setCustomerFlag(Integer customerFlag) {
-        this.customerFlag = customerFlag;
-    }
-
-    public String getButtonNameEn() {
-        return buttonNameEn;
-    }
-
-    public void setButtonNameEn(String buttonNameEn) {
-        this.buttonNameEn = buttonNameEn;
-    }
-
-    public String getButtonNameTc() {
-        return buttonNameTc;
-    }
-
-    public void setButtonNameTc(String buttonNameTc) {
-        this.buttonNameTc = buttonNameTc;
-    }
-
-    public String getGenreEn() {
-        return genreEn;
-    }
-
-    public void setGenreEn(String genreEn) {
-        this.genreEn = genreEn;
-    }
-
-    public String getGenreTc() {
-        return genreTc;
-    }
-
-    public void setGenreTc(String genreTc) {
-        this.genreTc = genreTc;
-    }
-
-    public String getNameEn() {
-        return nameEn;
-    }
-
-    public void setNameEn(String nameEn) {
-        this.nameEn = nameEn;
-    }
-
-    public String getNameTc() {
-        return nameTc;
-    }
-
-    public void setNameTc(String nameTc) {
-        this.nameTc = nameTc;
     }
 }

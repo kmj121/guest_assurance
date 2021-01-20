@@ -1,7 +1,5 @@
 package com.vsc.guest_assurance.entity;
 
-import com.vsc.guest_assurance.common.Constant;
-
 import java.util.Date;
 
 public class Roles {
@@ -20,16 +18,6 @@ public class Roles {
     private Date updateAt;
 
     private Integer updateUser;
-
-    private String roleNameTc;
-
-    private String roleNameEn;
-
-    private Integer customerFlag;
-
-    private Integer backendFlag;
-
-    private Integer appFlag;
 
     public Integer getId() {
         return id;
@@ -93,54 +81,5 @@ public class Roles {
 
     public void setUpdateUser(Integer updateUser) {
         this.updateUser = updateUser;
-    }
-
-    public String getRoleNameTc() {
-        return roleNameTc;
-    }
-
-    public void setRoleNameTc(String roleNameTc) {
-        this.roleNameTc = roleNameTc;
-    }
-
-    public String getRoleNameEn() {
-        return roleNameEn;
-    }
-
-    public void setRoleNameEn(String roleNameEn) {
-        this.roleNameEn = roleNameEn;
-    }
-
-    public Integer getCustomerFlag() {
-        return customerFlag;
-    }
-
-    public void setCustomerFlag(Integer customerFlag) {
-        this.customerFlag = customerFlag;
-    }
-
-    public Integer getBackendFlag() {
-        return backendFlag;
-    }
-
-    public void setBackendFlag(Integer backendFlag) {
-        this.backendFlag = backendFlag;
-    }
-
-    public Integer getAppFlag() {
-        return appFlag;
-    }
-
-    public void setAppFlag(Integer appFlag) {
-        this.appFlag = appFlag;
-    }
-
-    public String getRoleNameByLanguage(Integer language) {
-        if (language != null && language.equals(Constant.LANGUAGE_SIMPLIFIED_CHINESE)) {
-            return roleName;
-        } else if (language != null && language.equals(Constant.LANGUAGE_TRADITIONAL_CHINESE)) {
-            return roleNameTc;
-        }
-        return roleNameEn;
     }
 }

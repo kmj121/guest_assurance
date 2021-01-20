@@ -1,26 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.vsc.guest_assurance.dao.RolesMapper">
     <resultMap id="BaseResultMap" type="com.vsc.guest_assurance.entity.Roles">
-        <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="role_name" jdbcType="NVARCHAR" property="roleName"/>
-        <result column="role_info" jdbcType="NVARCHAR" property="roleInfo"/>
-        <result column="privilege_ids" jdbcType="NVARCHAR" property="privilegeIds"/>
-        <result column="create_at" jdbcType="TIMESTAMP" property="createAt"/>
-        <result column="create_user" jdbcType="INTEGER" property="createUser"/>
-        <result column="update_at" jdbcType="TIMESTAMP" property="updateAt"/>
-        <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
-        <result column="role_name_tc" jdbcType="NVARCHAR" property="roleNameTc"/>
-        <result column="role_name_en" jdbcType="NVARCHAR" property="roleNameEn"/>
-        <result column="customer_flag" jdbcType="INTEGER" property="customerFlag"/>
-        <result column="backend_flag" jdbcType="INTEGER" property="backendFlag"/>
-        <result column="app_flag" jdbcType="INTEGER" property="appFlag"/>
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="role_name" property="roleName" jdbcType="NVARCHAR"/>
+        <result column="role_info" property="roleInfo" jdbcType="NVARCHAR"/>
+        <result column="privilege_ids" property="privilegeIds" jdbcType="NVARCHAR"/>
+        <result column="create_at" property="createAt" jdbcType="TIMESTAMP"/>
+        <result column="create_user" property="createUser" jdbcType="INTEGER"/>
+        <result column="update_at" property="updateAt" jdbcType="TIMESTAMP"/>
+        <result column="update_user" property="updateUser" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, role_name, role_info, privilege_ids, create_at, create_user, update_at, update_user,
-    role_name_tc, role_name_en, customer_flag, backend_flag, app_flag
+        id, role_name, role_info, privilege_ids, create_at, create_user, update_at, update_user
     </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
         from roles
@@ -34,14 +28,10 @@
     <insert id="insert" parameterType="com.vsc.guest_assurance.entity.Roles">
         insert into roles (id, role_name, role_info,
                            privilege_ids, create_at, create_user,
-                           update_at, update_user, role_name_tc,
-                           role_name_en, customer_flag, backend_flag,
-                           app_flag)
+                           update_at, update_user)
         values (#{id,jdbcType=INTEGER}, #{roleName,jdbcType=NVARCHAR}, #{roleInfo,jdbcType=NVARCHAR},
                 #{privilegeIds,jdbcType=NVARCHAR}, #{createAt,jdbcType=TIMESTAMP}, #{createUser,jdbcType=INTEGER},
-                #{updateAt,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=INTEGER}, #{roleNameTc,jdbcType=NVARCHAR},
-                #{roleNameEn,jdbcType=NVARCHAR}, #{customerFlag,jdbcType=INTEGER}, #{backendFlag,jdbcType=INTEGER},
-                #{appFlag,jdbcType=INTEGER})
+                #{updateAt,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="com.vsc.guest_assurance.entity.Roles">
         insert into roles
@@ -70,21 +60,6 @@
             <if test="updateUser != null">
                 update_user,
             </if>
-            <if test="roleNameTc != null">
-                role_name_tc,
-            </if>
-            <if test="roleNameEn != null">
-                role_name_en,
-            </if>
-            <if test="customerFlag != null">
-                customer_flag,
-            </if>
-            <if test="backendFlag != null">
-                backend_flag,
-            </if>
-            <if test="appFlag != null">
-                app_flag,
-            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -110,21 +85,6 @@
             </if>
             <if test="updateUser != null">
                 #{updateUser,jdbcType=INTEGER},
-            </if>
-            <if test="roleNameTc != null">
-                #{roleNameTc,jdbcType=NVARCHAR},
-            </if>
-            <if test="roleNameEn != null">
-                #{roleNameEn,jdbcType=NVARCHAR},
-            </if>
-            <if test="customerFlag != null">
-                #{customerFlag,jdbcType=INTEGER},
-            </if>
-            <if test="backendFlag != null">
-                #{backendFlag,jdbcType=INTEGER},
-            </if>
-            <if test="appFlag != null">
-                #{appFlag,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -152,21 +112,6 @@
             <if test="updateUser != null">
                 update_user = #{updateUser,jdbcType=INTEGER},
             </if>
-            <if test="roleNameTc != null">
-                role_name_tc = #{roleNameTc,jdbcType=NVARCHAR},
-            </if>
-            <if test="roleNameEn != null">
-                role_name_en = #{roleNameEn,jdbcType=NVARCHAR},
-            </if>
-            <if test="customerFlag != null">
-                customer_flag = #{customerFlag,jdbcType=INTEGER},
-            </if>
-            <if test="backendFlag != null">
-                backend_flag = #{backendFlag,jdbcType=INTEGER},
-            </if>
-            <if test="appFlag != null">
-                app_flag = #{appFlag,jdbcType=INTEGER},
-            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -178,12 +123,17 @@
             create_at     = #{createAt,jdbcType=TIMESTAMP},
             create_user   = #{createUser,jdbcType=INTEGER},
             update_at     = #{updateAt,jdbcType=TIMESTAMP},
-            update_user   = #{updateUser,jdbcType=INTEGER},
-            role_name_tc  = #{roleNameTc,jdbcType=NVARCHAR},
-            role_name_en  = #{roleNameEn,jdbcType=NVARCHAR},
-            customer_flag = #{customerFlag,jdbcType=INTEGER},
-            backend_flag  = #{backendFlag,jdbcType=INTEGER},
-            app_flag      = #{appFlag,jdbcType=INTEGER}
+            update_user   = #{updateUser,jdbcType=INTEGER}
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <select id="selectRole" resultType="com.vsc.guest_assurance.vo.backend.BRoleListVo">
+        select id,
+               role_name,
+               role_info,
+               privilege_ids
+        from roles
+        where 1 = 1
+        order by id asc
+    </select>
 </mapper>

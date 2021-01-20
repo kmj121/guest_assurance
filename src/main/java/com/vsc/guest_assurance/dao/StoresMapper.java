@@ -1,8 +1,8 @@
 package com.vsc.guest_assurance.dao;
 
 import com.vsc.guest_assurance.entity.Stores;
-import com.vsc.guest_assurance.vo.BackendStoreListVo;
-import com.vsc.guest_assurance.vo.BackendStoresThumbsUpVo;
+import com.vsc.guest_assurance.vo.backend.BStoreListVo;
+import com.vsc.guest_assurance.vo.backend.BStoresThumbsUpVo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -22,10 +22,10 @@ public interface StoresMapper {
 
     List<Stores> selectByAccoutNumber(String accountnumber);
 
-    List<BackendStoreListVo> selectList(String keyWord);
+    List<BStoreListVo> selectList(String keyWord);
 
     List<Stores> selectListAll(String keyWord);
 
-    List<BackendStoresThumbsUpVo> getThumbsUpStores(@Param("latitude") Float latitude,
-                                                    @Param("longitude") Float longitude);
+    List<BStoresThumbsUpVo> getThumbsUpStores(@Param("latitude") Float latitude,
+                                              @Param("longitude") Float longitude);
 }

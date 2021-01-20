@@ -1,18 +1,11 @@
 package com.vsc.guest_assurance.common;
 
 
-import com.vsc.guest_assurance.entity.LoginTokens;
-import com.vsc.guest_assurance.util.Util;
-import com.vsc.guest_assurance.vo.BPrivilegeVo;
-import com.vsc.guest_assurance.vo.CPrivilegeGenreListVo;
-import com.vsc.guest_assurance.vo.CPrivilegeNameListVo;
-import org.apache.commons.beanutils.PropertyUtils;
+import com.vsc.guest_assurance.vo.backend.BPrivilegeVo;
+import com.vsc.guest_assurance.vo.common.CPrivilegeGenreListVo;
+import com.vsc.guest_assurance.vo.common.CPrivilegeNameListVo;
 import org.apache.commons.lang.StringUtils;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.math.BigDecimal;
-import java.net.URLEncoder;
 import java.util.*;
 import java.util.stream.Collectors;
 

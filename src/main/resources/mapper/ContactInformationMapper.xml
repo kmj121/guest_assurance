@@ -127,7 +127,7 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <select id="selectList" resultType="com.vsc.guest_assurance.vo.BackendContactInformationListVo">
+    <select id="selectList" resultType="com.vsc.guest_assurance.vo.backend.BContactInformationListVo">
         select id, name, email, industry_type, message, create_time, phone
         from contact_information
         where 1 = 1
@@ -136,7 +136,6 @@
             or email like #{keyWord,jdbcType=VARCHAR}
             or phone like #{keyWord,jdbcType=VARCHAR}
             or industry_type like #{keyWord,jdbcType=VARCHAR}
-            or create_time like #{keyWord,jdbcType=VARCHAR}
             or message like #{keyWord,jdbcType=VARCHAR})
         </if>
     </select>

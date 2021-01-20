@@ -26,28 +26,27 @@ public class MyspringMVCConfig extends WebMvcConfigurationSupport {
         super.addResourceHandlers(registry);
     }
     //集成swagger 加入拦截器，需要忽略掉 swagger-resources下面的请求 以及忽略掉 v2下面的请求即可
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(tokenFilter)
-                .addPathPatterns("/backend/**")
-                //.addPathPatterns("/wechat/**")
-                .addPathPatterns("/commons/**")
-                //.excludePathPatterns("/commons/icaptcha/**")
-                //.excludePathPatterns("/commons/attachments/**")
-                //.excludePathPatterns("/commons/mobileCaptcha/**")
-                //.excludePathPatterns("/backend/user/login")
-                //.excludePathPatterns("/backend/student/exportModel")
-                //.excludePathPatterns("/wechat/customer/login")
-                //.excludePathPatterns("/wechat/customer/register")
-                //.excludePathPatterns("/wechat/customer/checkPhone")
-                //.excludePathPatterns("/wechat/acceptMessage")
-                //.excludePathPatterns("/wechat/information/**")
-                //.excludePathPatterns("/data/**")
-                //.excludePathPatterns("/dataStatistics/**")
-                //.excludePathPatterns("/dataState/**")
-                //.excludePathPatterns("/dict/**")
-                //.excludePathPatterns("/test/**")
-                //.excludePathPatterns("/testRecord/**")
-                .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
-    }
+    //@Override
+    //public void addInterceptors(InterceptorRegistry registry) {
+    //    registry.addInterceptor(tokenFilter)
+    //            .addPathPatterns("/backend/**")
+    //            .addPathPatterns("/commons/**")
+    //            .excludePathPatterns("/commons/attachments/**")
+    //            .excludePathPatterns("/common/users/login")
+    //            //.excludePathPatterns("/commons/icaptcha/**")
+    //            //.excludePathPatterns("/commons/mobileCaptcha/**")
+    //            //.excludePathPatterns("/backend/student/exportModel")
+    //            //.excludePathPatterns("/wechat/customer/login")
+    //            //.excludePathPatterns("/wechat/customer/register")
+    //            //.excludePathPatterns("/wechat/customer/checkPhone")
+    //            //.excludePathPatterns("/wechat/acceptMessage")
+    //            //.excludePathPatterns("/wechat/information/**")
+    //            //.excludePathPatterns("/data/**")
+    //            //.excludePathPatterns("/dataStatistics/**")
+    //            //.excludePathPatterns("/dataState/**")
+    //            //.excludePathPatterns("/dict/**")
+    //            //.excludePathPatterns("/test/**")
+    //            //.excludePathPatterns("/testRecord/**")
+    //            .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**");
+    //}
 }

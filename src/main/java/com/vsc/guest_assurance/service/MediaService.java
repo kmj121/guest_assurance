@@ -2,7 +2,7 @@ package com.vsc.guest_assurance.service;
 
 import com.vsc.guest_assurance.common.PageBean;
 import com.vsc.guest_assurance.util.PageUtil;
-import com.vsc.guest_assurance.vo.BackendMediaVo;
+import com.vsc.guest_assurance.vo.backend.BMediaVo;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -27,12 +27,12 @@ import java.util.List;
 @Transactional(isolation = Isolation.READ_COMMITTED)
 public class MediaService {
 
-    public PageBean<BackendMediaVo> list(Integer page, Integer size) throws IOException, DocumentException {
+    public PageBean<BMediaVo> list(Integer page, Integer size) throws IOException, DocumentException {
 
         //解析xml
-        List<BackendMediaVo> listVos = read();
+        List<BMediaVo> listVos = read();
         long total;
-        List<BackendMediaVo> items = new ArrayList<>();
+        List<BMediaVo> items = new ArrayList<>();
         if (listVos == null || listVos.size() == 0) {
             total = 0;
         } else {
@@ -43,8 +43,8 @@ public class MediaService {
         return new PageBean<>(page, size, total, items);
     }
 
-    public List<BackendMediaVo> read() throws DocumentException, IOException {
-        List<BackendMediaVo> listVos = new ArrayList<>();
+    public List<BMediaVo> read() throws DocumentException, IOException {
+        List<BMediaVo> listVos = new ArrayList<>();
         //1.创建Reader对象
         SAXReader reader = new SAXReader();
         //2.加载xml
@@ -55,22 +55,22 @@ public class MediaService {
         Element rootElement = document.getRootElement();
         Iterator iterator = rootElement.elementIterator();
         while (iterator.hasNext()){
-            BackendMediaVo backendMediaVo = new BackendMediaVo();
+            BMediaVo bMediaVo = new BMediaVo();
             Element stu = (Element) iterator.next();
             Iterator iterator1 = stu.elementIterator();
             while (iterator1.hasNext()){
                 Element stuChild = (Element) iterator1.next();
                 if("title".equals(stuChild.getName())) {
-                    backendMediaVo.setTitle(stuChild.getStringValue());
+                    bMediaVo.setTitle(stuChild.getStringValue());
                 }
                 if("summary".equals(stuChild.getName())) {
-                    backendMediaVo.setSummary(stuChild.getStringValue());
+                    bMediaVo.setSummary(stuChild.getStringValue());
                 }
                 if("imageUrl".equals(stuChild.getName())) {
-                    backendMediaVo.setImageUrl(stuChild.getStringValue());
+                    bMediaVo.setImageUrl(stuChild.getStringValue());
                 }
             }
-            listVos.add(backendMediaVo);
+            listVos.add(bMediaVo);
         }
         return listVos;
     }

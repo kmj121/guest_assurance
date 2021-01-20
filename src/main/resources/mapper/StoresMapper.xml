@@ -513,7 +513,7 @@
         where accountnumber = #{accountnumber,jdbcType=NVARCHAR}
     </select>
 
-    <resultMap id="selectListResultMap" type="com.vsc.guest_assurance.vo.BackendStoreListVo">
+    <resultMap id="selectListResultMap" type="com.vsc.guest_assurance.vo.backend.BStoreListVo">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="accountnumber" property="accountnumber" jdbcType="NVARCHAR"/>
         <result column="name" property="name" jdbcType="NVARCHAR"/>
@@ -555,7 +555,7 @@
         <!--        </if>-->
     </select>
 
-    <select id="getThumbsUpStores" resultType="com.vsc.guest_assurance.vo.BackendStoresThumbsUpVo">
+    <select id="getThumbsUpStores" resultType="com.vsc.guest_assurance.vo.backend.BStoresThumbsUpVo">
         select top 5 id,
                name,
                address1_Line1                                                                    as address,

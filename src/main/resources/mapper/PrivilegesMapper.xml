@@ -1,342 +1,202 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.vsc.guest_assurance.dao.PrivilegesMapper">
-  <resultMap id="BaseResultMap" type="com.vsc.guest_assurance.entity.Privileges">
-    <id column="id" property="id" jdbcType="INTEGER"/>
-    <result column="type" property="type" jdbcType="NVARCHAR"/>
-    <result column="genre" property="genre" jdbcType="NVARCHAR"/>
-    <result column="name" property="name" jdbcType="NVARCHAR"/>
-    <result column="url_pattern" property="urlPattern" jdbcType="NVARCHAR"/>
-    <result column="create_at" property="createAt" jdbcType="TIMESTAMP"/>
-    <result column="create_user" property="createUser" jdbcType="INTEGER"/>
-    <result column="update_at" property="updateAt" jdbcType="TIMESTAMP"/>
-    <result column="update_user" property="updateUser" jdbcType="INTEGER"/>
-    <result column="genre_id" property="genreId" jdbcType="INTEGER"/>
-    <result column="name_id" property="nameId" jdbcType="INTEGER"/>
-    <result column="button_type" property="buttonType" jdbcType="INTEGER"/>
-    <result column="button_name" property="buttonName" jdbcType="NVARCHAR"/>
-    <result column="customer_flag" property="customerFlag" jdbcType="INTEGER"/>
-    <result column="button_name_en" property="buttonNameEn" jdbcType="NVARCHAR"/>
-    <result column="button_name_tc" property="buttonNameTc" jdbcType="NVARCHAR"/>
-    <result column="genre_en" property="genreEn" jdbcType="NVARCHAR"/>
-    <result column="genre_tc" property="genreTc" jdbcType="NVARCHAR"/>
-    <result column="name_en" property="nameEn" jdbcType="NVARCHAR"/>
-    <result column="name_tc" property="nameTc" jdbcType="NVARCHAR"/>
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, type, genre, name, url_pattern, create_at, create_user, update_at, update_user,
-    genre_id, name_id, button_type, button_name, customer_flag, button_name_en, button_name_tc,
-    genre_en, genre_tc, name_en, name_tc
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
-    select
-    <include refid="Base_Column_List"/>
-    from privileges
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from privileges
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.vsc.guest_assurance.entity.Privileges">
-    insert into privileges (id, type, genre,
-                            name, url_pattern, create_at,
-                            create_user, update_at, update_user,
-                            genre_id, name_id, button_type,
-                            button_name, customer_flag, button_name_en, button_name_tc,
-                            genre_en, genre_tc, name_en, name_tc)
-    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=NVARCHAR}, #{genre,jdbcType=NVARCHAR},
-            #{name,jdbcType=NVARCHAR}, #{urlPattern,jdbcType=NVARCHAR}, #{createAt,jdbcType=TIMESTAMP},
-            #{createUser,jdbcType=INTEGER}, #{updateAt,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=INTEGER},
-            #{genreId,jdbcType=INTEGER}, #{nameId,jdbcType=INTEGER}, #{buttonType,jdbcType=INTEGER},
-            #{buttonName,jdbcType=NVARCHAR}, #{customerFlag,jdbcType=INTEGER},
-            #{buttonNameEn,jdbcType=NVARCHAR}, #{buttonNameTc,jdbcType=NVARCHAR}, #{genreEn,jdbcType=NVARCHAR},
-            #{genreTc,jdbcType=NVARCHAR}, #{nameEn,jdbcType=NVARCHAR}, #{nameTc,jdbcType=NVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.vsc.guest_assurance.entity.Privileges">
-    insert into privileges
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="genre != null">
-        genre,
-      </if>
-      <if test="name != null">
-        name,
-      </if>
-      <if test="urlPattern != null">
-        url_pattern,
-      </if>
-      <if test="createAt != null">
-        create_at,
-      </if>
-      <if test="createUser != null">
-        create_user,
-      </if>
-      <if test="updateAt != null">
-        update_at,
-      </if>
-      <if test="updateUser != null">
-        update_user,
-      </if>
-      <if test="genreId != null">
-        genre_id,
-      </if>
-      <if test="nameId != null">
-        name_id,
-      </if>
-      <if test="buttonType != null">
-        button_type,
-      </if>
-      <if test="buttonName != null">
-        button_name,
-      </if>
-      <if test="customerFlag != null">
-        customer_flag,
-      </if>
-      <if test="buttonNameEn != null">
-        button_name_en,
-      </if>
-      <if test="buttonNameTc != null">
-        button_name_tc,
-      </if>
-      <if test="genreEn != null">
-        genre_en,
-      </if>
-      <if test="genreTc != null">
-        genre_tc,
-      </if>
-      <if test="nameEn != null">
-        name_en,
-      </if>
-      <if test="nameTc != null">
-        name_tc,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=NVARCHAR},
-      </if>
-      <if test="genre != null">
-        #{genre,jdbcType=NVARCHAR},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=NVARCHAR},
-      </if>
-      <if test="urlPattern != null">
-        #{urlPattern,jdbcType=NVARCHAR},
-      </if>
-      <if test="createAt != null">
-        #{createAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createUser != null">
-        #{createUser,jdbcType=INTEGER},
-      </if>
-      <if test="updateAt != null">
-        #{updateAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateUser != null">
-        #{updateUser,jdbcType=INTEGER},
-      </if>
-      <if test="genreId != null">
-        #{genreId,jdbcType=INTEGER},
-      </if>
-      <if test="nameId != null">
-        #{nameId,jdbcType=INTEGER},
-      </if>
-      <if test="buttonType != null">
-        #{buttonType,jdbcType=INTEGER},
-      </if>
-      <if test="buttonName != null">
-        #{buttonName,jdbcType=NVARCHAR},
-      </if>
-      <if test="customerFlag != null">
-        #{customerFlag,jdbcType=INTEGER},
-      </if>
-      <if test="buttonNameEn != null">
-        #{buttonNameEn,jdbcType=NVARCHAR},
-      </if>
-      <if test="buttonNameTc != null">
-        #{buttonNameTc,jdbcType=NVARCHAR},
-      </if>
-      <if test="genreEn != null">
-        #{genreEn,jdbcType=NVARCHAR},
-      </if>
-      <if test="genreTc != null">
-        #{genreTc,jdbcType=NVARCHAR},
-      </if>
-      <if test="nameEn != null">
-        #{nameEn,jdbcType=NVARCHAR},
-      </if>
-      <if test="nameTc != null">
-        #{nameTc,jdbcType=NVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.vsc.guest_assurance.entity.Privileges">
-    update privileges
-    <set>
-      <if test="type != null">
-        type = #{type,jdbcType=NVARCHAR},
-      </if>
-      <if test="genre != null">
-        genre = #{genre,jdbcType=NVARCHAR},
-      </if>
-      <if test="name != null">
-        name = #{name,jdbcType=NVARCHAR},
-      </if>
-      <if test="urlPattern != null">
-        url_pattern = #{urlPattern,jdbcType=NVARCHAR},
-      </if>
-      <if test="createAt != null">
-        create_at = #{createAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createUser != null">
-        create_user = #{createUser,jdbcType=INTEGER},
-      </if>
-      <if test="updateAt != null">
-        update_at = #{updateAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateUser != null">
-        update_user = #{updateUser,jdbcType=INTEGER},
-      </if>
-      <if test="genreId != null">
-        genre_id = #{genreId,jdbcType=INTEGER},
-      </if>
-      <if test="nameId != null">
-        name_id = #{nameId,jdbcType=INTEGER},
-      </if>
-      <if test="buttonType != null">
-        button_type = #{buttonType,jdbcType=INTEGER},
-      </if>
-      <if test="buttonName != null">
-        button_name = #{buttonName,jdbcType=NVARCHAR},
-      </if>
-      <if test="customerFlag != null">
-        customer_flag = #{customerFlag,jdbcType=INTEGER},
-      </if>
-      <if test="buttonNameEn != null">
-        button_name_en = #{buttonNameEn,jdbcType=NVARCHAR},
-      </if>
-      <if test="buttonNameTc != null">
-        button_name_tc = #{buttonNameTc,jdbcType=NVARCHAR},
-      </if>
-      <if test="genreEn != null">
-        genre_en = #{genreEn,jdbcType=NVARCHAR},
-      </if>
-      <if test="genreTc != null">
-        genre_tc = #{genreTc,jdbcType=NVARCHAR},
-      </if>
-      <if test="nameEn != null">
-        name_en = #{nameEn,jdbcType=NVARCHAR},
-      </if>
-      <if test="nameTc != null">
-        name_tc = #{nameTc,jdbcType=NVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.vsc.guest_assurance.entity.Privileges">
-    update privileges
-    set type = #{type,jdbcType=NVARCHAR},
-        genre = #{genre,jdbcType=NVARCHAR},
-        name = #{name,jdbcType=NVARCHAR},
-        url_pattern = #{urlPattern,jdbcType=NVARCHAR},
-        create_at = #{createAt,jdbcType=TIMESTAMP},
-        create_user = #{createUser,jdbcType=INTEGER},
-        update_at = #{updateAt,jdbcType=TIMESTAMP},
-        update_user = #{updateUser,jdbcType=INTEGER},
-        genre_id = #{genreId,jdbcType=INTEGER},
-        name_id = #{nameId,jdbcType=INTEGER},
-        button_type = #{buttonType,jdbcType=INTEGER},
-        button_name = #{buttonName,jdbcType=NVARCHAR},
-        customer_flag = #{customerFlag,jdbcType=INTEGER},
-        button_name_en = #{buttonNameEn,jdbcType=NVARCHAR},
-        button_name_tc = #{buttonNameTc,jdbcType=NVARCHAR},
-        genre_en = #{genreEn,jdbcType=NVARCHAR},
-        genre_tc = #{genreTc,jdbcType=NVARCHAR},
-        name_en = #{nameEn,jdbcType=NVARCHAR},
-        name_tc = #{nameTc,jdbcType=NVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+    <resultMap id="BaseResultMap" type="com.vsc.guest_assurance.entity.Privileges">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="type" property="type" jdbcType="NVARCHAR"/>
+        <result column="genre" property="genre" jdbcType="NVARCHAR"/>
+        <result column="name" property="name" jdbcType="NVARCHAR"/>
+        <result column="url_pattern" property="urlPattern" jdbcType="NVARCHAR"/>
+        <result column="create_at" property="createAt" jdbcType="TIMESTAMP"/>
+        <result column="create_user" property="createUser" jdbcType="INTEGER"/>
+        <result column="update_at" property="updateAt" jdbcType="TIMESTAMP"/>
+        <result column="update_user" property="updateUser" jdbcType="INTEGER"/>
+        <result column="genre_id" property="genreId" jdbcType="INTEGER"/>
+        <result column="name_id" property="nameId" jdbcType="INTEGER"/>
+        <result column="button_type" property="buttonType" jdbcType="INTEGER"/>
+        <result column="button_name" property="buttonName" jdbcType="NVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, type, genre, name, url_pattern, create_at, create_user, update_at, update_user,
+    genre_id, name_id, button_type, button_name
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from privileges
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from privileges
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.vsc.guest_assurance.entity.Privileges">
+        insert into privileges (id, type, genre,
+                                name, url_pattern, create_at,
+                                create_user, update_at, update_user,
+                                genre_id, name_id, button_type,
+                                button_name)
+        values (#{id,jdbcType=INTEGER}, #{type,jdbcType=NVARCHAR}, #{genre,jdbcType=NVARCHAR},
+                #{name,jdbcType=NVARCHAR}, #{urlPattern,jdbcType=NVARCHAR}, #{createAt,jdbcType=TIMESTAMP},
+                #{createUser,jdbcType=INTEGER}, #{updateAt,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=INTEGER},
+                #{genreId,jdbcType=INTEGER}, #{nameId,jdbcType=INTEGER}, #{buttonType,jdbcType=INTEGER},
+                #{buttonName,jdbcType=NVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.vsc.guest_assurance.entity.Privileges">
+        insert into privileges
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="genre != null">
+                genre,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="urlPattern != null">
+                url_pattern,
+            </if>
+            <if test="createAt != null">
+                create_at,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="updateAt != null">
+                update_at,
+            </if>
+            <if test="updateUser != null">
+                update_user,
+            </if>
+            <if test="genreId != null">
+                genre_id,
+            </if>
+            <if test="nameId != null">
+                name_id,
+            </if>
+            <if test="buttonType != null">
+                button_type,
+            </if>
+            <if test="buttonName != null">
+                button_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=NVARCHAR},
+            </if>
+            <if test="genre != null">
+                #{genre,jdbcType=NVARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=NVARCHAR},
+            </if>
+            <if test="urlPattern != null">
+                #{urlPattern,jdbcType=NVARCHAR},
+            </if>
+            <if test="createAt != null">
+                #{createAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null">
+                #{createUser,jdbcType=INTEGER},
+            </if>
+            <if test="updateAt != null">
+                #{updateAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUser != null">
+                #{updateUser,jdbcType=INTEGER},
+            </if>
+            <if test="genreId != null">
+                #{genreId,jdbcType=INTEGER},
+            </if>
+            <if test="nameId != null">
+                #{nameId,jdbcType=INTEGER},
+            </if>
+            <if test="buttonType != null">
+                #{buttonType,jdbcType=INTEGER},
+            </if>
+            <if test="buttonName != null">
+                #{buttonName,jdbcType=NVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.vsc.guest_assurance.entity.Privileges">
+        update privileges
+        <set>
+            <if test="type != null">
+                type = #{type,jdbcType=NVARCHAR},
+            </if>
+            <if test="genre != null">
+                genre = #{genre,jdbcType=NVARCHAR},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=NVARCHAR},
+            </if>
+            <if test="urlPattern != null">
+                url_pattern = #{urlPattern,jdbcType=NVARCHAR},
+            </if>
+            <if test="createAt != null">
+                create_at = #{createAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser,jdbcType=INTEGER},
+            </if>
+            <if test="updateAt != null">
+                update_at = #{updateAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUser != null">
+                update_user = #{updateUser,jdbcType=INTEGER},
+            </if>
+            <if test="genreId != null">
+                genre_id = #{genreId,jdbcType=INTEGER},
+            </if>
+            <if test="nameId != null">
+                name_id = #{nameId,jdbcType=INTEGER},
+            </if>
+            <if test="buttonType != null">
+                button_type = #{buttonType,jdbcType=INTEGER},
+            </if>
+            <if test="buttonName != null">
+                button_name = #{buttonName,jdbcType=NVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.vsc.guest_assurance.entity.Privileges">
+        update privileges
+        set type        = #{type,jdbcType=NVARCHAR},
+            genre       = #{genre,jdbcType=NVARCHAR},
+            name        = #{name,jdbcType=NVARCHAR},
+            url_pattern = #{urlPattern,jdbcType=NVARCHAR},
+            create_at   = #{createAt,jdbcType=TIMESTAMP},
+            create_user = #{createUser,jdbcType=INTEGER},
+            update_at   = #{updateAt,jdbcType=TIMESTAMP},
+            update_user = #{updateUser,jdbcType=INTEGER},
+            genre_id    = #{genreId,jdbcType=INTEGER},
+            name_id     = #{nameId,jdbcType=INTEGER},
+            button_type = #{buttonType,jdbcType=INTEGER},
+            button_name = #{buttonName,jdbcType=NVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 
-  <select id="selectUnAchievedByIds" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from privileges
-    where id NOT in
-    <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
-      #{item,jdbcType=INTEGER}
-    </foreach>
-  </select>
-
-
-  <select id="selectPrivileges" resultType="com.vsc.guest_assurance.vo.BPrivilegeVo">
-    select id, type, genre_id as genreId,
-    case when #{language,jdbcType=INTEGER} = 0 then genre
-    when #{language,jdbcType=INTEGER} = 1 then genre_en
-    when #{language,jdbcType=INTEGER} = 2 then genre_tc end as genre,
-    name_id as nameId,
-    case when #{language,jdbcType=INTEGER} = 0 then name
-    when #{language,jdbcType=INTEGER} = 1 then name_en
-    when #{language,jdbcType=INTEGER} = 2 then name_tc end as name,
-    button_type as buttonType,
-    case when #{language,jdbcType=INTEGER} = 0 then button_name
-    when #{language,jdbcType=INTEGER} = 1 then button_name_en
-    when #{language,jdbcType=INTEGER} = 2 then button_name_tc end as buttonName
-    from privileges
-    where 1 = 1
-    and type = #{type,jdbcType=NVARCHAR}
-    <if test="privilegeIds != 'all'">
-      and id in
-      <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
-        #{item,jdbcType=INTEGER}
-      </foreach>
-    </if>
-
-  </select>
-
-  <select id="selectByIds" resultType="java.lang.Integer">
-    select
-    count(0)
-    from privileges
-    where 1 = 1
-    and id not in (-1)
-    <if test="customerFlag">
-      and customer_flag = 1
-    </if>
-    and id in
-    <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
-      #{item,jdbcType=INTEGER}
-    </foreach>
-  </select>
-
-  <select id="selectByCustomerFlag" resultType="com.vsc.guest_assurance.vo.BPrivilegeVo">
-    select
-    id, type, genre_id as genreId,
-    case when #{language,jdbcType=INTEGER} = 0 then genre
-    when #{language,jdbcType=INTEGER} = 1 then genre_en
-    when #{language,jdbcType=INTEGER} = 2 then genre_tc end as genre,
-    name_id as nameId,
-    case when #{language,jdbcType=INTEGER} = 0 then name
-    when #{language,jdbcType=INTEGER} = 1 then name_en
-    when #{language,jdbcType=INTEGER} = 2 then name_tc end as name,
-    button_type as buttonType,
-    case when #{language,jdbcType=INTEGER} = 0 then button_name
-    when #{language,jdbcType=INTEGER} = 1 then button_name_en
-    when #{language,jdbcType=INTEGER} = 2 then button_name_tc end as buttonName
-    from privileges
-    where 1 = 1
-    and id not in (-1)
-    <if test="customerFlag != null and customerFlag == 1">
-      and customer_flag = #{customerFlag,jdbcType=INTEGER}
-    </if>
-  </select>
+    <select id="selectPrivileges" resultType="com.vsc.guest_assurance.vo.backend.BPrivilegeVo">
+        select id, type, genre_id as genreId, genre, name_id as nameId, name, button_type as buttonType, button_name as
+        buttonName
+        from privileges where 1 = 1
+        and type = #{type,jdbcType=NVARCHAR}
+        <if test="privilegeIds != 'all'">
+            and id in
+            <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                #{item,jdbcType=INTEGER}
+            </foreach>
+        </if>
+    </select>
 </mapper>

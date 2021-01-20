@@ -56,19 +56,11 @@
             tableName：表名
             enableCountByExample、enableSelectByExample、enableDeleteByExample、enableUpdateByExample、selectByExampleQueryId：
             去除自动生成的例子-->
-<!--        <table schema="" tableName="privilege" domainObjectName="Privilege"-->
-<!--               enableCountByExample="false" enableSelectByExample="false"-->
-<!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
-<!--        </table>-->
+        <table schema="" tableName="privileges" domainObjectName="Privileges"
+               enableCountByExample="false" enableSelectByExample="false"
+               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">
+        </table>
 <!--        <table schema="" tableName="users" domainObjectName="Users"-->
-<!--               enableCountByExample="false" enableSelectByExample="false"-->
-<!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
-<!--        </table>-->
-<!--        <table schema="" tableName="user_admins" domainObjectName="UserAdmins"-->
-<!--               enableCountByExample="false" enableSelectByExample="false"-->
-<!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
-<!--        </table>-->
-<!--        <table schema="" tableName="user_customers" domainObjectName="UserCustomer"-->
 <!--               enableCountByExample="false" enableSelectByExample="false"-->
 <!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
 <!--        </table>-->
@@ -89,9 +81,9 @@
 <!--               enableCountByExample="false" enableSelectByExample="false"-->
 <!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
 <!--        </table>-->
-        <table schema="" tableName="stores" domainObjectName="Stores"
-               enableCountByExample="false" enableSelectByExample="false"
-               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">
-        </table>
+<!--        <table schema="" tableName="stores" domainObjectName="Stores"-->
+<!--               enableCountByExample="false" enableSelectByExample="false"-->
+<!--               enableDeleteByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">-->
+<!--        </table>-->
     </context>
 </generatorConfiguration>

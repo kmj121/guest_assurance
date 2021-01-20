@@ -2,24 +2,18 @@ package com.vsc.guest_assurance.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.microsoft.graph.models.extensions.DirectoryObject;
 import com.vsc.guest_assurance.common.*;
 import com.vsc.guest_assurance.dao.StoresMapper;
 import com.vsc.guest_assurance.entity.Stores;
-import com.vsc.guest_assurance.entity.UserAdmins;
-import com.vsc.guest_assurance.entity.Users;
-import com.vsc.guest_assurance.vo.BackendContactInformationListVo;
-import com.vsc.guest_assurance.vo.BackendStoreListVo;
-import com.vsc.guest_assurance.vo.BackendStoresThumbsUpVo;
+import com.vsc.guest_assurance.vo.backend.BStoreListVo;
+import com.vsc.guest_assurance.vo.backend.BStoresThumbsUpVo;
 import org.apache.commons.beanutils.PropertyUtils;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -55,18 +49,18 @@ public class StoresService {
         }
     }
 
-    public PageBean<BackendStoreListVo> list(String keyWord, Integer page, Integer size) {
+    public PageBean<BStoreListVo> list(String keyWord, Integer page, Integer size) {
         keyWord = StringUtils.isEmpty(keyWord) ? null : "%" + keyWord + "%";
         PageHelper.startPage(page, size);
-        List<BackendStoreListVo> vos = storesMapper.selectList(keyWord);
-        for (BackendStoreListVo item : vos) {
+        List<BStoreListVo> vos = storesMapper.selectList(keyWord);
+        for (BStoreListVo item : vos) {
             if(item.getThumbs_up_num() == 0) {
                 item.setComprehensiveEvaluation("0");
             } else {
                 item.setComprehensiveEvaluation(new DecimalFormat("0.00").format((float)item.getThumbs_up_points()/item.getThumbs_up_num()));
             }
         }
-        PageInfo<BackendStoreListVo> pageInfo = new PageInfo(vos);
+        PageInfo<BStoreListVo> pageInfo = new PageInfo(vos);
         return new PageBean<>(page, size, pageInfo.getTotal(), vos);
     }
 
@@ -76,8 +70,8 @@ public class StoresService {
         return vos;
     }
 
-    public List<BackendStoresThumbsUpVo> thumbsUpStores(Float longitude, Float latitude) {
-        List<BackendStoresThumbsUpVo> list = new ArrayList<>();
+    public List<BStoresThumbsUpVo> thumbsUpStores(Float longitude, Float latitude) {
+        List<BStoresThumbsUpVo> list = new ArrayList<>();
         list = storesMapper.getThumbsUpStores(latitude, longitude);
         return list;
     }

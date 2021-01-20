@@ -1,7 +1,7 @@
 package com.vsc.guest_assurance.dao;
 
 import com.vsc.guest_assurance.entity.ContactInformation;
-import com.vsc.guest_assurance.vo.BackendContactInformationListVo;
+import com.vsc.guest_assurance.vo.backend.BContactInformationListVo;
 
 import java.util.List;
 
@@ -18,5 +18,5 @@ public interface ContactInformationMapper {
 
     int updateByPrimaryKey(ContactInformation record);
 
-    List<BackendContactInformationListVo> selectList(String keyWord);
+    List<BContactInformationListVo> selectList(String keyWord);
 }
