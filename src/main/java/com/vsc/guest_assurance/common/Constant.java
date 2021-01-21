@@ -34,6 +34,8 @@ public class Constant {
     /** 后台用户 */
     public static final String TOKEN_TYPE_BACKEND = "backend";
 
+    public static final int LANGUAGE_CN = 0;
+
     /** 角色类型：普通管理员 */
     public static final int ROLE_TYPE_ADMIN = 1;
     /** 角色类型：普通用户 */

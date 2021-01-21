@@ -20,11 +20,10 @@ public interface UsersMapper {
 
     int updateByPrimaryKey(Users record);
 
-    Users selectByUserNameAndType(@Param("userName") String userName, @Param("type") Integer type);
-
     List<BUserListVo> selectList(@Param("email") String email,
-                                 @Param("userName") String userName,
-                                 @Param("roleId") Integer roleId);
+                                 @Param("userName") String userName);
 
     BUserDetailVo selectByUserId(Integer userId);
+
+    Users selectByEmail(String email);
 }

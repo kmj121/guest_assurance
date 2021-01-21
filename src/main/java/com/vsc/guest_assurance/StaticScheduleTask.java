@@ -29,12 +29,12 @@ public class StaticScheduleTask {
      * 定时任务--自动更新用户数据
      * 时间：每天0时0分10秒执行
      */
-    @Scheduled(cron = "10 0 0 * * ?")
-    public void configureTasks() {
-        logger.info("===============自动更新用户数据定时任务开始================");
-        usersService.updateUsers();
-        logger.info("===============自动更新用户数据定时任务结束================");
-    }
+    //@Scheduled(cron = "10 0 0 * * ?")
+    //public void configureTasks() {
+    //    logger.info("===============自动更新用户数据定时任务开始================");
+    //    usersService.updateUsers();
+    //    logger.info("===============自动更新用户数据定时任务结束================");
+    //}
 
     ///**
     // * 定时任务--自动清除临时文件

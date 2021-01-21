@@ -1,5 +1,6 @@
 package com.vsc.guest_assurance.controller.common;
 
+import com.vsc.guest_assurance.common.Constant;
 import com.vsc.guest_assurance.common.MessageCode;
 import com.vsc.guest_assurance.common.ResultObject;
 import com.vsc.guest_assurance.qo.common.CLoginQo;
@@ -32,8 +33,8 @@ public class CUserController {
             BindingResult errors
     ) throws Exception {
         if (errors.hasErrors()) {
-            return new ResultObject(MessageCode.CODE_PARAMETER_ERROR, qo.getLanguage(), errors.getAllErrors());
+            return new ResultObject(MessageCode.CODE_PARAMETER_ERROR, errors.getAllErrors());
         }
-        return new ResultObject(MessageCode.CODE_SUCCESS, usersService.login(qo.getToken(), qo.getType(), request.getRemoteAddr(), qo.getLanguage()));
+        return new ResultObject(MessageCode.CODE_SUCCESS, usersService.login(qo.getToken(), Constant.TOKEN_TYPE_BACKEND, request.getRemoteAddr(), Constant.LANGUAGE_CN));
     }
 }

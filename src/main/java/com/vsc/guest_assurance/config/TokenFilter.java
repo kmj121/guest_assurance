@@ -52,11 +52,11 @@ public class TokenFilter implements HandlerInterceptor {
         //    response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         //    throw new ApiException(MessageCode.CODE_NO_PRIVILEGE);
         //}
-        Users users = usersService.assertUser(loginToken.getUserId(), loginToken.getLanguage());
-        if(!users.getRoleId().equals(Constant.ROLE_TYPE_ADMIN)) {
-            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-            throw new ApiException(MessageCode.CODE_NO_PRIVILEGE);
-        }
+        Users users = usersService.assertUser(loginToken.getUserId());
+        //if(!users.getRoleId().equals(Constant.ROLE_TYPE_ADMIN)) {
+        //    response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+        //    throw new ApiException(MessageCode.CODE_NO_PRIVILEGE);
+        //}
         request.setAttribute("loginToken", loginToken);
         return true;
     }

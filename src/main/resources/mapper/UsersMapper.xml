@@ -32,12 +32,12 @@
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.vsc.guest_assurance.entity.Users">
-        insert into users (id, email, user_name,
+        insert into users (email, user_name,
                            role_id, create_at, create_user,
                            update_at, update_user, mobile,
                            type, password, name,
                            del_flag)
-        values (#{id,jdbcType=INTEGER}, #{email,jdbcType=NVARCHAR}, #{userName,jdbcType=NVARCHAR},
+        values (#{email,jdbcType=NVARCHAR}, #{userName,jdbcType=NVARCHAR},
                 #{roleId,jdbcType=INTEGER}, #{createAt,jdbcType=TIMESTAMP}, #{createUser,jdbcType=INTEGER},
                 #{updateAt,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=INTEGER}, #{mobile,jdbcType=NVARCHAR},
                 #{type,jdbcType=INTEGER}, #{password,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR},
@@ -187,29 +187,15 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
 
-    <select id="selectByUserNameAndType" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from users
-        where user_name = #{userName,jdbcType=VARCHAR}
-        and type = #{type,jdbcType=INTEGER}
-        and del_flag = 0
-    </select>
-
     <select id="selectList" resultType="com.vsc.guest_assurance.vo.backend.BUserListVo">
-        select u.id, u.email, u.user_name as userName, u.name, u.role_id as roleId, r.role_name as roleName,
-        u.mobile, u.type
+        select u.id, u.email, u.user_name as userName
         from users u
-        inner join roles r on u.role_id = r.id
-        where 1 = 1 and del_flag = 0
+        where 1 = 1
         <if test="email != null">
             and email like '%'+#{email,jdbcType=VARCHAR}+'%'
         </if>
         <if test="userName != null">
             and user_name like '%'+#{userName,jdbcType=VARCHAR}+'%'
-        </if>
-        <if test="roleId != null">
-            and u.role_id = #{roleId,jdbcType=INTEGER}
         </if>
     </select>
 
@@ -221,5 +207,12 @@
         where 1 = 1
           and u.id = #{userId,jdbcType=INTEGER}
           and del_flag = 0
+    </select>
+
+    <select id="selectByEmail" resultMap="BaseResultMap">
+        select top 1
+        <include refid="Base_Column_List"/>
+        from users
+        where email = #{email}
     </select>
 </mapper>

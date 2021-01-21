@@ -9,13 +9,13 @@ public class CLoginQo {
     @NotBlank
     @NotNull
     private String token;
-    @ApiModelProperty(value="登录类型：后台用户:backend;app用户:app", required = true)
-    @Pattern(regexp = "(backend)|(app)")
-    private String type;
-    @ApiModelProperty(value="语言:0简体中文;1英语;2繁体中文", required = true)
-    @Min(0)
-    @Max(2)
-    private Integer language;
+    //@ApiModelProperty(value="登录类型：后台用户:backend;app用户:app", required = true)
+    //@Pattern(regexp = "(backend)|(app)")
+    //private String type;
+    //@ApiModelProperty(value="语言:0简体中文;1英语;2繁体中文", required = true)
+    //@Min(0)
+    //@Max(2)
+    //private Integer language;
 
     public String getToken() {
         return token;
@@ -25,19 +25,19 @@ public class CLoginQo {
         this.token = token;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Integer getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(Integer language) {
-        this.language = language;
-    }
+    //public String getType() {
+    //    return type;
+    //}
+    //
+    //public void setType(String type) {
+    //    this.type = type;
+    //}
+    //
+    //public Integer getLanguage() {
+    //    return language;
+    //}
+    //
+    //public void setLanguage(Integer language) {
+    //    this.language = language;
+    //}
 }

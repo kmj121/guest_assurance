@@ -23,6 +23,8 @@ public enum MessageCode {
     CODE_NOT_EXIST(9005),
     /** 不能修改自己权限*/
     CODE_USER_PRIVILEGE_ERROR(9006),
+    /** {1}已存在*/
+    CODE_EXIST(9007),
 
 
     /** 无权限操作当前数据*/
