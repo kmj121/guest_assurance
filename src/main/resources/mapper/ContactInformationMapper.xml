@@ -138,5 +138,6 @@
             or industry_type like #{keyWord,jdbcType=VARCHAR}
             or message like #{keyWord,jdbcType=VARCHAR})
         </if>
+        order by id
     </select>
 </mapper>

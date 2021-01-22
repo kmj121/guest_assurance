@@ -40,7 +40,7 @@ public class ContactInformationService {
     }
 
     public PageBean<BContactInformationListVo> list(String keyWord, Integer page, Integer size) {
-        keyWord = StringUtils.isEmpty(keyWord) ? "" : "%" + keyWord + "%";
+        keyWord = StringUtils.isEmpty(keyWord) ? null : "%" + keyWord + "%";
         PageHelper.startPage(page, size);
         List<BContactInformationListVo> vos = contactInformationMapper.selectList(keyWord);
         PageInfo<BContactInformationListVo> pageInfo = new PageInfo(vos);
