@@ -2,6 +2,8 @@ package com.vsc.guest_assurance.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.vsc.guest_assurance.common.ApiException;
+import com.vsc.guest_assurance.common.MessageCode;
 import com.vsc.guest_assurance.common.PageBean;
 import com.vsc.guest_assurance.dao.ContactInformationMapper;
 import com.vsc.guest_assurance.entity.ContactInformation;
@@ -47,7 +49,18 @@ public class ContactInformationService {
         return new PageBean<>(page, size, pageInfo.getTotal(), vos);
     }
 
-    public BContactInformationDetailQo detail(Integer id) {
-        return new BContactInformationDetailQo();
+    public BContactInformationDetailQo detail(Integer id) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        ContactInformation contactInformation = sureById(id);
+        BContactInformationDetailQo bContactInformationDetailQo = new BContactInformationDetailQo();
+        PropertyUtils.copyProperties(bContactInformationDetailQo, contactInformation);
+        return bContactInformationDetailQo;
+    }
+
+    public ContactInformation sureById(Integer id) {
+        ContactInformation contactInformation = contactInformationMapper.selectByPrimaryKey(id);
+        if(contactInformation == null) {
+            throw new ApiException(MessageCode.CODE_NOT_EXIST, "联系方式");
+        }
+        return contactInformation;
     }
 }

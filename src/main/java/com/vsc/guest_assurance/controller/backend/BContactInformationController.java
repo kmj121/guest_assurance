@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * @Description
@@ -55,7 +56,7 @@ public class BContactInformationController {
 
     @ApiOperation("详情")
     @GetMapping(value = "/{id}/detail")
-    public ResultObject<BContactInformationDetailQo> detail(HttpServletRequest request, @ApiParam(value = "id",required = true) @PathVariable Integer id) {
+    public ResultObject<BContactInformationDetailQo> detail(HttpServletRequest request, @ApiParam(value = "id",required = true) @PathVariable Integer id) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         return new ResultObject<BContactInformationDetailQo>(MessageCode.CODE_SUCCESS, contactInformationService.detail(id));
     }
 }
