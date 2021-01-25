@@ -81,6 +81,8 @@ public class Stores {
 
     private Integer thumbs_up_points;
 
+    private String _ownerid_value;
+
     public Integer getId() {
         return id;
     }
@@ -391,5 +393,13 @@ public class Stores {
 
     public void setThumbs_up_points(Integer thumbs_up_points) {
         this.thumbs_up_points = thumbs_up_points;
+    }
+
+    public String get_ownerid_value() {
+        return _ownerid_value;
+    }
+
+    public void set_ownerid_value(String _ownerid_value) {
+        this._ownerid_value = _ownerid_value;
     }
 }

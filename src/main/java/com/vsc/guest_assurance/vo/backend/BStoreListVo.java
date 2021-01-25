@@ -17,8 +17,8 @@ public class BStoreListVo {
     private String accountnumber;
     @ApiModelProperty("客户全称")
     private String name;
-    //@ApiModelProperty("客户负责人")
-    //private String principal;
+    @ApiModelProperty("客户负责人")
+    private String _ownerid_value;
     @ApiModelProperty("地址")
     private String address1_composite;
     @ApiModelProperty("城市")
@@ -102,5 +102,13 @@ public class BStoreListVo {
 
     public void setComprehensiveEvaluation(String comprehensiveEvaluation) {
         this.comprehensiveEvaluation = comprehensiveEvaluation;
+    }
+
+    public String get_ownerid_value() {
+        return _ownerid_value;
+    }
+
+    public void set_ownerid_value(String _ownerid_value) {
+        this._ownerid_value = _ownerid_value;
     }
 }

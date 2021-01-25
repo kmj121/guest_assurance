@@ -33,6 +33,7 @@ public class ParseStores {
 
         // 处理返回结果
         String resCont = EntityUtils.toString(response.getEntity(), Consts.UTF_8);
+        System.out.println("resCont===" + resCont);
 
         JSONObject res = JSON.parseObject(resCont);
         System.out.println("========" + res.toString() + "==========");

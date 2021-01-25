@@ -41,6 +41,7 @@
         <result column="update_time" property="update_time" jdbcType="TIMESTAMP"/>
         <result column="thumbs_up_num" property="thumbs_up_num" jdbcType="INTEGER"/>
         <result column="thumbs_up_points" property="thumbs_up_points" jdbcType="INTEGER"/>
+        <result column="_ownerid_value" property="_ownerid_value" jdbcType="NVARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
         id, accountid, ecolabcn_account_type, ecolabcn_group_name, name, address1_name, address1_Line1,
@@ -50,7 +51,7 @@
     ecolabcn_frequency_wash, address1_longitude, address1_latitude, ecolabcn_soldto_name, 
     ecolabcn_country, address1_composite, address1_country, ecolabcn_main_contact, address1_telephone1, 
     ecolabcn_h4_name, ecolabcn_h5_name, ecolabcn_h4_number, ecolabcn_h5number, statecode, 
-    create_time, update_time, thumbs_up_num, thumbs_up_points
+    create_time, update_time, thumbs_up_num, thumbs_up_points, _ownerid_value
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
@@ -78,7 +79,7 @@
                             ecolabcn_main_contact, address1_telephone1,
                             ecolabcn_h4_name, ecolabcn_h5_name, ecolabcn_h4_number,
                             ecolabcn_h5number, statecode, create_time,
-                            update_time, thumbs_up_num, thumbs_up_points)
+                            update_time, thumbs_up_num, thumbs_up_points, _ownerid_value)
         values (#{accountid,jdbcType=NVARCHAR}, #{ecolabcn_account_type,jdbcType=INTEGER},
                 #{ecolabcn_group_name,jdbcType=NVARCHAR}, #{name,jdbcType=NVARCHAR}, #{address1_name,jdbcType=NVARCHAR},
                 #{address1_Line1,jdbcType=NVARCHAR}, #{address1_City,jdbcType=NVARCHAR},
@@ -100,7 +101,7 @@
                 #{ecolabcn_h5number,jdbcType=NVARCHAR}, #{statecode,jdbcType=INTEGER},
                 #{create_time,jdbcType=TIMESTAMP},
                 #{update_time,jdbcType=TIMESTAMP}, #{thumbs_up_num,jdbcType=INTEGER},
-                #{thumbs_up_points,jdbcType=INTEGER})
+                #{thumbs_up_points,jdbcType=INTEGER}, #{_ownerid_value,jdbcType=NVARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="com.vsc.guest_assurance.entity.Stores">
         insert into stores
@@ -222,6 +223,9 @@
             <if test="thumbs_up_points != null">
                 thumbs_up_points,
             </if>
+            <if test="_ownerid_value != null">
+                _ownerid_value,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -341,6 +345,9 @@
             <if test="thumbs_up_points != null">
                 #{thumbs_up_points,jdbcType=INTEGER},
             </if>
+            <if test="_ownerid_value != null">
+                #{_ownerid_value,jdbcType=INTEGER},
+            </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.vsc.guest_assurance.entity.Stores">
@@ -455,10 +462,13 @@
                 update_time = #{update_time,jdbcType=TIMESTAMP},
             </if>
             <if test="thumbs_up_num != null">
-                thumbs_up_num = #{statecode,jdbcType=INTEGER},
+                thumbs_up_num = #{thumbs_up_num,jdbcType=INTEGER},
             </if>
             <if test="thumbs_up_points != null">
-                thumbs_up_points = #{statecode,jdbcType=INTEGER},
+                thumbs_up_points = #{thumbs_up_points,jdbcType=INTEGER},
+            </if>
+            <if test="_ownerid_value != null">
+                _ownerid_value = #{_ownerid_value,jdbcType=INTEGER},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -502,7 +512,8 @@
             create_time             = #{create_time,jdbcType=TIMESTAMP},
             update_time             = #{update_time,jdbcType=TIMESTAMP},
             thumbs_up_num           = #{thumbs_up_num,jdbcType=INTEGER},
-            thumbs_up_points        = #{thumbs_up_points,jdbcType=INTEGER}
+            thumbs_up_points        = #{thumbs_up_points,jdbcType=INTEGER},
+            _ownerid_value          = #{_ownerid_value,jdbcType=NVARCHAR}
         where id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -522,12 +533,13 @@
         <result column="ecolabcn_department" property="ecolabcn_department" jdbcType="INTEGER"/>
         <result column="thumbs_up_num" property="thumbs_up_num" jdbcType="INTEGER"/>
         <result column="thumbs_up_points" property="thumbs_up_points" jdbcType="INTEGER"/>
+        <result column="_ownerid_value" property="_ownerid_value" jdbcType="NVARCHAR"/>
     </resultMap>
 
     <select id="selectList" resultMap="selectListResultMap">
         select id as id, accountnumber as accountnumber, name as name, address1_composite as address1_composite,
         address1_City as address1_City, ecolabcn_department as ecolabcn_department, thumbs_up_num as thumbs_up_num,
-        thumbs_up_points as thumbs_up_points
+        thumbs_up_points as thumbs_up_points, _ownerid_value as _ownerid_value
         from stores
         where 1 = 1
         <if test="keyWord != null">

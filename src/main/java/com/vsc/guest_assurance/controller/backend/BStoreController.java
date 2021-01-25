@@ -71,7 +71,7 @@ public class BStoreController {
             //客户全称
             data.add(item.getName());
             //客户全称：没有该字段
-            data.add("");
+            data.add(item.get_ownerid_value());
             //客户类型
             data.add(item.getEcolabcn_account_type() == null ? "" : String.valueOf(item.getEcolabcn_account_type()));
             //上级单位
