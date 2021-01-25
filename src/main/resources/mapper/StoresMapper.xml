@@ -544,15 +544,14 @@
         select
         <include refid="Base_Column_List"/>
         from stores
-        <!--        where 1 = 1-->
-        <!--        <if test="keyWord != null">-->
-        <!--            and (name like #{keyWord,jdbcType=VARCHAR}-->
-        <!--            or email like #{keyWord,jdbcType=VARCHAR}-->
-        <!--            or phone like #{keyWord,jdbcType=VARCHAR}-->
-        <!--            or industry_type like #{keyWord,jdbcType=VARCHAR}-->
-        <!--            or create_time like #{keyWord,jdbcType=VARCHAR}-->
-        <!--            or message like #{keyWord,jdbcType=VARCHAR})-->
-        <!--        </if>-->
+        where 1 = 1
+        <if test="keyWord != null">
+            and (name like #{keyWord,jdbcType=VARCHAR}
+            or accountnumber like #{keyWord,jdbcType=VARCHAR}
+            or address1_composite like #{keyWord,jdbcType=VARCHAR}
+            or address1_City like #{keyWord,jdbcType=VARCHAR}
+            or ecolabcn_department like #{keyWord,jdbcType=VARCHAR})
+        </if>
     </select>
 
     <select id="getThumbsUpStores" resultType="com.vsc.guest_assurance.vo.backend.BStoresThumbsUpVo">

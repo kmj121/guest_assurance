@@ -65,7 +65,7 @@ public class StoresService {
     }
 
     public List<Stores> list(String keyWord) {
-        keyWord = StringUtils.isEmpty(keyWord) ? "" : "%" + keyWord + "%";
+        keyWord = StringUtils.isEmpty(keyWord) ? null : "%" + keyWord + "%";
         List<Stores> vos = storesMapper.selectListAll(keyWord);
         return vos;
     }
