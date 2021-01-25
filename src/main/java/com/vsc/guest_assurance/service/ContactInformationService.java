@@ -8,7 +8,7 @@ import com.vsc.guest_assurance.common.PageBean;
 import com.vsc.guest_assurance.dao.ContactInformationMapper;
 import com.vsc.guest_assurance.entity.ContactInformation;
 import com.vsc.guest_assurance.qo.backend.BContactInformationAddQo;
-import com.vsc.guest_assurance.qo.backend.BContactInformationDetailQo;
+import com.vsc.guest_assurance.vo.backend.BContactInformationDetailVo;
 import com.vsc.guest_assurance.vo.backend.BContactInformationListVo;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang.StringUtils;
@@ -36,7 +36,7 @@ public class ContactInformationService {
     public Integer add(BContactInformationAddQo qo) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         ContactInformation contactInformation = new ContactInformation();
         PropertyUtils.copyProperties(contactInformation, qo);
-        contactInformation.setcreate_time(new Date());
+        contactInformation.setCreateTime(new Date());
         contactInformationMapper.insert(contactInformation);
         return contactInformation.getId();
     }
@@ -49,11 +49,11 @@ public class ContactInformationService {
         return new PageBean<>(page, size, pageInfo.getTotal(), vos);
     }
 
-    public BContactInformationDetailQo detail(Integer id) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+    public BContactInformationDetailVo detail(Integer id) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         ContactInformation contactInformation = sureById(id);
-        BContactInformationDetailQo bContactInformationDetailQo = new BContactInformationDetailQo();
-        PropertyUtils.copyProperties(bContactInformationDetailQo, contactInformation);
-        return bContactInformationDetailQo;
+        BContactInformationDetailVo bContactInformationDetailVo = new BContactInformationDetailVo();
+        PropertyUtils.copyProperties(bContactInformationDetailVo, contactInformation);
+        return bContactInformationDetailVo;
     }
 
     public ContactInformation sureById(Integer id) {

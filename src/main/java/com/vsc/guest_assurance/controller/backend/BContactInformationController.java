@@ -3,7 +3,7 @@ package com.vsc.guest_assurance.controller.backend;
 import com.vsc.guest_assurance.common.MessageCode;
 import com.vsc.guest_assurance.common.ResultObject;
 import com.vsc.guest_assurance.qo.backend.BContactInformationAddQo;
-import com.vsc.guest_assurance.qo.backend.BContactInformationDetailQo;
+import com.vsc.guest_assurance.vo.backend.BContactInformationDetailVo;
 import com.vsc.guest_assurance.vo.backend.BContactInformationListVo;
 import com.vsc.guest_assurance.service.ContactInformationService;
 import io.swagger.annotations.Api;
@@ -56,7 +56,7 @@ public class BContactInformationController {
 
     @ApiOperation("详情")
     @GetMapping(value = "/{id}/detail")
-    public ResultObject<BContactInformationDetailQo> detail(HttpServletRequest request, @ApiParam(value = "id",required = true) @PathVariable Integer id) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        return new ResultObject<BContactInformationDetailQo>(MessageCode.CODE_SUCCESS, contactInformationService.detail(id));
+    public ResultObject<BContactInformationDetailVo> detail(HttpServletRequest request, @ApiParam(value = "id",required = true) @PathVariable Integer id) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        return new ResultObject<BContactInformationDetailVo>(MessageCode.CODE_SUCCESS, contactInformationService.detail(id));
     }
 }

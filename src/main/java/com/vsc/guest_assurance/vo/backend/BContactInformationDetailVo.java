@@ -1,4 +1,4 @@
-package com.vsc.guest_assurance.qo.backend;
+package com.vsc.guest_assurance.vo.backend;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,7 +11,7 @@ import java.util.Date;
  * @Author Roger
  * @Date 2021/1/14
  */
-public class BContactInformationDetailQo {
+public class BContactInformationDetailVo {
     private Integer id;
     private String name;
 
@@ -25,7 +25,7 @@ public class BContactInformationDetailQo {
 
     @ApiModelProperty(value = "提交时间", example = "2019-02-20 10:10:10")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private Date create_time;
+    private Date createTime;
 
     public Integer getId() {
         return id;
@@ -75,11 +75,11 @@ public class BContactInformationDetailQo {
         this.message = message;
     }
 
-    public Date getcreate_time() {
-        return create_time;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setcreate_time(Date create_time) {
-        this.create_time = create_time;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }
