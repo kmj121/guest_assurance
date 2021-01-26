@@ -33,6 +33,15 @@ public class MyspringMVCConfig extends WebMvcConfigurationSupport {
                 .addPathPatterns("/commons/**")
                 .excludePathPatterns("/commons/attachments/**")
                 .excludePathPatterns("/common/users/login")
+                //xml解析问答
+                .excludePathPatterns("/backend/question/**")
+                //xml解析媒体
+                .excludePathPatterns("/backend/media/**")
+                ///提交留言
+                .excludePathPatterns("/backend/contactInformation/add")
+                //点赞
+                .excludePathPatterns("/backend/store/thumbsUpStores")
+                .excludePathPatterns("/backend/store/thumbsUp")
                 //.excludePathPatterns("/commons/icaptcha/**")
                 //.excludePathPatterns("/commons/mobileCaptcha/**")
                 //.excludePathPatterns("/backend/student/exportModel")
