@@ -572,6 +572,7 @@
                address1_Line1                                                                    as address,
                dbo.getDistance(#{latitude}, address1_latitude, #{longitude}, address1_longitude) as distance
         from stores
+        where 0.5 > dbo.getDistance(#{latitude}, address1_latitude, #{longitude}, address1_longitude)
         ORDER BY case
                      when address1_longitude is not null and address1_latitude is not null then 1
                      else 0 END desc, distance asc
