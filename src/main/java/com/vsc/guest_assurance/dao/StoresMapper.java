@@ -22,6 +22,8 @@ public interface StoresMapper {
 
     List<Stores> selectByAccoutNumber(String accountnumber);
 
+    List<Stores> selectByAccoutId(String accountid);
+
     List<BStoreListVo> selectList(String keyWord);
 
     List<Stores> selectListAll(String keyWord);

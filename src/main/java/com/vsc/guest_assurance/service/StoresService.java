@@ -33,7 +33,10 @@ public class StoresService {
     public void updateStores() throws Exception {
         List<Stores> storesList = ParseStores.storeParser();
         for (Stores item : storesList) {
-            List<Stores> result = storesMapper.selectByAccoutNumber(item.getAccountnumber());
+            if(StringUtils.isBlank(item.getAccountid())) {
+                continue;
+            }
+            List<Stores> result = storesMapper.selectByAccoutId(item.getAccountid());
             if(result == null || result.size() == 0) {
                 item.setCreate_time(new Date());
                 item.setThumbs_up_num(Constant.FALSE);
