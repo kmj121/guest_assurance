@@ -9,7 +9,8 @@ package com.vsc.guest_assurance.config;
  */
 public class Config {
     /** 附件保存位置 */
-    public static String attachFolder = "E:/home/tomcat/guest_assurance/files/";
+    //public static String attachFolder = "E:/home/tomcat/guest_assurance/files/";
+    public static String attachFolder = "D:/home/site/wwwroot/guest_assurance_files/";
 
 
 }
