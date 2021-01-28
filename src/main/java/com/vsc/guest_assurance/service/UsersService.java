@@ -13,6 +13,7 @@ import com.vsc.guest_assurance.entity.Roles;
 import com.vsc.guest_assurance.entity.Users;
 import com.vsc.guest_assurance.qo.backend.BUserAddQo;
 import com.vsc.guest_assurance.qo.backend.BUserUpdQo;
+import com.vsc.guest_assurance.util.StringUtil;
 import com.vsc.guest_assurance.vo.backend.BRoleListVo;
 import com.vsc.guest_assurance.vo.backend.BUserDetailVo;
 import com.vsc.guest_assurance.vo.backend.BUserListVo;
@@ -46,8 +47,14 @@ public class UsersService {
     @Autowired
     private PrivilegesMapper privilegesMapper;
 
-    public PageBean<BUserListVo> list(String email, String userName, int page, int size) {
-        String orderBy = "u.id desc";
+    public PageBean<BUserListVo> list(String email, String userName, int page, int size, Integer emailSort, Integer userNameSort) {
+        String orderBy = "id asc";
+        if(emailSort != null) {
+            orderBy = emailSort == 1 ? "email asc" : "email desc";
+        }
+        if (userNameSort != null) {
+            orderBy = userNameSort == 1 ? "user_name asc" : "user_name desc";
+        }
         PageHelper.startPage(page, size, orderBy);
         List<BUserListVo> vos = usersMapper.selectList(email, userName);
         PageInfo<BUserListVo> pageInfo = new PageInfo(vos);

@@ -188,8 +188,8 @@
     </update>
 
     <select id="selectList" resultType="com.vsc.guest_assurance.vo.backend.BUserListVo">
-        select u.id, u.email, u.user_name as userName
-        from users u
+        select id, email, user_name as userName
+        from users
         where 1 = 1
         <if test="email != null">
             and email like '%'+#{email,jdbcType=VARCHAR}+'%'

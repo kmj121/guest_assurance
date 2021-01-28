@@ -2,6 +2,7 @@ package com.vsc.guest_assurance.vo.backend;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Date;
 
@@ -30,7 +31,7 @@ public class BStoreListVo {
     @ApiModelProperty("总分数")
     private Integer thumbs_up_points;
     @ApiModelProperty("综合评分")
-    private String comprehensiveEvaluation;
+    private BigDecimal comprehensiveEvaluation;
 
     public Integer getId() {
         return id;
@@ -96,11 +97,12 @@ public class BStoreListVo {
         this.thumbs_up_points = thumbs_up_points;
     }
 
-    public String getComprehensiveEvaluation() {
+
+    public BigDecimal getComprehensiveEvaluation() {
         return comprehensiveEvaluation;
     }
 
-    public void setComprehensiveEvaluation(String comprehensiveEvaluation) {
+    public void setComprehensiveEvaluation(BigDecimal comprehensiveEvaluation) {
         this.comprehensiveEvaluation = comprehensiveEvaluation;
     }
 

@@ -46,9 +46,19 @@ public class BStoreController {
     public ResultObject<BStoreListVo> list(
             HttpServletRequest request,
             @ApiParam(value = "关键字") @RequestParam(required = false) String keyWord,
+            @ApiParam(value = "客户号排序：1正序 2倒序") @RequestParam(required = false) Integer accountnumbersort,
+            @ApiParam(value = "客户全称排序：1正序 2倒序") @RequestParam(required = false) Integer nameSort,
+            @ApiParam(value = "客户负责人排序：1正序 2倒序") @RequestParam(required = false) Integer _ownerid_value_sort,
+            @ApiParam(value = "地址排序：1正序 2倒序") @RequestParam(required = false) Integer address1_composite_sort,
+            @ApiParam(value = "城市排序：1正序 2倒序") @RequestParam(required = false) Integer address1_City_sort,
+            @ApiParam(value = "所属部门排序：1正序 2倒序") @RequestParam(required = false) Integer ecolabcn_department_sort,
+            @ApiParam(value = "累计点赞次数排序：1正序 2倒序") @RequestParam(required = false) Integer thumbs_up_num_sort,
+            @ApiParam(value = "综合评分排序：1正序 2倒序") @RequestParam(required = false) Integer comprehensiveEvaluationSort,
             @ApiParam(value = "页数", required = true) @RequestParam Integer page,
             @ApiParam(value = "数量", required = true) @RequestParam Integer size) {
-        return new ResultObject(MessageCode.CODE_SUCCESS, storesService.list(keyWord, page, size));
+        return new ResultObject(MessageCode.CODE_SUCCESS,
+                storesService.list(keyWord, page, size, accountnumbersort, nameSort, _ownerid_value_sort, address1_composite_sort
+                , address1_City_sort, ecolabcn_department_sort, thumbs_up_num_sort, comprehensiveEvaluationSort));
     }
 
     @ApiOperation(value = "数据导出")
