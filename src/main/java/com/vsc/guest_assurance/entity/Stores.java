@@ -19,9 +19,9 @@ public class Stores {
 
     private String address1_City;
 
-    private Integer ecolabcn_shop_no;
+    private String ecolabcn_shop_no;
 
-    private Integer ecolabcn_short_id;
+    private String ecolabcn_short_id;
 
     private String _parentaccountid_value;
 
@@ -35,11 +35,11 @@ public class Stores {
 
     private Integer ecolabcn_department;
 
-    private Integer ecolabcn_service_ind;
+    private String ecolabcn_service_ind;
 
-    private Integer ecolabcn_room_ind;
+    private String ecolabcn_room_ind;
 
-    private Integer ecolabcn_wash_ind;
+    private String ecolabcn_wash_ind;
 
     private String ecolabcn_frequency;
 
@@ -82,6 +82,12 @@ public class Stores {
     private Integer thumbs_up_points;
 
     private String _ownerid_value;
+
+    private String ecolabcn_department_value;
+
+    private String account_type_value;
+
+    private String ecolabcn_country_value;
 
     public Integer getId() {
         return id;
@@ -147,19 +153,19 @@ public class Stores {
         this.address1_City = address1_City;
     }
 
-    public Integer getEcolabcn_shop_no() {
+    public String getEcolabcn_shop_no() {
         return ecolabcn_shop_no;
     }
 
-    public void setEcolabcn_shop_no(Integer ecolabcn_shop_no) {
+    public void setEcolabcn_shop_no(String ecolabcn_shop_no) {
         this.ecolabcn_shop_no = ecolabcn_shop_no;
     }
 
-    public Integer getEcolabcn_short_id() {
+    public String getEcolabcn_short_id() {
         return ecolabcn_short_id;
     }
 
-    public void setEcolabcn_short_id(Integer ecolabcn_short_id) {
+    public void setEcolabcn_short_id(String ecolabcn_short_id) {
         this.ecolabcn_short_id = ecolabcn_short_id;
     }
 
@@ -211,27 +217,27 @@ public class Stores {
         this.ecolabcn_department = ecolabcn_department;
     }
 
-    public Integer getEcolabcn_service_ind() {
+    public String getEcolabcn_service_ind() {
         return ecolabcn_service_ind;
     }
 
-    public void setEcolabcn_service_ind(Integer ecolabcn_service_ind) {
+    public void setEcolabcn_service_ind(String ecolabcn_service_ind) {
         this.ecolabcn_service_ind = ecolabcn_service_ind;
     }
 
-    public Integer getEcolabcn_room_ind() {
+    public String getEcolabcn_room_ind() {
         return ecolabcn_room_ind;
     }
 
-    public void setEcolabcn_room_ind(Integer ecolabcn_room_ind) {
+    public void setEcolabcn_room_ind(String ecolabcn_room_ind) {
         this.ecolabcn_room_ind = ecolabcn_room_ind;
     }
 
-    public Integer getEcolabcn_wash_ind() {
+    public String getEcolabcn_wash_ind() {
         return ecolabcn_wash_ind;
     }
 
-    public void setEcolabcn_wash_ind(Integer ecolabcn_wash_ind) {
+    public void setEcolabcn_wash_ind(String ecolabcn_wash_ind) {
         this.ecolabcn_wash_ind = ecolabcn_wash_ind;
     }
 
@@ -401,5 +407,29 @@ public class Stores {
 
     public void set_ownerid_value(String _ownerid_value) {
         this._ownerid_value = _ownerid_value;
+    }
+
+    public String getEcolabcn_department_value() {
+        return ecolabcn_department_value;
+    }
+
+    public void setEcolabcn_department_value(String ecolabcn_department_value) {
+        this.ecolabcn_department_value = ecolabcn_department_value;
+    }
+
+    public String getAccount_type_value() {
+        return account_type_value;
+    }
+
+    public void setAccount_type_value(String account_type_value) {
+        this.account_type_value = account_type_value;
+    }
+
+    public String getEcolabcn_country_value() {
+        return ecolabcn_country_value;
+    }
+
+    public void setEcolabcn_country_value(String ecolabcn_country_value) {
+        this.ecolabcn_country_value = ecolabcn_country_value;
     }
 }

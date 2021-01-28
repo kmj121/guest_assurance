@@ -7,15 +7,14 @@ import com.vsc.guest_assurance.dao.StoresMapper;
 import com.vsc.guest_assurance.entity.Stores;
 import com.vsc.guest_assurance.vo.backend.BStoreListVo;
 import com.vsc.guest_assurance.vo.backend.BStoresThumbsUpVo;
-import io.swagger.models.auth.In;
-import org.apache.commons.beanutils.PropertyUtils;
+import com.vsc.guest_assurance.vo.common.ParseStoresVo;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,22 +31,23 @@ public class StoresService {
     private StoresMapper storesMapper;
 
     public void updateStores() throws Exception {
-        List<Stores> storesList = ParseStores.storeParser();
-        for (Stores item : storesList) {
+        List<ParseStoresVo> parseList = ParseStores.storeParser();
+        for (ParseStoresVo item : parseList) {
             if(StringUtils.isBlank(item.getAccountid())) {
                 continue;
             }
-            List<Stores> result = storesMapper.selectByAccoutId(item.getAccountid());
-            if(result == null || result.size() == 0) {
-                item.setCreate_time(new Date());
-                item.setThumbs_up_num(Constant.FALSE);
-                item.setThumbs_up_points(Constant.FALSE);
-                storesMapper.insert(item);
-            } else if (result != null && result.size() == 1){
-                PropertyUtils.copyProperties(result.get(0), item);
-                item.setUpdate_time(new Date());
-                storesMapper.updateByPrimaryKey(result.get(0));
-            } else if(result != null && result.size() > 1) {
+            List<Stores> storesList = storesMapper.selectByAccoutId(item.getAccountid());
+            if(storesList == null || storesList.size() == 0) {
+                Stores stores = new Stores();
+                stores.setCreate_time(new Date());
+                stores.setThumbs_up_num(Constant.FALSE);
+                stores.setThumbs_up_points(Constant.FALSE);
+                storesMapper.insert(stores);
+            } else if (storesList != null && storesList.size() == 1){
+                BeanUtils.copyProperties(storesList.get(0), item);
+                storesList.get(0).setUpdate_time(new Date());
+                storesMapper.updateByPrimaryKey(storesList.get(0));
+            } else if(storesList != null && storesList.size() > 1) {
                 throw new ApiException(MessageCode.CODE_ONE_MORE_DATA, "门店");
             }
         }

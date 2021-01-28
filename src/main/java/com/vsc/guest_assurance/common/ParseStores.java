@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.vsc.guest_assurance.entity.Stores;
+import com.vsc.guest_assurance.vo.common.ParseStoresVo;
 import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -22,7 +23,7 @@ import java.util.List;
 public class ParseStores {
     private static String url = "https://ins-fsm-functionapp-001-d.azurewebsites.net/api/account/getScienceProgrameList";
 
-    public static List<Stores> storeParser() throws Exception {
+    public static List<ParseStoresVo> storeParser() throws Exception {
         HttpGet httpGet = new HttpGet(url);
         // 设置头字段
         httpGet.addHeader("content-type", "application/json");
@@ -37,12 +38,14 @@ public class ParseStores {
         JSONObject res = JSON.parseObject(resCont);
         System.out.println("========" + res.toString() + "==========");
         JSONArray jsonArray = res.getJSONArray("account");
-        List<Stores> list = new ArrayList<>();
+        List<ParseStoresVo> list = new ArrayList<>();
         if (jsonArray != null && jsonArray.size() > 0) {
             for (int i = 0; i < jsonArray.size(); i++) {
                 //Json串反序列化成对象
-                Stores stores = JSON.parseObject(jsonArray.get(i).toString(), Stores.class);
-                list.add(stores);
+                ParseStoresVo parseStoresVo = JSON.parseObject(jsonArray.get(i).toString(), ParseStoresVo.class);
+                parseStoresVo.set_parentaccountid_value(((JSONObject) jsonArray.get(i)).getString("_parentaccountid_value"));
+                parseStoresVo.set_ownerid_value(((JSONObject) jsonArray.get(i)).getString("_ownerid_value"));
+                list.add(parseStoresVo);
             }
         }
         return list;

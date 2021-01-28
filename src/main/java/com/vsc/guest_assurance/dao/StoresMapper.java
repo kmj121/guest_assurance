@@ -20,8 +20,6 @@ public interface StoresMapper {
 
     int updateByPrimaryKey(Stores record);
 
-    List<Stores> selectByAccoutNumber(String accountnumber);
-
     List<Stores> selectByAccoutId(String accountid);
 
     List<BStoreListVo> selectList(String keyWord);
