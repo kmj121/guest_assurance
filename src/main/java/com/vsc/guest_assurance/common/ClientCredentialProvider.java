@@ -139,6 +139,8 @@ public class ClientCredentialProvider implements IAuthenticationProvider {
                 .builder()
                 .authenticationProvider(authProvider)
                 .buildClient();
+        // 使用中国区域名
+        graphClient.setServiceRoot("https://microsoftgraph.chinacloudapi.cn/v1.0");
         User user = graphClient.me()
                 .buildRequest()
                 .get();
