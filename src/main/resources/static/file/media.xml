@@ -9,33 +9,33 @@
 
 <medias>
     <media>
-        <title>title1</title>
-        <summary>summary1</summary>
+        <title>公众号文章标题</title>
+        <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
         <imageUrl>classpath:static/image/background.jpg</imageUrl>
     </media>
     <media>
-        <title>title2</title>
-        <summary>summary2</summary>
+        <title>公众号文章标题</title>
+        <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
         <imageUrl>classpath:static/image/background.jpg</imageUrl>
     </media>
     <media>
-        <title>title3</title>
-        <summary>summary3</summary>
+        <title>公众号文章标题</title>
+        <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
         <imageUrl>classpath:static/image/background.jpg</imageUrl>
     </media>
     <media>
-        <title>title4</title>
-        <summary>summary4</summary>
+        <title>公众号文章标题</title>
+        <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
         <imageUrl>classpath:static/image/background.jpg</imageUrl>
     </media>
     <media>
-        <title>title5</title>
-        <summary>summary5</summary>
+        <title>公众号文章标题</title>
+        <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
         <imageUrl>classpath:static/image/background.jpg</imageUrl>
     </media>
     <media>
-        <title>title6</title>
-        <summary>summary6</summary>
+        <title>公众号文章标题</title>
+        <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
         <imageUrl>classpath:static/image/background.jpg</imageUrl>
     </media>
 </medias>
