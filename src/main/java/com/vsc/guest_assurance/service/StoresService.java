@@ -4,12 +4,15 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.vsc.guest_assurance.common.*;
 import com.vsc.guest_assurance.dao.StoresMapper;
+import com.vsc.guest_assurance.dao.ThumbsUpHistoryMapper;
 import com.vsc.guest_assurance.entity.Stores;
+import com.vsc.guest_assurance.entity.ThumbsUpHistory;
 import com.vsc.guest_assurance.vo.backend.BStoreListVo;
 import com.vsc.guest_assurance.vo.backend.BStoresThumbsUpVo;
 import com.vsc.guest_assurance.vo.common.ParseStoresVo;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -29,6 +32,8 @@ import java.util.List;
 public class StoresService {
     @Autowired
     private StoresMapper storesMapper;
+    @Autowired
+    private ThumbsUpHistoryMapper thumbsUpHistoryMapper;
 
     public void updateStores() throws Exception {
         List<ParseStoresVo> parseList = ParseStores.storeParser();
@@ -107,6 +112,13 @@ public class StoresService {
         stores.setThumbs_up_points(stores.getThumbs_up_points() + points);
         stores.setUpdate_time(new Date());
         storesMapper.updateByPrimaryKey(stores);
+
+        //添加点赞流水
+        ThumbsUpHistory thumbsUpHistory = new ThumbsUpHistory();
+        thumbsUpHistory.setStoreId(id);
+        thumbsUpHistory.setThumbsUpPoint(points);
+        thumbsUpHistory.setCreateTime(new Date());
+        thumbsUpHistoryMapper.insert(thumbsUpHistory);
     }
 
     public Stores sure(Integer id) {
