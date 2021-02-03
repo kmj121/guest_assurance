@@ -47,13 +47,16 @@ public class UsersService {
     @Autowired
     private PrivilegesMapper privilegesMapper;
 
-    public PageBean<BUserListVo> list(String email, String userName, int page, int size, Integer emailSort, Integer userNameSort) {
-        String orderBy = "id asc";
-        if(emailSort != null) {
-            orderBy = emailSort == 1 ? "email asc" : "email desc";
+    public PageBean<BUserListVo> list(String email, String userName, int page, int size, String orderName, Integer orderType) {
+        String orderBy = "";
+        if("id".equals(orderName)) {
+            orderBy = orderType == 0 ? "id asc" : "id desc";
         }
-        if (userNameSort != null) {
-            orderBy = userNameSort == 1 ? "user_name asc" : "user_name desc";
+        if("email".equals(orderName)) {
+            orderBy = orderType == 0 ? "email asc" : "email desc";
+        }
+        if ("userName".equals(orderName)) {
+            orderBy = orderType == 0 ? "user_name asc" : "user_name desc";
         }
         PageHelper.startPage(page, size, orderBy);
         List<BUserListVo> vos = usersMapper.selectList(email, userName);

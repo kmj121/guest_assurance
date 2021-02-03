@@ -40,14 +40,14 @@ public class BUserController {
             HttpServletRequest request,
             @ApiParam(value = "邮箱") @RequestParam(required = false) String email,
             @ApiParam(value = "用户名") @RequestParam(required = false) String userName,
-            @ApiParam(value = "邮箱排序：1正序 2倒序") @RequestParam(required = false) Integer emailSort,
-            @ApiParam(value = "用户名排序：1正序 2倒序") @RequestParam(required = false) Integer userNameSort,
+            @ApiParam(value = "排序字段名称", required = true) @RequestParam String orderName,
+            @ApiParam(value = "排序：0正序 1倒序", required = true) @RequestParam Integer orderType,
             @ApiParam(value = "页数", required = true) @RequestParam int page,
             @ApiParam(value = "数量", required = true) @RequestParam int size
     ) throws Exception {
         email = MyUtils.replaceStrParam(email);
         userName = MyUtils.replaceStrParam(userName);
-        return new ResultObject(MessageCode.CODE_SUCCESS, usersService.list(email, userName, page, size, emailSort, userNameSort));
+        return new ResultObject(MessageCode.CODE_SUCCESS, usersService.list(email, userName, page, size, orderName, orderType));
     }
 
     //@GetMapping(value = "/roleList")

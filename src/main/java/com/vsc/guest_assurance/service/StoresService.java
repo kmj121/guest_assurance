@@ -58,33 +58,38 @@ public class StoresService {
         }
     }
 
-    public PageBean<BStoreListVo> list(String keyWord, Integer page, Integer size, Integer accountnumbersort
-        , Integer nameSort, Integer _ownerid_value_sort, Integer address1_composite_sort, Integer address1_City_sort
-        , Integer ecolabcn_department_sort, Integer thumbs_up_num_sort, Integer comprehensiveEvaluationSort) {
-        String orderBy = "id asc";
-        if(accountnumbersort != null) {
-            orderBy = accountnumbersort == 1 ? "accountnumber asc" : "accountnumber desc";
+    public PageBean<BStoreListVo> list(String keyWord, Integer page, Integer size, String orderName, Integer orderType) {
+        String orderBy = "";
+        if("id".equals(orderName)) {
+            orderBy = orderType == 0 ? "id asc" : "id desc";
         }
-        if(nameSort != null) {
-            orderBy = nameSort == 1 ? "name asc" : "name desc";
+        if("accountnumber".equals(orderName)) {
+            orderBy = orderType == 0 ? "accountnumber asc" : "accountnumber desc";
         }
-        if(_ownerid_value_sort != null) {
-            orderBy = _ownerid_value_sort == 1 ? "_ownerid_value asc" : "_ownerid_value desc";
+        if("name".equals(orderName)) {
+            orderBy = orderType == 0 ? "name asc" : "name desc";
         }
-        if(address1_composite_sort != null) {
-            orderBy = address1_composite_sort == 1 ? "address1_composite asc" : "address1_composite desc";
+        if("_ownerid_value".equals(orderName)) {
+            orderBy = orderType == 0 ? "_ownerid_value asc" : "_ownerid_value desc";
         }
-        if(address1_City_sort != null) {
-            orderBy = address1_City_sort == 1 ? "address1_City asc" : "address1_City desc";
+        if("address1_composite".equals(orderName)) {
+            orderBy = orderType == 0 ? "address1_composite asc" : "address1_composite desc";
         }
-        if(ecolabcn_department_sort != null) {
-            orderBy = ecolabcn_department_sort == 1 ? "ecolabcn_department asc" : "ecolabcn_department desc";
+        if("address1_City".equals(orderName)) {
+            orderBy = orderType == 0 ? "address1_City asc" : "address1_City desc";
         }
-        if(thumbs_up_num_sort != null) {
-            orderBy = thumbs_up_num_sort == 1 ? "thumbs_up_num asc" : "thumbs_up_num desc";
+        if("ecolabcn_department".equals(orderName)) {
+            orderBy = orderType == 0 ? "ecolabcn_department asc" : "ecolabcn_department desc";
         }
-        if(comprehensiveEvaluationSort != null) {
-            orderBy = comprehensiveEvaluationSort == 1 ? "comprehensiveEvaluation asc" : "comprehensiveEvaluation desc";
+        if("thumbs_up_num".equals(orderName)) {
+            orderBy = orderType == 0 ? "thumbs_up_num asc" : "thumbs_up_num desc";
+        }
+        if("comprehensiveEvaluation".equals(orderName)) {
+            orderBy = orderType == 0 ? "case when thumbs_up_num = 0 then 0\n" +
+                    "        else Round(convert(float,thumbs_up_points)/convert(float,thumbs_up_num),2)\n" +
+                    "        end asc" : "case when thumbs_up_num = 0 then 0\n" +
+                    "        else Round(convert(float,thumbs_up_points)/convert(float,thumbs_up_num),2)\n" +
+                    "        end desc";
         }
 
         keyWord = StringUtils.isEmpty(keyWord) ? null : "%" + keyWord + "%";
