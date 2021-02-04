@@ -46,5 +46,7 @@ public class Constant {
     /** 用户类型：客户账号 */
     public static final int USER_TYPE_CUSTOMER = 1;
 
+    public static final int REGION_ID_CHINA = 100000;
+
 
 }

@@ -33,6 +33,8 @@ public class MyspringMVCConfig extends WebMvcConfigurationSupport {
                 .addPathPatterns("/commons/**")
                 .excludePathPatterns("/commons/attachments/**")
                 .excludePathPatterns("/common/users/login")
+                //区域列表
+                .excludePathPatterns("/common/region/pullDownList")
                 //xml解析问答
                 .excludePathPatterns("/backend/question/**")
                 //xml解析媒体
@@ -42,6 +44,8 @@ public class MyspringMVCConfig extends WebMvcConfigurationSupport {
                 //点赞
                 .excludePathPatterns("/backend/store/thumbsUpStores")
                 .excludePathPatterns("/backend/store/thumbsUp")
+                //根据区域查询门店列表
+                .excludePathPatterns("/backend/store/searchByRegionList")
                 //.excludePathPatterns("/commons/icaptcha/**")
                 //.excludePathPatterns("/commons/mobileCaptcha/**")
                 //.excludePathPatterns("/backend/student/exportModel")

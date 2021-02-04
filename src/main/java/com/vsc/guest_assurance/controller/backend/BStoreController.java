@@ -54,6 +54,19 @@ public class BStoreController {
                 storesService.list(keyWord, page, size, orderName, orderType));
     }
 
+    @ApiOperation(value = "根据区域查询列表")
+    @GetMapping(value = "/searchByRegionList")
+    public ResultObject<BStoreListVo> searchByRegionList(
+            HttpServletRequest request,
+            @ApiParam(value = "省") @RequestParam(required = false) Integer province,
+            @ApiParam(value = "市") @RequestParam(required = false) Integer city,
+            @ApiParam(value = "区") @RequestParam(required = false) Integer district,
+            @ApiParam(value = "页数", required = true) @RequestParam Integer page,
+            @ApiParam(value = "数量", required = true) @RequestParam Integer size) {
+        return new ResultObject(MessageCode.CODE_SUCCESS,
+                storesService.searchByRegionList(province, city, district, page, size));
+    }
+
     @ApiOperation(value = "数据导出")
     @RequestMapping(value = "/dataExport", method = RequestMethod.GET)
     @ResponseBody

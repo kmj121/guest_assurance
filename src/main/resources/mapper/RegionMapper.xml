@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vsc.guest_assurance.dao.RegionMapper">
+    <resultMap id="BaseResultMap" type="com.vsc.guest_assurance.entity.Region">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="region_id" property="regionId" jdbcType="INTEGER"/>
+        <result column="region_name" property="regionName" jdbcType="NVARCHAR"/>
+        <result column="pid" property="pid" jdbcType="INTEGER"/>
+        <result column="sname" property="sname" jdbcType="NVARCHAR"/>
+        <result column="level" property="level" jdbcType="INTEGER"/>
+        <result column="city_code" property="cityCode" jdbcType="NVARCHAR"/>
+        <result column="yz_code" property="yzCode" jdbcType="NVARCHAR"/>
+        <result column="mername" property="mername" jdbcType="NVARCHAR"/>
+        <result column="Lng" property="lng" jdbcType="DOUBLE"/>
+        <result column="Lat" property="lat" jdbcType="DOUBLE"/>
+        <result column="pinyin" property="pinyin" jdbcType="NVARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, region_id, region_name, pid, sname, level, city_code, yz_code, mername, Lng,
+    Lat, pinyin
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from region
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete
+        from region
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.vsc.guest_assurance.entity.Region">
+        insert into region (region_id, region_name,
+                            pid, sname, level,
+                            city_code, yz_code, mername,
+                            Lng, Lat, pinyin)
+        values (#{regionId,jdbcType=INTEGER}, #{regionName,jdbcType=NVARCHAR},
+                #{pid,jdbcType=INTEGER}, #{sname,jdbcType=NVARCHAR}, #{level,jdbcType=INTEGER},
+                #{cityCode,jdbcType=NVARCHAR}, #{yzCode,jdbcType=NVARCHAR}, #{mername,jdbcType=NVARCHAR},
+                #{lng,jdbcType=DOUBLE}, #{lat,jdbcType=DOUBLE}, #{pinyin,jdbcType=NVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.vsc.guest_assurance.entity.Region">
+        insert into region
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="regionId != null">
+                region_id,
+            </if>
+            <if test="regionName != null">
+                region_name,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="sname != null">
+                sname,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="cityCode != null">
+                city_code,
+            </if>
+            <if test="yzCode != null">
+                yz_code,
+            </if>
+            <if test="mername != null">
+                mername,
+            </if>
+            <if test="lng != null">
+                Lng,
+            </if>
+            <if test="lat != null">
+                Lat,
+            </if>
+            <if test="pinyin != null">
+                pinyin,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="regionId != null">
+                #{regionId,jdbcType=INTEGER},
+            </if>
+            <if test="regionName != null">
+                #{regionName,jdbcType=NVARCHAR},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="sname != null">
+                #{sname,jdbcType=NVARCHAR},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=INTEGER},
+            </if>
+            <if test="cityCode != null">
+                #{cityCode,jdbcType=NVARCHAR},
+            </if>
+            <if test="yzCode != null">
+                #{yzCode,jdbcType=NVARCHAR},
+            </if>
+            <if test="mername != null">
+                #{mername,jdbcType=NVARCHAR},
+            </if>
+            <if test="lng != null">
+                #{lng,jdbcType=DOUBLE},
+            </if>
+            <if test="lat != null">
+                #{lat,jdbcType=DOUBLE},
+            </if>
+            <if test="pinyin != null">
+                #{pinyin,jdbcType=NVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.vsc.guest_assurance.entity.Region">
+        update region
+        <set>
+            <if test="regionId != null">
+                region_id = #{regionId,jdbcType=INTEGER},
+            </if>
+            <if test="regionName != null">
+                region_name = #{regionName,jdbcType=NVARCHAR},
+            </if>
+            <if test="pid != null">
+                pid = #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="sname != null">
+                sname = #{sname,jdbcType=NVARCHAR},
+            </if>
+            <if test="level != null">
+                level = #{level,jdbcType=INTEGER},
+            </if>
+            <if test="cityCode != null">
+                city_code = #{cityCode,jdbcType=NVARCHAR},
+            </if>
+            <if test="yzCode != null">
+                yz_code = #{yzCode,jdbcType=NVARCHAR},
+            </if>
+            <if test="mername != null">
+                mername = #{mername,jdbcType=NVARCHAR},
+            </if>
+            <if test="lng != null">
+                Lng = #{lng,jdbcType=DOUBLE},
+            </if>
+            <if test="lat != null">
+                Lat = #{lat,jdbcType=DOUBLE},
+            </if>
+            <if test="pinyin != null">
+                pinyin = #{pinyin,jdbcType=NVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.vsc.guest_assurance.entity.Region">
+        update region
+        set region_id   = #{regionId,jdbcType=INTEGER},
+            region_name = #{regionName,jdbcType=NVARCHAR},
+            pid         = #{pid,jdbcType=INTEGER},
+            sname       = #{sname,jdbcType=NVARCHAR},
+            level       = #{level,jdbcType=INTEGER},
+            city_code   = #{cityCode,jdbcType=NVARCHAR},
+            yz_code     = #{yzCode,jdbcType=NVARCHAR},
+            mername     = #{mername,jdbcType=NVARCHAR},
+            Lng         = #{lng,jdbcType=DOUBLE},
+            Lat         = #{lat,jdbcType=DOUBLE},
+            pinyin      = #{pinyin,jdbcType=NVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!-- 调取存储过程 -->
+    <select id="getByPid" parameterType="Integer" resultType="com.vsc.guest_assurance.vo.backend.BRegionPullDownListVo" statementType="CALLABLE">
+        {call Child_ById(#{id,mode=IN})}
+    </select>
+
+    <select id="getNextLevel" resultType="com.vsc.guest_assurance.vo.backend.BRegionPullDownListVo">
+        select region_id, region_name, pid, level from region where pid = #{pid}
+    </select>
+
+    <select id="getByRegionName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from region
+        where region_name = #{regionName}
+    </select>
+
+</mapper>

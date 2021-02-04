@@ -89,6 +89,12 @@ public class Stores {
 
     private String ecolabcn_country_value;
 
+    private Integer province_id;
+
+    private Integer city_id;
+
+    private Integer district_id;
+
     public Integer getId() {
         return id;
     }
@@ -431,5 +437,29 @@ public class Stores {
 
     public void setEcolabcn_country_value(String ecolabcn_country_value) {
         this.ecolabcn_country_value = ecolabcn_country_value;
+    }
+
+    public Integer getProvince_id() {
+        return province_id;
+    }
+
+    public void setProvince_id(Integer province_id) {
+        this.province_id = province_id;
+    }
+
+    public Integer getCity_id() {
+        return city_id;
+    }
+
+    public void setCity_id(Integer city_id) {
+        this.city_id = city_id;
+    }
+
+    public Integer getDistrict_id() {
+        return district_id;
+    }
+
+    public void setDistrict_id(Integer district_id) {
+        this.district_id = district_id;
     }
 }

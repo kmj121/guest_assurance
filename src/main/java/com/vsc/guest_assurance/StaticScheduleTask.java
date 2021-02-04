@@ -51,7 +51,7 @@ public class StaticScheduleTask {
      * 定时任务--自动更新用户数据
      * 时间：每天0时0分10秒执行
      */
-    @Scheduled(cron = "10 0 0 * * ?")
+    @Scheduled(cron = "0 45 * * * ?")
     public void updateStores() throws Exception {
         logger.info("===============自动更新门店数据定时任务开始================");
         storesService.updateStores();

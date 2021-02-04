@@ -28,4 +28,8 @@ public interface StoresMapper {
 
     List<BStoresThumbsUpVo> getThumbsUpStores(@Param("latitude") Float latitude,
                                               @Param("longitude") Float longitude);
+
+    List<BStoreListVo> selectByRegionId(@Param("province_id") Integer province_id,
+                                        @Param("city_id") Integer city_id,
+                                        @Param("district_id") Integer district_id);
 }
