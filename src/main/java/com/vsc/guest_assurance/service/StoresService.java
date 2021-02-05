@@ -14,6 +14,7 @@ import com.vsc.guest_assurance.vo.LocationVo;
 import com.vsc.guest_assurance.vo.backend.BRegionPullDownListVo;
 import com.vsc.guest_assurance.vo.backend.BStoreListVo;
 import com.vsc.guest_assurance.vo.backend.BStoresThumbsUpVo;
+import com.vsc.guest_assurance.vo.common.LocationIdsVo;
 import com.vsc.guest_assurance.vo.common.ParseStoresVo;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
@@ -52,15 +53,13 @@ public class StoresService {
             List<Stores> storesList = storesMapper.selectByAccoutId(item.getAccountid());
             if(storesList == null || storesList.size() == 0) {
                 LocationVo vo = LocationUtil.getLocationMsg(item.getAddress1_longitude(), item.getAddress1_latitude());
-                Region province = regionMapper.getByRegionName(vo.getProvince());
-                Region city = regionMapper.getByRegionName(vo.getCity());
-                Region district = regionMapper.getByRegionName(vo.getDistrict());
+                LocationIdsVo result = regionMapper.getByRegionName(vo.getProvince(), vo.getCity(), vo.getDistrict());
                 Stores stores = new Stores();
                 BeanUtils.copyProperties(stores, item);
                 //添加省市区信息
-                stores.setProvince_id(province.getRegionId());
-                stores.setCity_id(city.getRegionId());
-                stores.setDistrict_id(district.getRegionId());
+                stores.setProvince_id(result.getProvinceId());
+                stores.setCity_id(result.getCityId());
+                stores.setDistrict_id(result.getDistrictId());
                 stores.setCreate_time(new Date());
                 stores.setThumbs_up_num(Constant.FALSE);
                 stores.setThumbs_up_points(Constant.FALSE);
