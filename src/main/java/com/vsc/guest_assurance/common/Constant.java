@@ -8,7 +8,7 @@ package com.vsc.guest_assurance.common;
 public class Constant {
 
     /**登录过期时间(30分钟)：测试为10倍*/
-    public static final long LOGIN_TOKEN_LIMIT = 10 * 30 * 60 * 1000L;
+    public static final long LOGIN_TOKEN_LIMIT = 30 * 60 * 1000L;
     /**验证码过期时间(10分钟)*/
     public static final long CAPTCHA_LIMIT = 10 * 60 * 1000L;
 
