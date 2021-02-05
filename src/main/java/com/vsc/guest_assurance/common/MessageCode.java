@@ -25,6 +25,8 @@ public enum MessageCode {
     CODE_USER_PRIVILEGE_ERROR(9006),
     /** {1}已存在*/
     CODE_EXIST(9007),
+    /** 省市区匹配错误*/
+    CODE_REGION_MATCH_ERROR(9008),
 
 
     /** 无权限操作当前数据*/

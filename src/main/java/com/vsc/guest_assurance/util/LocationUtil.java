@@ -56,9 +56,9 @@ public class LocationUtil {
                 }
                 JSONObject jsonObject = JSON.parseObject(message);
                 JSONObject addressObject = jsonObject.getJSONObject("regeocode").getJSONObject("addressComponent");
-                locationVo.setProvince(addressObject.getString("province"));
-                locationVo.setCity(addressObject.getString("city"));
-                locationVo.setDistrict(addressObject.getString("district"));
+                locationVo.setProvinceName(addressObject.getString("province"));
+                locationVo.setCityName(addressObject.getString("city"));
+                locationVo.setDistrictName(addressObject.getString("district"));
 
                 //JsonParser jp = new JsonParser();
                 //将json字符串转化成json对象

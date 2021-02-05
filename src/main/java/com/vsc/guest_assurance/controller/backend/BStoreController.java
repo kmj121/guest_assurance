@@ -58,13 +58,13 @@ public class BStoreController {
     @GetMapping(value = "/searchByRegionList")
     public ResultObject<BStoreListVo> searchByRegionList(
             HttpServletRequest request,
-            @ApiParam(value = "省") @RequestParam(required = false) Integer province,
-            @ApiParam(value = "市") @RequestParam(required = false) Integer city,
-            @ApiParam(value = "区") @RequestParam(required = false) Integer district,
+            @ApiParam(value = "省") @RequestParam(required = false) Integer provinceId,
+            @ApiParam(value = "市") @RequestParam(required = false) Integer cityId,
+            @ApiParam(value = "区") @RequestParam(required = false) Integer districtId,
             @ApiParam(value = "页数", required = true) @RequestParam Integer page,
             @ApiParam(value = "数量", required = true) @RequestParam Integer size) {
         return new ResultObject(MessageCode.CODE_SUCCESS,
-                storesService.searchByRegionList(province, city, district, page, size));
+                storesService.searchByRegionList(provinceId, cityId, districtId, page, size));
     }
 
     @ApiOperation(value = "数据导出")

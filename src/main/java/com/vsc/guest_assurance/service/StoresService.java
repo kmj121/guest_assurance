@@ -6,18 +6,15 @@ import com.vsc.guest_assurance.common.*;
 import com.vsc.guest_assurance.dao.RegionMapper;
 import com.vsc.guest_assurance.dao.StoresMapper;
 import com.vsc.guest_assurance.dao.ThumbsUpHistoryMapper;
-import com.vsc.guest_assurance.entity.Region;
 import com.vsc.guest_assurance.entity.Stores;
 import com.vsc.guest_assurance.entity.ThumbsUpHistory;
 import com.vsc.guest_assurance.util.LocationUtil;
 import com.vsc.guest_assurance.vo.LocationVo;
-import com.vsc.guest_assurance.vo.backend.BRegionPullDownListVo;
 import com.vsc.guest_assurance.vo.backend.BStoreListVo;
 import com.vsc.guest_assurance.vo.backend.BStoresThumbsUpVo;
 import com.vsc.guest_assurance.vo.common.LocationIdsVo;
 import com.vsc.guest_assurance.vo.common.ParseStoresVo;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,7 +24,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @Description
@@ -42,7 +38,7 @@ public class StoresService {
     @Autowired
     private ThumbsUpHistoryMapper thumbsUpHistoryMapper;
     @Autowired
-    private RegionMapper regionMapper;
+    private RegionService regionService;
 
     public void updateStores() throws Exception {
         List<ParseStoresVo> parseList = ParseStores.storeParser();
@@ -53,7 +49,7 @@ public class StoresService {
             List<Stores> storesList = storesMapper.selectByAccoutId(item.getAccountid());
             if(storesList == null || storesList.size() == 0) {
                 LocationVo vo = LocationUtil.getLocationMsg(item.getAddress1_longitude(), item.getAddress1_latitude());
-                LocationIdsVo result = regionMapper.getByRegionName(vo.getProvince(), vo.getCity(), vo.getDistrict());
+                LocationIdsVo result = regionService.sureRegionNameMatch(vo.getProvinceName(), vo.getCityName(), vo.getDistrictName());
                 Stores stores = new Stores();
                 BeanUtils.copyProperties(stores, item);
                 //添加省市区信息
@@ -150,10 +146,11 @@ public class StoresService {
         return stores;
     }
 
-    public PageBean<BStoreListVo> searchByRegionList(Integer province, Integer city, Integer district, Integer page, Integer size) {
-        //todo 校验省市区联动
+    public PageBean<BStoreListVo> searchByRegionList(Integer provinceId, Integer cityId, Integer districtId, Integer page, Integer size) {
+        // 校验省市区联动
+        regionService.sureRegionIdMatch(provinceId, cityId, districtId);
         PageHelper.startPage(page, size);
-        List<BStoreListVo> vos = storesMapper.selectByRegionId(province, city, district);
+        List<BStoreListVo> vos = storesMapper.selectByRegionId(provinceId, cityId, districtId);
         PageInfo<BStoreListVo> pageInfo = new PageInfo(vos);
         return new PageBean<>(page, size, pageInfo.getTotal(), vos);
     }

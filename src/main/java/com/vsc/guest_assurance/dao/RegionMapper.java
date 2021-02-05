@@ -27,4 +27,8 @@ public interface RegionMapper {
     LocationIdsVo getByRegionName(@Param("provinceName") String provinceName,
                                   @Param("cityName") String cityName,
                                   @Param("districtName") String districtName);
+
+    LocationIdsVo getByRegionId(@Param("provinceId") Integer provinceId,
+                                @Param("cityId") Integer cityId,
+                                @Param("districtId") Integer districtId);
 }

@@ -190,4 +190,11 @@
                 (select region_id, region_name, pid, level from region) as c on b.region_id = c.pid and c.level = 3 and c.region_name = #{districtName}
     </select>
 
+    <select id="getByRegionId" resultType="com.vsc.guest_assurance.vo.common.LocationIdsVo">
+        select a.region_id as provinceId, b.region_id as cityId, c.region_id as districtId from
+                (select region_id, level, region_name from region) as a INNER JOIN
+                (select region_id, region_name, pid, level from region) as b on a.region_id = b.pid and a.level = 1 and a.region_id = #{provinceId} and b.level = 2 and b.region_id = #{cityId} INNER JOIN
+                (select region_id, region_name, pid, level from region) as c on b.region_id = c.pid and c.level = 3 and c.region_id = #{districtId}
+    </select>
+
 </mapper>
