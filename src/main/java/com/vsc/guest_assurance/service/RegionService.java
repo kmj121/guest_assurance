@@ -55,4 +55,9 @@ public class RegionService {
         }
         return result;
     }
+
+    public LocationIdsVo getByRegionName(String provinceName, String cityName, String districtName) {
+        LocationIdsVo result = regionMapper.getByRegionName(provinceName, cityName, districtName);
+        return result;
+    }
 }

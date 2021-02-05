@@ -3,7 +3,6 @@ package com.vsc.guest_assurance.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.vsc.guest_assurance.common.*;
-import com.vsc.guest_assurance.dao.RegionMapper;
 import com.vsc.guest_assurance.dao.StoresMapper;
 import com.vsc.guest_assurance.dao.ThumbsUpHistoryMapper;
 import com.vsc.guest_assurance.entity.Stores;
@@ -49,13 +48,16 @@ public class StoresService {
             List<Stores> storesList = storesMapper.selectByAccoutId(item.getAccountid());
             if(storesList == null || storesList.size() == 0) {
                 LocationVo vo = LocationUtil.getLocationMsg(item.getAddress1_longitude(), item.getAddress1_latitude());
-                LocationIdsVo result = regionService.sureRegionNameMatch(vo.getProvinceName(), vo.getCityName(), vo.getDistrictName());
+                LocationIdsVo result = regionService.getByRegionName(vo.getProvinceName(), vo.getCityName(), vo.getDistrictName());
                 Stores stores = new Stores();
                 BeanUtils.copyProperties(stores, item);
                 //添加省市区信息
-                stores.setProvince_id(result.getProvinceId());
-                stores.setCity_id(result.getCityId());
-                stores.setDistrict_id(result.getDistrictId());
+                Integer provinceId = result == null ? null : result.getProvinceId();
+                Integer cityId = result == null ? null : result.getCityId();
+                Integer districtId = result == null ? null : result.getDistrictId();
+                stores.setProvince_id(provinceId);
+                stores.setCity_id(cityId);
+                stores.setDistrict_id(districtId);
                 stores.setCreate_time(new Date());
                 stores.setThumbs_up_num(Constant.FALSE);
                 stores.setThumbs_up_points(Constant.FALSE);
@@ -146,11 +148,14 @@ public class StoresService {
         return stores;
     }
 
-    public PageBean<BStoreListVo> searchByRegionList(Integer provinceId, Integer cityId, Integer districtId, Integer page, Integer size) {
+    public PageBean<BStoreListVo> searchByRegionList(Integer provinceId, Integer cityId, Integer districtId,
+                                                     String keyWord, Integer page, Integer size) {
         // 校验省市区联动
-        regionService.sureRegionIdMatch(provinceId, cityId, districtId);
+        if(provinceId != null && cityId != null && districtId != null) {
+            regionService.sureRegionIdMatch(provinceId, cityId, districtId);
+        }
         PageHelper.startPage(page, size);
-        List<BStoreListVo> vos = storesMapper.selectByRegionId(provinceId, cityId, districtId);
+        List<BStoreListVo> vos = storesMapper.selectByRegionId(provinceId, cityId, districtId, keyWord);
         PageInfo<BStoreListVo> pageInfo = new PageInfo(vos);
         return new PageBean<>(page, size, pageInfo.getTotal(), vos);
     }

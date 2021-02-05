@@ -61,10 +61,11 @@ public class BStoreController {
             @ApiParam(value = "省") @RequestParam(required = false) Integer provinceId,
             @ApiParam(value = "市") @RequestParam(required = false) Integer cityId,
             @ApiParam(value = "区") @RequestParam(required = false) Integer districtId,
+            @ApiParam(value = "关键字") @RequestParam(required = false) String keyWord,
             @ApiParam(value = "页数", required = true) @RequestParam Integer page,
             @ApiParam(value = "数量", required = true) @RequestParam Integer size) {
         return new ResultObject(MessageCode.CODE_SUCCESS,
-                storesService.searchByRegionList(provinceId, cityId, districtId, page, size));
+                storesService.searchByRegionList(provinceId, cityId, districtId, keyWord, page, size));
     }
 
     @ApiOperation(value = "数据导出")
