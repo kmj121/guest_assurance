@@ -21,7 +21,8 @@ import java.util.List;
  * @Date 2021/1/7
  */
 public class ParseStores {
-    private static String url = "https://ins-fsm-functionapp-001-d.azurewebsites.net/api/account/getScienceProgrameList";
+    //private static String url = "https://ins-fsm-functionapp-001-d.azurewebsites.net/api/account/getScienceProgrameList";
+    private static String url = "https://ins-fsm-functionapp-001-p.azurewebsites.net/api/account/getScienceProgrameList";
 
     public static List<ParseStoresVo> storeParser() throws Exception {
         HttpGet httpGet = new HttpGet(url);
