@@ -4,6 +4,7 @@ public class LocationVo {
     private String provinceName;
     private String cityName;
     private String districtName;
+    private Integer adcode;
 
     public String getProvinceName() {
         return provinceName;
@@ -27,5 +28,13 @@ public class LocationVo {
 
     public void setDistrictName(String districtName) {
         this.districtName = districtName;
+    }
+
+    public Integer getAdcode() {
+        return adcode;
+    }
+
+    public void setAdcode(Integer adcode) {
+        this.adcode = adcode;
     }
 }

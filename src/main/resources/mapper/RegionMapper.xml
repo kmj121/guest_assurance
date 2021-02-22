@@ -176,7 +176,12 @@
 
     <!-- 调取存储过程 -->
     <select id="getByPid" parameterType="Integer" resultType="com.vsc.guest_assurance.vo.backend.BRegionPullDownListVo" statementType="CALLABLE">
-        {call Child_ById(#{id,mode=IN})}
+        {call Child_ById(#{pid,mode=IN})}
+    </select>
+
+    <!-- 调取存储过程 -->
+    <select id="getByCid" parameterType="Integer" resultType="com.vsc.guest_assurance.vo.backend.BRegionPullDownListVo" statementType="CALLABLE">
+        {call Parent_ById(#{cid,mode=IN})}
     </select>
 
     <select id="getNextLevel" resultType="com.vsc.guest_assurance.vo.backend.BRegionPullDownListVo">

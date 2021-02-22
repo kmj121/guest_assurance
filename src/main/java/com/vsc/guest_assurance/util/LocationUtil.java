@@ -59,6 +59,7 @@ public class LocationUtil {
                 locationVo.setProvinceName(addressObject.getString("province"));
                 locationVo.setCityName(addressObject.getString("city"));
                 locationVo.setDistrictName(addressObject.getString("district"));
+                locationVo.setAdcode(addressObject.getInteger("adcode"));
 
                 //JsonParser jp = new JsonParser();
                 //将json字符串转化成json对象

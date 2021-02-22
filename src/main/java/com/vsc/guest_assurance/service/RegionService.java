@@ -60,4 +60,9 @@ public class RegionService {
         LocationIdsVo result = regionMapper.getByRegionName(provinceName, cityName, districtName);
         return result;
     }
+
+    public List<BRegionPullDownListVo> getByCid(Integer cid) {
+        List<BRegionPullDownListVo> result = regionMapper.getByCid(cid);
+        return result;
+    }
 }

@@ -9,6 +9,7 @@ import com.vsc.guest_assurance.entity.Stores;
 import com.vsc.guest_assurance.entity.ThumbsUpHistory;
 import com.vsc.guest_assurance.util.LocationUtil;
 import com.vsc.guest_assurance.vo.LocationVo;
+import com.vsc.guest_assurance.vo.backend.BRegionPullDownListVo;
 import com.vsc.guest_assurance.vo.backend.BStoreListVo;
 import com.vsc.guest_assurance.vo.backend.BStoresThumbsUpVo;
 import com.vsc.guest_assurance.vo.common.LocationIdsVo;
@@ -23,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Description
@@ -48,13 +50,16 @@ public class StoresService {
             List<Stores> storesList = storesMapper.selectByAccoutId(item.getAccountid());
             if(storesList == null || storesList.size() == 0) {
                 LocationVo vo = LocationUtil.getLocationMsg(item.getAddress1_longitude(), item.getAddress1_latitude());
-                LocationIdsVo result = regionService.getByRegionName(vo.getProvinceName(), vo.getCityName(), vo.getDistrictName());
+                List<BRegionPullDownListVo> result = regionService.getByCid(vo.getAdcode());
                 Stores stores = new Stores();
                 BeanUtils.copyProperties(stores, item);
                 //添加省市区信息
-                Integer provinceId = result == null ? null : result.getProvinceId();
-                Integer cityId = result == null ? null : result.getCityId();
-                Integer districtId = result == null ? null : result.getDistrictId();
+                List<BRegionPullDownListVo> level1Vos = result == null ? null : result.stream().filter(u -> u.getLevel() == 1).collect(Collectors.toList());
+                List<BRegionPullDownListVo> level2Vos = result == null ? null : result.stream().filter(u -> u.getLevel() == 2).collect(Collectors.toList());
+                List<BRegionPullDownListVo> level3Vos = result == null ? null : result.stream().filter(u -> u.getLevel() == 3).collect(Collectors.toList());
+                Integer provinceId = level1Vos == null || level1Vos.size() > 1 ? null : level1Vos.get(0).getRegionId();
+                Integer cityId = level2Vos == null || level2Vos.size() > 1 ? null : level2Vos.get(0).getRegionId();
+                Integer districtId = level3Vos == null || level3Vos.size() > 1 ? null : level3Vos.get(0).getRegionId();
                 stores.setProvince_id(provinceId);
                 stores.setCity_id(cityId);
                 stores.setDistrict_id(districtId);

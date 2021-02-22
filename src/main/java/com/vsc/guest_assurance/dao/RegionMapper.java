@@ -22,6 +22,8 @@ public interface RegionMapper {
 
     List<BRegionPullDownListVo> getByPid(Integer pid);
 
+    List<BRegionPullDownListVo> getByCid(Integer cid);
+
     List<BRegionPullDownListVo> getNextLevel(Integer level);
 
     LocationIdsVo getByRegionName(@Param("provinceName") String provinceName,
