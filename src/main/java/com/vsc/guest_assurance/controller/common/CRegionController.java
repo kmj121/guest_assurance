@@ -26,7 +26,7 @@ import java.util.List;
  * @Date 2020/9/27
  */
 @RestController
-@Api(tags = {"后台-区域-接口"})
+@Api(tags = {"共通-区域-接口"})
 @RequestMapping(value = "/common/region")
 public class CRegionController {
 

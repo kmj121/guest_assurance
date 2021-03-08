@@ -10,39 +10,21 @@
 
 <medias>
     <media>
-        <title>公众号文章标题</title>
-        <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
-        <imageUrl>classpath:static/image/background.jpg</imageUrl>
-        <url>https://www.baidu.com</url>
+        <title>后疫情时代的餐厅吸客小心机：让清洁“被看见”！</title>
+        <summary>经历了特殊的2020年，餐饮行业的运营理念发生了深刻变化。其中最为显著的一条，跟食安相关：消费者不会再为了追求口味而放松对餐厅卫生状况的要求。</summary>
+        <imageUrl>classpath:static/image/media1.png</imageUrl>
+        <url>https://mp.weixin.qq.com/s/CoAFidXvO9PWdSuYDlOzPA</url>
     </media>
     <media>
-        <title>公众号文章标题</title>
-        <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
-        <imageUrl>classpath:static/image/background.jpg</imageUrl>
-        <url>https://www.baidu.com</url>
+        <title>艺康科学守护项目：让清洁被看见，被了解，被信任</title>
+        <summary>2021年开启之际，艺康科学守护项目正式推出，为餐饮、酒店和超市等商户企业提供更高的清洁消毒标准和可执行的解决方案，帮助场所和机构提高清洁和卫生的实践能力，升级客户体验，赢得消费者信心，让清洁被看见，被了解，被信任。</summary>
+        <imageUrl>classpath:static/image/media2.jpg</imageUrl>
+        <url>https://www.prnasia.com/story/archive/3260742_ZH60742_1?utm_source=rw-email&amp;utm_medium=email</url>
     </media>
     <media>
-        <title>公众号文章标题</title>
-        <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
-        <imageUrl>classpath:static/image/background.jpg</imageUrl>
-        <url>https://www.baidu.com</url>
-    </media>
-    <media>
-        <title>公众号文章标题</title>
-        <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
-        <imageUrl>classpath:static/image/background.jpg</imageUrl>
-        <url>https://www.baidu.com</url>
-    </media>
-    <media>
-        <title>公众号文章标题</title>
-        <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
-        <imageUrl>classpath:static/image/background.jpg</imageUrl>
-        <url>https://www.baidu.com</url>
-    </media>
-    <media>
-        <title>公众号文章标题</title>
-        <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
-        <imageUrl>classpath:static/image/background.jpg</imageUrl>
-        <url>https://www.baidu.com</url>
+        <title>艺康科学守护为您而来！</title>
+        <summary>守护您的安心与舒适</summary>
+        <imageUrl>classpath:static/image/media3.png</imageUrl>
+        <url>https://mp.weixin.qq.com/s/D_YSINcVHKNBZ6UVBJdqHg</url>
     </media>
 </medias>
