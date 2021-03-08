@@ -30,7 +30,7 @@ public class BMediaController {
     @Autowired
     private MediaService mediaService;
 
-    @ApiOperation(value = "问答列表")
+    @ApiOperation(value = "媒体列表")
     @GetMapping(value = "/list")
     public ResultObject<BMediaVo> list(
             HttpServletRequest request,

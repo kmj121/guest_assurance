@@ -69,6 +69,9 @@ public class MediaService {
                 if("imageUrl".equals(stuChild.getName())) {
                     bMediaVo.setImageUrl(stuChild.getStringValue());
                 }
+                if("url".equals(stuChild.getName())) {
+                    bMediaVo.setUrl(stuChild.getStringValue());
+                }
             }
             listVos.add(bMediaVo);
         }

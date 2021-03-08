@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE medias [
         <!ELEMENT medias (media+)>
-        <!ELEMENT media (title, summary, imageUrl)>
+        <!ELEMENT media (title, summary, imageUrl, url)>
         <!ELEMENT title (#PCDATA)>
         <!ELEMENT summary (#PCDATA)>
         <!ELEMENT imageUrl (#PCDATA)>
+        <!ELEMENT url (#PCDATA)>
         ]>
 
 <medias>
@@ -12,30 +13,36 @@
         <title>公众号文章标题</title>
         <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
         <imageUrl>classpath:static/image/background.jpg</imageUrl>
+        <url>https://www.baidu.com</url>
     </media>
     <media>
         <title>公众号文章标题</title>
         <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
         <imageUrl>classpath:static/image/background.jpg</imageUrl>
+        <url>https://www.baidu.com</url>
     </media>
     <media>
         <title>公众号文章标题</title>
         <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
         <imageUrl>classpath:static/image/background.jpg</imageUrl>
+        <url>https://www.baidu.com</url>
     </media>
     <media>
         <title>公众号文章标题</title>
         <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
         <imageUrl>classpath:static/image/background.jpg</imageUrl>
+        <url>https://www.baidu.com</url>
     </media>
     <media>
         <title>公众号文章标题</title>
         <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
         <imageUrl>classpath:static/image/background.jpg</imageUrl>
+        <url>https://www.baidu.com</url>
     </media>
     <media>
         <title>公众号文章标题</title>
         <summary>公众号简要内容公众号简要内容公众号简要内容公众号简要内容</summary>
         <imageUrl>classpath:static/image/background.jpg</imageUrl>
+        <url>https://www.baidu.com</url>
     </media>
 </medias>
